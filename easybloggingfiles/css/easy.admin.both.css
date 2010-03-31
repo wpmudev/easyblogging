@@ -1,0 +1,27 @@
+.admin_area {
+    margin-top: 10px;
+    margin-right: 20px;
+    float: right;
+    width:250px;
+    text-align: center;
+}
+
+.admin_area a {
+    text-decoration: none;
+}
+
+#admin_area_to_easy {
+    margin-top: 13px;
+}
+
+#admin_area_to_advanced {
+    border-color: #464646;
+}
+
+#admin_area_to_advanced a {
+    color: #ffffff;
+}
+
+#screen-meta {
+    display: none;
+}
