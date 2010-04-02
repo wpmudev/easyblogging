@@ -253,7 +253,7 @@ if (!class_exists('easy_admin')) {
                     var theDiv = jQuery("iframe", parent.document.body).parent();
                     
                     if (theDiv.length == 0) { //We're not in an iframe, redirect to the dashboard
-                        window.location.replace('<?=admin_url("index.php#$hash"); ?>');
+                        window.location.replace('<?php echo admin_url("index.php#$hash"); ?>');
                     } else { //We are in an iframe, resize & do other actions
                         jQuery("iframe", parent.document.body).css('height','100%');
                         var height = jQuery(document).height();

@@ -31,6 +31,6 @@ switch ($_GET['frame']) {
         break;
 }
 ?>
-<iframe id="<?=$page?>-php" scrolling="no" src="<?=admin_url($page.'.php'); ?>" style="height: 600px; width: 100%; border: none;" frameborder="0"></iframe>
+<iframe id="<?php echo $page?>-php" scrolling="no" src="<?php echo admin_url($page.'.php'); ?>" style="height: 600px; width: 100%; border: none;" frameborder="0"></iframe>
 </body>
 </html>
