@@ -236,6 +236,12 @@ if (!class_exists('easy_admin')) {
                         document.location.hash = jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id');
                         jQuery( 'html, body' ).animate( { scrollTop: 0 }, 0 );
                     });
+                    
+                    jQuery('.supporter_help').live('click', function(event){
+                        event.preventDefault(); //stop default browser behaviour
+                        jQuery("#easy_admin_tabs").tabs('select', jQuery('#easy_admin_tabs li a').index(jQuery('#hidden_tab a')));
+                        return false;
+                    });
                 });
             </script>
             <?php
@@ -318,6 +324,13 @@ if (!class_exists('easy_admin')) {
                 $connector = '&';
             else
                 $connector = '?';
+                
+            if (is_supporter()) {
+                $supporter_rebrand = get_site_option( "supporter_rebrand" );
+                if ($supporter_rebrand == '') {
+                    $supporter_rebrand = __('Supporter','supporter');
+                }
+            }
 
             ?><script type="text/javascript">
                 jQuery(document).ready(function($) {
@@ -329,7 +342,7 @@ if (!class_exists('easy_admin')) {
                 echo '<div id="admin_area_to_easy" class="admin_area button"><a href="' . $this->currenturl_with_querystring . $connector . 'easyadmin=on">', __('Go to the Easy Admin Area',$this->localizationDomain) . '</a></div>';
             ?>');
             <?php if (!$this->options['disabled'][$user_ID]) { ?>
-                    $('#wphead-info').before('<div id="logout"><a href="<?php echo wp_logout_url() ?>" title="<?php _e('Log Out') ?>"><?php _e('Log Out'); ?></a></div>');
+                    $('#wphead-info').before('<div id="logout"><?php if (is_supporter()) { echo '<a class="supporter_help" href="' . admin_url('supporter.php') . '?page=premium-support">' . $supporter_rebrand . ' ' . __('Help',$this->localizationDomain) . '</a> | '; } ?><a href="<?php echo wp_logout_url() ?>" title="<?php _e('Log Out') ?>"><?php _e('Log Out'); ?></a></div>');
             <?php 
                       if ($pagenow == 'themes.php') { //This is inside [if (!$this->options['disabled'][$user_ID])] because we don't need to add it unless we're in the easy admin area'?>
                         $('#wpbody a:not(.thickbox, .activatelink, .submitdelete, .button, .updated a, .wizard_button, .page-numbers)').attr('target','_blank');
