@@ -314,6 +314,13 @@ if (!class_exists('easy_admin')) {
         }
         
         /**
+        * Wrapper function to make sure is_supporter() exists (meaning, the supporter plugin is active)
+        */
+        function is_supporter() {
+            return function_exists('is_supporter') && is_supporter();
+        }
+        
+        /**
         * Add a link to the footer to turn on/off the easy admin area
         */
         function admin_footer() {
@@ -325,7 +332,7 @@ if (!class_exists('easy_admin')) {
             else
                 $connector = '?';
                 
-            if (is_supporter()) {
+            if ($this->is_supporter()) {
                 $supporter_rebrand = get_site_option( "supporter_rebrand" );
                 if ($supporter_rebrand == '') {
                     $supporter_rebrand = __('Supporter','supporter');
@@ -342,7 +349,7 @@ if (!class_exists('easy_admin')) {
                 echo '<div id="admin_area_to_easy" class="admin_area button"><a href="' . $this->currenturl_with_querystring . $connector . 'easyadmin=on">', __('Go to the Easy Admin Area',$this->localizationDomain) . '</a></div>';
             ?>');
             <?php if (!$this->options['disabled'][$user_ID]) { ?>
-                    $('#wphead-info').before('<div id="logout"><?php if (is_supporter()) { echo '<a class="supporter_help" href="' . admin_url('supporter.php') . '?page=premium-support">' . $supporter_rebrand . ' ' . __('Help',$this->localizationDomain) . '</a> | '; } ?><a href="<?php echo wp_logout_url() ?>" title="<?php _e('Log Out') ?>"><?php _e('Log Out'); ?></a></div>');
+                    $('#wphead-info').before('<div id="logout"><?php if ($this->is_supporter()) { echo '<a class="supporter_help" href="' . admin_url('supporter.php') . '?page=premium-support">' . $supporter_rebrand . ' ' . __('Help',$this->localizationDomain) . '</a> | '; } ?><a href="<?php echo wp_logout_url() ?>" title="<?php _e('Log Out') ?>"><?php _e('Log Out'); ?></a></div>');
             <?php 
                       if ($pagenow == 'themes.php') { //This is inside [if (!$this->options['disabled'][$user_ID])] because we don't need to add it unless we're in the easy admin area'?>
                         $('#wpbody a:not(.thickbox, .activatelink, .submitdelete, .button, .updated a, .wizard_button, .page-numbers)').attr('target','_blank');
