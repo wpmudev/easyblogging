@@ -233,8 +233,9 @@ if (!class_exists('easy_admin')) {
                         }); // select the tab
 
                     jQuery('#easy_admin_tabs').bind('tabsshow', function(event, ui) { // change the url anchor when we click on a tab
+                        var scrollto = window.pageYOffset;
                         document.location.hash = jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id');
-                        jQuery( 'html, body' ).animate( { scrollTop: 0 }, 0 );
+                        jQuery( 'html, body' ).animate( { scrollTop: scrollto }, 0 );
                     });
                     
                     jQuery('.supporter_help').live('click', function(event){
