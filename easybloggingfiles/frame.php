@@ -37,6 +37,10 @@ switch ($_GET['frame']) {
         $page = 'supporter';
         $frame_url = admin_url('supporter.php');
     break;
+    case 'premium-support':
+        $page = 'supporter';
+        $frame_url = admin_url('supporter.php') . '?page=premium-support';
+    break;
     case 'profile':
         $page = 'profile';
         $frame_url = admin_url('profile.php');

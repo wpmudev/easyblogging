@@ -240,7 +240,13 @@ if (!class_exists('easy_admin')) {
                     
                     jQuery('.supporter_help').live('click', function(event){
                         event.preventDefault(); //stop default browser behaviour
-                        jQuery("#easy_admin_tabs").tabs('select', jQuery('#easy_admin_tabs li a').index(jQuery('#hidden_tab a')));
+                        jQuery("#easy_admin_tabs").tabs('select', jQuery('#easy_admin_tabs li a').index(jQuery('#supporter-help-php')));
+                        return false;
+                    });
+                    
+                    jQuery('.supporter_join').live('click', function(event){
+                        event.preventDefault(); //stop default browser behaviour
+                        jQuery("#easy_admin_tabs").tabs('select', jQuery('#easy_admin_tabs li a').index(jQuery('#go-pro-php')));
                         return false;
                     });
                 });
@@ -333,7 +339,7 @@ if (!class_exists('easy_admin')) {
             else
                 $connector = '?';
                 
-            if ($this->is_supporter()) {
+            if (function_exists('is_supporter')) {
                 $supporter_rebrand = get_site_option( "supporter_rebrand" );
                 if ($supporter_rebrand == '') {
                     $supporter_rebrand = __('Supporter','supporter');
@@ -350,9 +356,16 @@ if (!class_exists('easy_admin')) {
                 echo '<div id="admin_area_to_easy" class="admin_area button"><a href="' . $this->currenturl_with_querystring . $connector . 'easyadmin=on">', __('Go to the Easy Admin Area',$this->localizationDomain) . '</a></div>';
             ?>');
             <?php if (!$this->options['disabled'][$user_ID]) { ?>
-                    $('#wphead-info').before('<div id="logout"><?php if ($this->is_supporter()) { echo '<a class="supporter_help" href="' . admin_url('supporter.php') . '?page=premium-support">' . $supporter_rebrand . ' ' . __('Help',$this->localizationDomain) . '</a> | '; } ?><a href="<?php echo wp_logout_url() ?>" title="<?php _e('Log Out') ?>"><?php _e('Log Out'); ?></a></div>');
+                    $('#wphead-info').before('<div id="logout"><?php
+                    if ($this->is_supporter()) {
+                        echo '<a class="supporter_help" href="' . admin_url('supporter.php') . '?page=premium-support">' . $supporter_rebrand . ' ' . __('Help',$this->localizationDomain) . '</a> | ';
+                    } elseif (function_exists('is_supporter')) { //We need to check if the function exists here, because if it doesnt, we don't need to display the signup link
+                        echo '<a class="supporter_join" href="' . admin_url('supporter.php') . '">' . __('Sign Up For ', $this->localizationDomain) . ' ' . $supporter_rebrand. '</a> | ';
+                    }
+                    ?><a href="<?php echo wp_logout_url() ?>" title="<?php _e('Log Out') ?>"><?php _e('Log Out'); ?></a></div>');
             <?php 
-                      if ($pagenow == 'themes.php') { //This is inside [if (!$this->options['disabled'][$user_ID])] because we don't need to add it unless we're in the easy admin area'?>
+                      if ($pagenow == 'themes.php') { //This is inside [if (!$this->options['disabled'][$user_ID])] because we don't need to add it unless we're in the easy admin area'
+            ?>
                         $('#wpbody a:not(.thickbox, .activatelink, .submitdelete, .button, .updated a, .wizard_button, .page-numbers)').attr('target','_blank');
                         $(".add-new-h2").remove();
                         $(".theme-description, .action-links").next().remove();
