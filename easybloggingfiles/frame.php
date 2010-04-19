@@ -1,7 +1,3 @@
-<html>
-<head>
-</head>
-<body>
 <?php
 //Sift the querystring value through a switch statement to make sure there's no security holes
 switch ($_GET['frame']) {
@@ -55,7 +51,30 @@ switch ($_GET['frame']) {
         if (empty($page)) $page = 'post-new';
         break;
 }
+
+if (strpos($frame_url, '?') !== false) {
+    $has_querystring = true;
+}
 ?>
+<html>
+<head>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    var querystring = '';
+    var anchor = jQuery(document).attr('location').hash; // the anchor in the URL
+    if (anchor.indexOf('|') > -1) {
+        querystring = anchor.substring(anchor.indexOf('|')+1); //+1 to ignore the |
+        anchor = anchor.substring(0,anchor.indexOf('|'));
+    }
+    
+    //Do we need to pass in the querystring?
+    if (querystring != '') {
+        jQuery('#<?php echo $page?>-php').attr('src','<?php echo $frame_url; if ($has_querystring) echo '&'; else echo '?';?>page=' + querystring);
+    }
+});
+</script>
+</head>
+<body>
 <iframe id="<?php echo $page?>-php" scrolling="no" src="<?php echo $frame_url; ?>" style="height: 600px; width: 100%; border: none;" frameborder="0"></iframe>
 </body>
 </html>

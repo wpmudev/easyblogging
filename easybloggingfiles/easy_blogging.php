@@ -1,4 +1,14 @@
 <?php
+/**
+* If you're installing this plugin on an existing WPMU install, and don't want the Easy Blogging page to automatically ask users if they want easy or advanced,
+* you can use INSTALL_DATE to automatically set users on blogs created before a certain date/time to use the Advanced area by default. (They can still click the
+* button to go to the easy admin area) In this instance, INSTALL_DATE Must be a valid datetime value. Use strtotime() to make it easier on yourself.
+* 
+* However, if you want ALL users, regardless of whether or not they're an existing user to be give the choice to go Easy or Advanced, delete the define(...) line.
+* This will force all users to choose Easy or Advanced the next time they are in the admin area of their blog.
+*/
+define('INSTALL_DATE',strtotime('4/14/2010'));
+
 if (!class_exists('easy_admin')) {
     class easy_admin {
         //This is where the class variables go, don't forget to use @var to tell what they're for
@@ -27,9 +37,14 @@ if (!class_exists('easy_admin')) {
         var $currenturl = '';
         
         /**
-        * @desc string $current_url Stores the current page's url
+        * @desc string $currenturl_with_querystring Stores the current page's url including the querystring
         */
         var $currenturl_with_querystring = '';
+        
+        /**
+        * @desc date $installdate stores the date/time this plugin was installed
+        */
+        var $installdate;
             
         /**
         * @var array $options Stores the options for this plugin
@@ -105,7 +120,17 @@ if (!class_exists('easy_admin')) {
             
             if ($pagenow == 'media-upload.php' || $pagenow == 'admin-ajax.php') {
                 return; //We don't want to do a thing if this is the media-upload or admin-ajax page
-            } 
+            }
+
+            if (isset($this->installdate) && !isset($this->options['disabled'][$user_ID])) { //Make sure INSTALL_DATE is defined, and there is no value for the disabled setting
+                global $wpdb;
+                $registered = strtotime($wpdb->get_var("SELECT `registered` FROM $wpdb->blogs WHERE blog_id=$wpdb->blogid"));
+                if ($registered < $this->installdate) { //If this blog was registered before the installation of Easy Blogging, set this user's admin area to advanced (IE - disable Easy Blogging)
+                    $this->options['disabled'][$user_ID] = true;
+                    $this->saveAdminOptions();
+                }
+            }
+            
             
             if ($_GET['easyadmin']) {
                 switch ($_GET['easyadmin']) {
@@ -162,6 +187,12 @@ if (!class_exists('easy_admin')) {
                 //Do this regardless of whether or not we're in a tab
                 add_action('admin_head', array(&$this,'admin_head_css'));
                 remove_action( 'admin_footer', 'bp_core_admin_bar');
+                
+                //Keep the Supporter popup from appearing on the main page
+                if ($this->is_dash()) {
+                    remove_action('admin_head','supporter_admin_box_hide_js');
+                    remove_action('admin_footer','supporter_admin_box');
+                }
             }
         }
         
@@ -217,6 +248,11 @@ if (!class_exists('easy_admin')) {
             <script type="text/javascript">
                 jQuery(document).ready(function(){
                     var anchor = jQuery(document).attr('location').hash; // the anchor in the URL
+                    if (anchor.indexOf('|') > -1) {
+                        //If this anchor has a | in it, we need to remove the | part because it's not actually part of the anchor. We'll use the | part in the frame.php page
+                        anchor = anchor.substring(0,anchor.indexOf('|'));
+                    }
+                    
                     var index = jQuery('#easy_admin_tabs li a').index(jQuery(anchor)); // in tab index of the anchor in the URL
                     if (index < 0) { index = 0; }
                     jQuery('#easy_admin_tabs').tabs({
@@ -259,7 +295,14 @@ if (!class_exists('easy_admin')) {
         */
         function admin_head_resize() {
             global $pagenow;
-            $hash = str_replace('.','-',$pagenow);
+            if ($pagenow == 'supporter.php') {
+                $hash = 'go-pro-php';
+                if ($_GET['page']) {
+                    $hash .= '|' . $_GET['page'];
+                }
+            } else {
+                $hash = str_replace('.','-',$pagenow);
+            }
             ?>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
@@ -413,6 +456,12 @@ if (!class_exists('easy_admin')) {
                 update_option($this->optionsName, $theOptions);
             }
             $this->options = $theOptions;
+            
+            //Setting up the $this->installdate value
+            if (!$this->installdate = get_site_option($this->optionsName . '_installdate')) {
+                $this->installdate = time();
+                update_site_option($this->optionsName . '_installdate', $this->installdate);
+            }
             
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //There is no return here, because you should use the $this->options variable!!!
