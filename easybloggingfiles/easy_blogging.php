@@ -192,7 +192,13 @@ if (!class_exists('easy_admin')) {
                 if ($this->is_dash()) {
                     remove_action('admin_head','supporter_admin_box_hide_js');
                     remove_action('admin_footer','supporter_admin_box');
+                    
+                    //Hide he admin messages plugin output for the index page, this will cause it to only display in the iframes
+                    remove_action('admin_notices', 'admin_message_output');
                 }
+                
+                //If we're in easy admin area, remove the tips plugin messages altogether. The tips are advanced in nature, so they don't belong in the easy area
+                if ($this->options['disabled']) remove_action('admin_notices', 'tips_output');
             }
         }
         
@@ -246,15 +252,29 @@ if (!class_exists('easy_admin')) {
         function admin_head() {
             ?>
             <script type="text/javascript">
+                var advancedpage = '';
+                var querystring = '';
                 jQuery(document).ready(function(){
                     var anchor = jQuery(document).attr('location').hash; // the anchor in the URL
                     if (anchor.indexOf('|') > -1) {
-                        //If this anchor has a | in it, we need to remove the | part because it's not actually part of the anchor. We'll use the | part in the frame.php page
+                        //If this anchor has a | in it, we need to remove the | part because it's not actually part of the anchor, and save it in the querystring var
+                        querystring = anchor.substring(anchor.indexOf('|')+1); //+1 to ignore the |
                         anchor = anchor.substring(0,anchor.indexOf('|'));
                     }
+                    if (anchor == '#themes-php') { //Check to make sure the user isn't looking for the custom header page
+                        if (querystring.indexOf('page=custom-header')) anchor = '#widgets-php'; //The custom header area is on the same tab as the widgets, so we'll need to redirect there intead of themes-php
+                    }
+                                        
+                    advancedpage = anchor.replace('-php','').substring(1);
                     
-                    var index = jQuery('#easy_admin_tabs li a').index(jQuery(anchor)); // in tab index of the anchor in the URL
-                    if (index < 0) { index = 0; }
+                    if (anchor != '') {
+                        var index = jQuery('#easy_admin_tabs li a').index(jQuery(anchor)); // in tab index of the anchor in the URL
+                        if (index < 0) {
+                            index = jQuery('#easy_admin_tabs li a').index(jQuery('#noteasy'));
+                        }
+                    } else {
+                        index = 0;
+                    }
                     jQuery('#easy_admin_tabs').tabs({
                         <?php
                         $tab_options = apply_filters('easy_admin_tab_options', array('selected'=>index));
@@ -266,12 +286,34 @@ if (!class_exists('easy_admin')) {
                             echo "'$key': $value";
                         }
                         ?>
-                        }); // select the tab
+                    }); // select the tab
 
                     jQuery('#easy_admin_tabs').bind('tabsshow', function(event, ui) { // change the url anchor when we click on a tab
                         var scrollto = window.pageYOffset;
                         document.location.hash = jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id');
                         jQuery( 'html, body' ).animate( { scrollTop: scrollto }, 0 );
+                        
+                        if (jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id') != 'noteasy') {
+                            advancedpage = jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id').replace('-php','');
+                        }
+                        
+                        var href = '<?php echo admin_url('%%replace%%.php') . '?easyadmin=off'; ?>';
+                        if (querystring != '') {
+                            href += '&' + querystring;
+                        }
+                        switch (advancedpage) {
+                            case 'supporter-help':
+                                jQuery("#to_advanced_page").attr('href','<?php echo admin_url('supporter.php') . '?easyadmin=off&page=premium-support'; ?>');
+                            break;
+                            case 'widgets':
+                                if (querystring.indexOf('page=custom-header')) {
+                                    jQuery("#to_advanced_page").attr('href','<?php echo admin_url('themes.php') . '?easyadmin=off&page=custom-header'; ?>');
+                                }
+                            break;
+                            default:
+                                jQuery("#to_advanced_page").attr('href',href.replace('%%replace%%',advancedpage));
+                        }
+                        querystring = '';
                     });
                     
                     jQuery('.supporter_help').live('click', function(event){
@@ -282,7 +324,7 @@ if (!class_exists('easy_admin')) {
                     
                     jQuery('.supporter_join').live('click', function(event){
                         event.preventDefault(); //stop default browser behaviour
-                        jQuery("#easy_admin_tabs").tabs('select', jQuery('#easy_admin_tabs li a').index(jQuery('#go-pro-php')));
+                        jQuery("#easy_admin_tabs").tabs('select', jQuery('#easy_admin_tabs li a').index(jQuery('#supporter-php')));
                         return false;
                     });
                 });
@@ -295,13 +337,9 @@ if (!class_exists('easy_admin')) {
         */
         function admin_head_resize() {
             global $pagenow;
-            if ($pagenow == 'supporter.php') {
-                $hash = 'go-pro-php';
-                if ($_GET['page']) {
-                    $hash .= '|' . $_GET['page'];
-                }
-            } else {
-                $hash = str_replace('.','-',$pagenow);
+            $hash = str_replace('.','-',$pagenow);
+            if ($_SERVER['QUERY_STRING']) {
+                $hash .= '|' . $_SERVER['QUERY_STRING'];
             }
             ?>
             <script type="text/javascript">
@@ -376,8 +414,7 @@ if (!class_exists('easy_admin')) {
         function admin_footer() {
             global $user_ID, $pagenow;
             
-            $url = $this->currenturl_with_querystring;
-            if (strpos($url,'?') > 0)
+            if (strpos($this->currenturl_with_querystring,'?') > 0)
                 $connector = '&';
             else
                 $connector = '?';
@@ -394,18 +431,19 @@ if (!class_exists('easy_admin')) {
                     $('#footer-left').after('<br/>&nbsp;');
                     $('#wphead-info').after('<?php
             if (!$this->options['disabled'][$user_ID])
-                echo '<div id="admin_area_to_advanced" class="admin_area button"><a href="' . $this->currenturl_with_querystring . $connector . 'easyadmin=off">', __('Go to the Advanced Admin Area',$this->localizationDomain) . '</a></div>';
-            else
-                echo '<div id="admin_area_to_easy" class="admin_area button"><a href="' . $this->currenturl_with_querystring . $connector . 'easyadmin=on">', __('Go to the Easy Admin Area',$this->localizationDomain) . '</a></div>';
+                echo '<a id="to_advanced_page" href="' . $this->currenturl_with_querystring . $connector . 'easyadmin=off"><div id="admin_area_to_advanced" class="admin_area button">', __('Go to the Advanced Admin Area',$this->localizationDomain) . '</div></a>';
+            else {
+                echo '<a id="to_easy_page" href="' . admin_url('index.php') . '?easyadmin=on#' . str_replace('.','-',$pagenow);
+                if ($_SERVER['QUERY_STRING']) {
+                    echo '|' . str_replace('easyadmin=off','',str_replace('easyadmin=on','',$_SERVER['QUERY_STRING'])); //Remove the easyadmin querystring vars
+                }
+                echo '"><div id="admin_area_to_easy" class="admin_area button">', __('Go to the Easy Admin Area',$this->localizationDomain) . '</div></a>';
+            }
             ?>');
             <?php if (!$this->options['disabled'][$user_ID]) { ?>
-                    $('#wphead-info').before('<div id="logout"><?php
-                    if ($this->is_supporter()) {
-                        echo '<a class="supporter_help" href="' . admin_url('supporter.php') . '?page=premium-support">' . $supporter_rebrand . ' ' . __('Help',$this->localizationDomain) . '</a> | ';
-                    } elseif (function_exists('is_supporter')) { //We need to check if the function exists here, because if it doesnt, we don't need to display the signup link
-                        echo '<a class="supporter_join" href="' . admin_url('supporter.php') . '">' . __('Sign Up For ', $this->localizationDomain) . ' ' . $supporter_rebrand. '</a> | ';
-                    }
-                    ?><a href="<?php echo wp_logout_url() ?>" title="<?php _e('Log Out') ?>"><?php _e('Log Out'); ?></a></div>');
+                    $('#wphead-info').before('<div id="logout">\
+                    <a class="supporter_help" href="<?php echo admin_url('supporter.php'); ?>?page=premium-support"><?php _e('Premium Support',$this->localizationDomain) ?></a>\
+                    <a href="<?php echo wp_logout_url() ?>" title="<?php _e('Log Out') ?>"><?php _e('Log Out'); ?></a></div>');
             <?php 
                       if ($pagenow == 'themes.php') { //This is inside [if (!$this->options['disabled'][$user_ID])] because we don't need to add it unless we're in the easy admin area'
             ?>

@@ -29,7 +29,7 @@ switch ($_GET['frame']) {
         $page = 'themes';
         $frame_url = admin_url('themes.php') . '?page=premium-themes';
     break;
-    case 'go-pro':
+    case 'supporter':
         $page = 'supporter';
         $frame_url = admin_url('supporter.php');
     break;
@@ -41,6 +41,9 @@ switch ($_GET['frame']) {
         $page = 'profile';
         $frame_url = admin_url('profile.php');
     break;
+    case 'noteasy':
+        $page = 'noteasy';
+        break;
     case 'post-new':
     default:
         $frame_url = apply_filters('easy_admin_more_tabs_url',$_GET['frame']);
@@ -55,21 +58,24 @@ switch ($_GET['frame']) {
 if (strpos($frame_url, '?') !== false) {
     $has_querystring = true;
 }
+
+if ($page != 'noteasy') {
 ?>
 <html>
 <head>
 <script type="text/javascript">
 jQuery(document).ready(function(){
+    /*###Commented out, do we need this?
     var querystring = '';
     var anchor = jQuery(document).attr('location').hash; // the anchor in the URL
     if (anchor.indexOf('|') > -1) {
         querystring = anchor.substring(anchor.indexOf('|')+1); //+1 to ignore the |
         anchor = anchor.substring(0,anchor.indexOf('|'));
-    }
+    }*/
     
     //Do we need to pass in the querystring?
     if (querystring != '') {
-        jQuery('#<?php echo $page?>-php').attr('src','<?php echo $frame_url; if ($has_querystring) echo '&'; else echo '?';?>page=' + querystring);
+        jQuery('#<?php echo $page?>-php').attr('src','<?php echo $frame_url; if ($has_querystring) echo '&'; else echo '?';?>' + querystring);
     }
 });
 </script>
@@ -78,3 +84,7 @@ jQuery(document).ready(function(){
 <iframe id="<?php echo $page?>-php" scrolling="no" src="<?php echo $frame_url; ?>" style="height: 600px; width: 100%; border: none;" frameborder="0"></iframe>
 </body>
 </html>
+<?php } else {
+    require_once('noteasy.php');
+}
+?>
