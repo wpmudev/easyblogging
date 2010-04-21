@@ -271,7 +271,9 @@ if (!class_exists('easy_admin')) {
                         var index = jQuery('#easy_admin_tabs li a').index(jQuery(anchor)); // in tab index of the anchor in the URL
                         if (index < 0) {
                             index = jQuery('#easy_admin_tabs li a').index(jQuery('#noteasy'));
-                        }
+                        }/*### else if (querystring) { //Only do this if index >= 0
+                            jQuery(anchor).attr('href',jQuery(anchor).attr('href') + '&' + querystring)
+                        }*/
                     } else {
                         index = 0;
                     }
@@ -442,7 +444,7 @@ if (!class_exists('easy_admin')) {
             ?>');
             <?php if (!$this->options['disabled'][$user_ID]) { ?>
                     $('#wphead-info').before('<div id="logout">\
-                    <a class="supporter_help" href="<?php echo admin_url('supporter.php'); ?>?page=premium-support"><?php _e('Premium Support',$this->localizationDomain) ?></a>\
+                    <a class="supporter_help" href="<?php echo admin_url('supporter.php'); ?>?page=premium-support"><?php _e('Premium Support',$this->localizationDomain) ?></a> | \
                     <a href="<?php echo wp_logout_url() ?>" title="<?php _e('Log Out') ?>"><?php _e('Log Out'); ?></a></div>');
             <?php 
                       if ($pagenow == 'themes.php') { //This is inside [if (!$this->options['disabled'][$user_ID])] because we don't need to add it unless we're in the easy admin area'

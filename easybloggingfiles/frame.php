@@ -75,7 +75,7 @@ jQuery(document).ready(function(){
     
     //Do we need to pass in the querystring?
     if (querystring != '') {
-        jQuery('#<?php echo $page?>-php').attr('src','<?php echo $frame_url; if ($has_querystring) echo '&'; else echo '?';?>' + querystring);
+        jQuery('iframe#<?php echo $page?>-php').attr('src','<?php echo $frame_url; if ($has_querystring) echo '&'; else echo '?';?>' + querystring);
     }
 });
 </script>
