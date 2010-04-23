@@ -263,6 +263,7 @@ if (!class_exists('easy_admin')) {
                     }
                     if (anchor == '#themes-php') { //Check to make sure the user isn't looking for the custom header page
                         if (querystring.indexOf('page=custom-header')) anchor = '#widgets-php'; //The custom header area is on the same tab as the widgets, so we'll need to redirect there intead of themes-php
+                        if (querystring.indexOf('page=premium-themes')) anchor = '#premium-themes-php'; //We're trying to go to the premium themes page. Make it happen
                     }
                                         
                     advancedpage = anchor.replace('-php','').substring(1);
@@ -307,6 +308,10 @@ if (!class_exists('easy_admin')) {
                             case 'supporter-help':
                                 jQuery("#to_advanced_page").attr('href','<?php echo admin_url('supporter.php') . '?easyadmin=off&page=premium-support'; ?>');
                             break;
+                            case 'premium-themes':
+                                jQuery("#to_advanced_page").attr('href','<?php echo admin_url('themes.php') . '?easyadmin=off&page=premium-themes'; ?>');
+                            break;
+                            
                             case 'widgets':
                                 if (querystring.indexOf('page=custom-header')) {
                                     jQuery("#to_advanced_page").attr('href','<?php echo admin_url('themes.php') . '?easyadmin=off&page=custom-header'; ?>');
@@ -398,9 +403,16 @@ if (!class_exists('easy_admin')) {
         function kill_meta_boxes() {
             global $wp_meta_boxes;
             
+            $postcommentsbox = $wp_meta_boxes['post']['normal']['core']['commentstatusdiv'];
+            $pagecommentsbox = $wp_meta_boxes['page']['normal']['core']['commentstatusdiv'];     
+            
             unset($wp_meta_boxes['post']['normal']);
             unset($wp_meta_boxes['page']['normal']);
             unset($wp_meta_boxes['page']['side']['core']['pageparentdiv']);
+            unset($wp_meta_boxes['post']['side']['low']);
+            
+            $wp_meta_boxes['post']['normal']['core']['commentstatusdiv'] = $postcommentsbox;
+            $wp_meta_boxes['page']['normal']['core']['commentstatusdiv'] = $pagecommentsbox;
         }
         
         /**
@@ -522,4 +534,14 @@ if (!class_exists('easy_admin')) {
         $easy_admin_var = new easy_admin();
     }
 } //End if easy_admin class exists statement
+
+function do_meta_stuff() {
+    global $wp_meta_boxes;
+    
+    echo '<pre>';
+    print_r($wp_meta_boxes['post']['normal']);
+    echo '</pre>';  
+    
+}
+//add_action('do_meta_boxes',do_meta_stuff);
 ?>
