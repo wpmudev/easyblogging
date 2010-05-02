@@ -1,6 +1,12 @@
 #wpwrap #wpcontent #wpbody {
-    margin-left:0;
+	margin-left:0;
 }
+
+
+.wrap a, #adminmenu a, #poststuff #edButtonPreview, #poststuff #edButtonHTML, #the-comment-list p.comment-author strong a, #media-upload a.del-link, #media-items a.delete, .plugins a.delete, .ui-tabs-nav a {
+color: #059AE7;
+}
+
 .wrap {
     margin:0 5px;
 }
@@ -37,15 +43,20 @@
 #wpwrap .button-secondary, #wpwrap input.button-secondary,
 #wpwrap .button-highlighted, #wpwrap input.button-highlighted,
 #wpwrap #postcustomstuff .submit input {
-    padding: 5px;
-    -moz-border-radius: 11px;
-    -khtml-border-radius: 11px;
-    -webkit-border-radius: 11px;
-    border-radius: 5px;
-    background: #5ab9e7;
-    text-shadow: none !important;
-    color: #ffffff;
-    font-weight: bold;
+	padding: 2px 5px;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	background: #EBF7FF;
+	text-shadow: none !important;
+	color: #059AE7;
+	font-weight: normal;
+	font-family: "Lucida Grande", "Lucida Sans", sans-serif;
+	border-right: 1px solid #78CEF8;
+	border-bottom: 1px solid #54C1F5;
+	border-top: 1px solid #EBF7FF;
+	border-left: 1px solid #EBF7FF;
 }
 
 #wpwrap .button:hover,
@@ -53,8 +64,12 @@
 #wpwrap .submit input:hover,
 #wpwrap input[type=button]:hover,
 #wpwrap input[type=submit]:hover {
-    color: #ffffff;
-    background-color: #428ea8;
+	color: #ffffff !important;
+	background-color: #059AE7;
+	border-top: 1px solid #059AE7;
+	border-right: 1px solid #0477B5;
+	border-bottom: 1px solid #047BBB;
+	border-left: 1px solid #059AE7;
 }
 
 #message {
@@ -98,4 +113,28 @@
 
 #welcome-area .admin_area_step {
     text-align: left;
+}
+
+
+/* customized button gfx */
+#help_button .button {
+	background: #eee url(images/icons/help_support.png) no-repeat 10px center;
+	border-top: 1px solid #eee;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #999999;
+	border-left: 1px solid #eee;
+	font-size: 18px !important;
+	color: #333333;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	font-weight: normal;
+	font-family: Georgia, serif;
+}
+#wpwrap #ed_link {
+	color: #059AE7 !important;
+	text-decoration: none;
+}
+#wpwrap #ed_link:hover {
+	color: #fff !important;
+	text-decoration: none;
 }
