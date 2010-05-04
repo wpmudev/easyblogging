@@ -1,13 +1,4 @@
 <?php
-/**
-* If you're installing this plugin on an existing WPMU install, and don't want the Easy Blogging page to automatically ask users if they want easy or advanced,
-* you can use INSTALL_DATE to automatically set users on blogs created before a certain date/time to use the Advanced area by default. (They can still click the
-* button to go to the easy admin area) In this instance, INSTALL_DATE Must be a valid datetime value. Use strtotime() to make it easier on yourself.
-* 
-* However, if you want ALL users, regardless of whether or not they're an existing user to be give the choice to go Easy or Advanced, delete the define(...) line.
-* This will force all users to choose Easy or Advanced the next time they are in the admin area of their blog.
-*/
-define('INSTALL_DATE',strtotime('4/14/2010'));
 
 if (!class_exists('easy_admin')) {
     class easy_admin {
@@ -122,7 +113,7 @@ if (!class_exists('easy_admin')) {
                 return; //We don't want to do a thing if this is the media-upload or admin-ajax page
             }
 
-            if (isset($this->installdate) && !isset($this->options['disabled'][$user_ID])) { //Make sure INSTALL_DATE is defined, and there is no value for the disabled setting
+            if (isset($this->installdate) && !isset($this->options['disabled'][$user_ID])) { //Make sure $this->installdate is defined, and there is no value for the disabled setting
                 global $wpdb;
                 $registered = strtotime($wpdb->get_var("SELECT `registered` FROM $wpdb->blogs WHERE blog_id=$wpdb->blogid"));
                 if ($registered < $this->installdate) { //If this blog was registered before the installation of Easy Blogging, set this user's admin area to advanced (IE - disable Easy Blogging)
