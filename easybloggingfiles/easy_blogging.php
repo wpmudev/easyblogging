@@ -447,7 +447,7 @@ if (!class_exists('easy_admin')) {
             ?>');
             <?php if (!$this->options['disabled'][$user_ID]) { ?>
                     $('#wphead-info').before('<div id="logout">\
-                    <a class="supporter_help" href="<?php echo admin_url('supporter.php'); ?>?page=premium-support"><?php _e('Premium Support',$this->localizationDomain) ?></a> | \
+                    <a class="supporter_help" href="<?php echo admin_url('supporter.php'); ?>?page=premium-support"><?php _e('Pro Support',$this->localizationDomain) ?></a> | \
                     <a href="<?php echo wp_logout_url() ?>" title="<?php _e('Log Out') ?>"><?php _e('Log Out'); ?></a></div>');
             <?php 
                       if ($pagenow == 'themes.php') { //This is inside [if (!$this->options['disabled'][$user_ID])] because we don't need to add it unless we're in the easy admin area'
