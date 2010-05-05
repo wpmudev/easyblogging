@@ -130,6 +130,11 @@ color: #059AE7;
 	font-weight: normal;
 	font-family: Georgia, serif;
 }
+
+#help_button .button:hover {
+	background: #059AE7 url(images/icons/help_support.png) no-repeat 10px center;
+}
+
 #wpwrap #ed_link {
 	color: #059AE7 !important;
 	text-decoration: none;
@@ -137,4 +142,105 @@ color: #059AE7;
 #wpwrap #ed_link:hover {
 	color: #fff !important;
 	text-decoration: none;
+}
+
+#welcome-area #admin_area_to_advanced {
+	background: #eee url(images/icons/advance.png) no-repeat 10px center;
+	border-top: 1px solid #ddd;
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #666666;
+	border-left: 1px solid #ddd;
+	font-size: 17px !important;
+	color: #333333;
+	font-weight: normal;
+	font-family: Georgia, serif;
+	display: block;
+	padding: 15px 15px 15px 45px !important;
+	width: auto;
+	margin: 0px 0px 8px;
+	float: left;
+}
+#welcome-area #admin_area_to_advanced:hover {
+	background: #eee url(images/icons/advance.png) no-repeat 10px center;
+	border-top: 1px solid #ddd;
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #666666;
+	border-left: 1px solid #ddd;
+	font-size: 17px !important;
+	color: #000000 !important;
+	font-weight: normal;
+	font-family: Georgia, serif;
+	display: block;
+	padding: 15px 15px 15px 45px !important;
+	width: auto;
+	margin: 0px 0px 8px;
+	float: left;
+	text-decoration: underline;
+}
+
+#welcome-area #admin_area_to_easy {
+	background: #eee url(images/icons/easy.png) no-repeat 10px center;
+	border-top: 1px solid #ddd;
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #666666;
+	border-left: 1px solid #ddd;
+	font-size: 17px !important;
+	color: #333333;
+	font-weight: normal;
+	font-family: Georgia, serif;
+	display: block;
+	padding: 15px 15px 15px 45px !important;
+	width: auto;
+	margin: 0px 0px 8px;
+	float: left;
+}
+#welcome-area #admin_area_to_easy:hover {
+	background: #eee url(images/icons/easy.png) no-repeat 10px center;
+	border-top: 1px solid #ddd;
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #666666;
+	border-left: 1px solid #ddd;
+	font-size: 17px !important;
+	color: #000000 !important;
+	font-weight: normal;
+	font-family: Georgia, serif;
+	display: block;
+	padding: 15px 15px 15px 45px !important;
+	width: auto;
+	margin: 0px 0px 8px;
+	float: left;
+	text-decoration: underline;
+}
+
+
+#hidden_tab {
+	display: none;
+}
+#profile-php {
+	background: url(images/icons/profile.png) no-repeat 10px center;
+	padding-left: 35px;
+}
+#profile-php:hover {
+	background: url(images/icons/profile.png) no-repeat 10px center;
+	padding-left: 35px;
+}#welcome-area h4 {
+	font-size: 18px;
+	margin: 0px 0px 30px;
+	padding: 0px 0px 15px;
+	float: left;
+	width: 100%;
+	border-bottom: 1px solid #dedede;
+}
+
+#welcome-area-box {
+	background: #FFFFFF;
+	border: 2px solid #ddd;
+	margin: 0px 0px 50px !important;
+	padding: 2%;
+	float: left;
+	width: 80%;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
 }

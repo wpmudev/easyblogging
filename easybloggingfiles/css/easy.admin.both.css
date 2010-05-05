@@ -25,3 +25,8 @@
 #screen-meta {
     display: none;
 }
+
+#wphead #admin_area_to_easy, #wphead #admin_area_to_advanced {
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+}
