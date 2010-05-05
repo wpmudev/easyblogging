@@ -321,7 +321,7 @@
 	float: left;
 	padding: .5em 1em;
 	text-decoration: none;
-	font-size: 0.785em;
+	font-size: 0.85em;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-selected { margin-bottom: 0; padding-bottom: 1px; }
 .ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; }
