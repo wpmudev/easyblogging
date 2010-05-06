@@ -331,4 +331,8 @@
 .ui-state-active a {
 	padding-left: 25px !important;
 	background: url(images/icons/ui.selected.png) no-repeat 4px center;
+	font-weight: bold;
+}
+.ui-tabs li a#profile-php {
+	padding-left: 35px !important;
 }

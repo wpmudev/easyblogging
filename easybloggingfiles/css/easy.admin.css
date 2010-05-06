@@ -8,7 +8,10 @@ color: #059AE7;
 }
 
 .wrap {
-    margin:0 5px;
+	margin: 0px;
+	float: left;
+	width: 98%;
+	padding: 1%;
 }
 #adminmenu {
     display: none;
@@ -123,16 +126,25 @@ color: #059AE7;
 	border-right: 1px solid #CCCCCC;
 	border-bottom: 1px solid #999999;
 	border-left: 1px solid #eee;
-	font-size: 18px !important;
+	font-size: 16px !important;
 	color: #333333;
 	padding-top: 7px;
 	padding-bottom: 7px;
-	font-weight: normal;
-	font-family: Georgia, serif;
+	font-weight: bold;
 }
 
 #help_button .button:hover {
-	background: #059AE7 url(images/icons/help_support.png) no-repeat 10px center;
+	background: #eee url(images/icons/help_support.png) no-repeat 10px center;
+	border-top: 1px solid #eee;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #999999;
+	border-left: 1px solid #eee;
+	font-size: 16px !important;
+	color: #000000 !important;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	font-weight: bold;
+	text-decoration: underline !important;
 }
 
 #wpwrap #ed_link {
@@ -216,11 +228,11 @@ color: #059AE7;
 #hidden_tab {
 	display: none;
 }
-#profile-php {
+li a#profile-php {
 	background: url(images/icons/profile.png) no-repeat 10px center;
 	padding-left: 35px;
 }
-#profile-php:hover {
+li a#profile-php:hover {
 	background: url(images/icons/profile.png) no-repeat 10px center;
 	padding-left: 35px;
 }#welcome-area h4 {
