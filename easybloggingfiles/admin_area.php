@@ -1,6 +1,4 @@
 <?php
-    require_once(ABSPATH . 'wp-admin/admin.php');
-    
     $title = __('Easy Admin Area', $this->localizationDomain);
     
     wp_enqueue_script('jquery');

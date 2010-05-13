@@ -150,10 +150,10 @@ if (!class_exists('easy_admin')) {
             $do_init = apply_filters('run_easy_admin_head',true);
             if (!$do_init) return;
             
-            //The jQuery UI CSS is required for the tabs & the UI State Highlight, so we need to add it here
-            wp_enqueue_style( 'jquery-custom-ui-tabs', $this->thispluginurl.'css/jquery.ui.tabs.css');            
-            
             if (!$this->options['disabled'][$user_ID]) {
+                //The jQuery UI CSS is required for the tabs & the UI State Highlight, so we need to add it here
+                wp_enqueue_style( 'jquery-custom-ui-tabs', $this->thispluginurl.'css/jquery.ui.tabs.css');
+            
                 wp_enqueue_style( 'easy-admin-css', $this->thispluginurl.'css/easy.admin.css'); //Enqueue the easy admin area css
                 
                 $doing_ajax = false;
@@ -162,7 +162,7 @@ if (!class_exists('easy_admin')) {
                 }
                 
                 if ($this->is_dash() && !$doing_ajax) { //If this page isn't in a tab, and it's not the admin ajax page, then hijack it via the admin_init function
-                    add_action("admin_init", array(&$this,"admin_area_init"), 4); //We want to fire this before the default plugin init actions, but not at 1, in case another plugin needs to fire first
+                    add_action("admin_init", array(&$this,"admin_area_init"), 11); //We want to fire this after the default plugin init actions, in case another plugin needs to fire first (Setting it to < 10 caused problems with other plugins that called a admin_init hook that didn't fire)
                     add_action("admin_head", array(&$this,"admin_head"));
                     
                     wp_enqueue_script('jquery-ui-tabs');
@@ -447,7 +447,7 @@ if (!class_exists('easy_admin')) {
             ?>');
             <?php if (!$this->options['disabled'][$user_ID]) { ?>
                     $('#wphead-info').before('<div id="logout">\
-                    <a class="supporter_help" href="<?php echo admin_url('supporter.php'); ?>?page=premium-support"><?php _e('Pro Support',$this->localizationDomain) ?></a> | \
+                    <a class="supporter_help" href="<?php echo admin_url('supporter.php'); ?>?page=premium-support"><?php echo $supporter_rebrand . ' ' . __('Support',$this->localizationDomain) ?></a> | \
                     <a href="<?php echo wp_logout_url() ?>" title="<?php _e('Log Out') ?>"><?php _e('Log Out'); ?></a></div>');
             <?php 
                       if ($pagenow == 'themes.php') { //This is inside [if (!$this->options['disabled'][$user_ID])] because we don't need to add it unless we're in the easy admin area'
