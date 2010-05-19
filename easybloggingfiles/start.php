@@ -14,11 +14,10 @@
         <?php screen_icon(); ?>
         <h2><?php echo esc_html( $title ); ?></h2>
         <div id="welcome-area">
-                <div id="welcome-area-box">
-            <h4><?php _e( 'Welcome! Please choose the way you would like to use', $this->localizationDomain ) ?> <?php bloginfo('name'); ?>:</h4>
-
+            <p><?php _e( 'Welcome! Please choose the way you would like to use', $this->localizationDomain ) ?> <?php bloginfo('name'); ?>:</p>
+            <p>&nbsp;</p>
             <div id="admin_area_step_change_theme" class="admin_area_step">
-                <a class='wizard_button' href="<?php echo admin_url('index.php?easyadmin=on');?>" style="color: #ffffff;" target="_top"><div id="admin_area_to_easy" class="admin_area button">
+                <a class='wizard_button' href="<?php echo admin_url('index.php?easyadmin=on');?>" style="color: #ffffff;" target="_top"><div id="admin_area_to_easy" class="admin_area button" style="border: 1px solid #464646;">
 		<?php _e( 'Go to the Easy Admin Area', $this->localizationDomain ) ?>
 </div></a><div class="clear"></div>
 	<?php _e( 'Very simple and easy', $this->localizationDomain ) ?>
@@ -32,7 +31,6 @@
             </div>
             <div class="clear"></div>
             <p>&nbsp;</p>
-            </div>
         </div>
 <?php
     require_once(ABSPATH . 'wp-admin/admin-footer.php');

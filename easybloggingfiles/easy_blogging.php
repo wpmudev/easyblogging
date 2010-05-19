@@ -122,30 +122,28 @@ if (!class_exists('easy_admin')) {
                 }
             }
             
-            
-            if ($_GET['easyadmin']) {
+            if (isset($_GET['easyadmin'])) {
                 switch ($_GET['easyadmin']) {
                     case 'on':
                         //echo 'enabling';
                         $this->options['disabled'][$user_ID] = false;
                         break;
                     case 'off':
-                    default:
                         //echo 'disabling';
                         $this->options['disabled'][$user_ID] = true;
                         break;
                 }
                 $this->saveAdminOptions();
             }
-            
-            ### Remove before releasing, for testing only!
+
             if ($_GET['start']==1) {
                 unset($this->options['disabled'][$user_ID]);
                 $this->saveAdminOptions();
 
-                wp_redirect($pagenow);
+                wp_redirect(remove_query_arg('start',$pagenow));
+                die();
             }
-            
+           
             //Allow other scripts to stop Easy Admin from running
             $do_init = apply_filters('run_easy_admin_head',true);
             if (!$do_init) return;
@@ -178,7 +176,7 @@ if (!class_exists('easy_admin')) {
                 //Do this regardless of whether or not we're in a tab
                 add_action('admin_head', array(&$this,'admin_head_css'));
                 remove_action( 'admin_footer', 'bp_core_admin_bar');
-                
+                                
                 //Keep the Supporter popup from appearing on the main page
                 if ($this->is_dash()) {
                     remove_action('admin_head','supporter_admin_box_hide_js');
@@ -253,8 +251,8 @@ if (!class_exists('easy_admin')) {
                         anchor = anchor.substring(0,anchor.indexOf('|'));
                     }
                     if (anchor == '#themes-php') { //Check to make sure the user isn't looking for the custom header page
-                        if (querystring.indexOf('page=custom-header')) anchor = '#widgets-php'; //The custom header area is on the same tab as the widgets, so we'll need to redirect there intead of themes-php
-                        if (querystring.indexOf('page=premium-themes')) anchor = '#premium-themes-php'; //We're trying to go to the premium themes page. Make it happen
+                        if (querystring.indexOf('page=custom-header') > -1) anchor = '#widgets-php'; //The custom header area is on the same tab as the widgets, so we'll need to redirect there intead of themes-php
+                        if (querystring.indexOf('page=premium-themes') > -1) anchor = '#premium-themes-php'; //We're trying to go to the premium themes page. Make it happen
                     }
                                         
                     advancedpage = anchor.replace('-php','').substring(1);
@@ -262,12 +260,10 @@ if (!class_exists('easy_admin')) {
                     if (anchor != '') {
                         var index = jQuery('#easy_admin_tabs li a').index(jQuery(anchor)); // in tab index of the anchor in the URL
                         if (index < 0) {
-                            index = jQuery('#easy_admin_tabs li a').index(jQuery('#noteasy'));
-                        }/*### else if (querystring) { //Only do this if index >= 0
-                            jQuery(anchor).attr('href',jQuery(anchor).attr('href') + '&' + querystring)
-                        }*/
+                            index = jQuery('#easy_admin_tabs li').index(jQuery('#easy_admin_tabs li:not(#hidden_tab)'));
+                        }
                     } else {
-                        index = 0;
+                        index = jQuery('#easy_admin_tabs li').index(jQuery('#easy_admin_tabs li:not(#hidden_tab)'));
                     }
                     jQuery('#easy_admin_tabs').tabs({
                         <?php
@@ -282,10 +278,11 @@ if (!class_exists('easy_admin')) {
                         ?>
                     }); // select the tab
 
+                    
                     jQuery('#easy_admin_tabs').bind('tabsshow', function(event, ui) { // change the url anchor when we click on a tab
                         var scrollto = window.pageYOffset;
                         document.location.hash = jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id');
-                        jQuery( 'html, body' ).animate( { scrollTop: scrollto }, 0 );
+                        //jQuery( 'html, body' ).animate( { scrollTop: scrollto }, 0 ); //This line causes an undefined error in IE only
                         
                         if (jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id') != 'noteasy') {
                             advancedpage = jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id').replace('-php','');
@@ -447,7 +444,7 @@ if (!class_exists('easy_admin')) {
             ?>');
             <?php if (!$this->options['disabled'][$user_ID]) { ?>
                     $('#wphead-info').before('<div id="logout">\
-                    <a class="supporter_help" href="<?php echo admin_url('supporter.php'); ?>?page=premium-support"><?php echo $supporter_rebrand . ' ' . __('Support',$this->localizationDomain) ?></a> | \
+                    <?php if (function_exists('is_supporter')) { ?><a class="supporter_help" href="<?php echo admin_url('supporter.php'); ?>?page=premium-support"><?php echo $supporter_rebrand . ' ' . __('Support',$this->localizationDomain) ?></a> |\<?php } ?>
                     <a href="<?php echo wp_logout_url() ?>" title="<?php _e('Log Out') ?>"><?php _e('Log Out'); ?></a></div>');
             <?php 
                       if ($pagenow == 'themes.php') { //This is inside [if (!$this->options['disabled'][$user_ID])] because we don't need to add it unless we're in the easy admin area'
