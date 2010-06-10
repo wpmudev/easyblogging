@@ -42,6 +42,11 @@ if (!class_exists('easy_admin')) {
         */
         var $options = array();
         
+        /**
+        * @var array $siteOptions Stores the options for this plugin
+        */
+        var $siteOptions = array();
+        
         //Translation helper vars
         var $trans_widget = '';
         var $trans_widgets = '';
@@ -68,7 +73,7 @@ if (!class_exists('easy_admin')) {
                 $this->thispluginpath = WP_PLUGIN_DIR . '/' . dirname(plugin_basename(__FILE__)).'/';
                 $this->thispluginurl = WP_PLUGIN_URL . '/' . dirname(plugin_basename(__FILE__)).'/';
             } else { //We are in the WPMU Plugin Directory
-                $this->thispluginurl = WPMU_PLUGIN_DIR . '/' . dirname(plugin_basename(__FILE__)).'/';
+                $this->thispluginpath = WPMU_PLUGIN_DIR . '/' . dirname(plugin_basename(__FILE__)).'/';
                 $this->thispluginurl = WPMU_PLUGIN_URL . '/' . dirname(plugin_basename(__FILE__)).'/';
             }
             
@@ -143,6 +148,9 @@ if (!class_exists('easy_admin')) {
                 wp_redirect(remove_query_arg('start',$pagenow));
                 die();
             }
+            
+            //Add the admin menu link
+            add_action('admin_menu', array(&$this,'admin_menu_link'));
            
             //Allow other scripts to stop Easy Admin from running
             $do_init = apply_filters('run_easy_admin_head',true);
@@ -176,18 +184,12 @@ if (!class_exists('easy_admin')) {
                 //Do this regardless of whether or not we're in a tab
                 add_action('admin_head', array(&$this,'admin_head_css'));
                 remove_action( 'admin_footer', 'bp_core_admin_bar');
-                                
+
                 //Keep the Supporter popup from appearing on the main page
                 if ($this->is_dash()) {
                     remove_action('admin_head','supporter_admin_box_hide_js');
                     remove_action('admin_footer','supporter_admin_box');
-                    
-                    //Hide he admin messages plugin output for the index page, this will cause it to only display in the iframes
-                    remove_action('admin_notices', 'admin_message_output');
                 }
-                
-                //If we're in easy admin area, remove the tips plugin messages altogether. The tips are advanced in nature, so they don't belong in the easy area
-                if ($this->options['disabled']) remove_action('admin_notices', 'tips_output');
             }
         }
         
@@ -260,9 +262,11 @@ if (!class_exists('easy_admin')) {
                     if (anchor != '') {
                         var index = jQuery('#easy_admin_tabs li a').index(jQuery(anchor)); // in tab index of the anchor in the URL
                         if (index < 0) {
+                            querystring = ''; //Kill the querystring, because we didn't find the tab it goes with
                             index = jQuery('#easy_admin_tabs li').index(jQuery('#easy_admin_tabs li:not(#hidden_tab)'));
                         }
                     } else {
+                        querystring = ''; //Kill the querystring, because we didn't find the tab it goes with
                         index = jQuery('#easy_admin_tabs li').index(jQuery('#easy_admin_tabs li:not(#hidden_tab)'));
                     }
                     jQuery('#easy_admin_tabs').tabs({
@@ -367,14 +371,24 @@ if (!class_exists('easy_admin')) {
         * If this is not the dashboard (which means it's likely in a tab) then hide the update-nag, wphead, and footer areas
         */
         function admin_head_css() {
-            if (!$this->is_dash()) { ?>
-            <style type="text/css">
-                #update-nag { display: none; }
-                #wphead { display: none; }
-                #footer { display: none; }
-            </style>
-            <?php
+            echo '<style type="text/css">';
+            if (!$this->is_dash()) {
+                echo '#wphead, #footer { display: none; }';
+                if ($this->siteOptions['remove_admin_notices_below_tabs']) {
+                    echo '#message { display: none }';
+                }
+                /*if (!empty($this->siteOptions['remove_from_iframed_pages'])) {
+                    echo $this->siteOptions['remove_from_iframed_pages'] . ' { display: none; }';
+                }*/
+            } else { //Is Dashboard
+                if ($this->siteOptions['remove_admin_notices_above_tabs']) {
+                    echo '#message { display: none }';
+                }
+                /*if (!empty($this->siteOptions['remove_from_above_tabs'])) {
+                    echo $this->siteOptions['remove_from_above_tabs'] . ' { display: none; }';
+                }*/
             }
+            echo '</style>';
         }
         
         /**
@@ -444,7 +458,7 @@ if (!class_exists('easy_admin')) {
             ?>');
             <?php if (!$this->options['disabled'][$user_ID]) { ?>
                     $('#wphead-info').before('<div id="logout">\
-                    <?php if (function_exists('is_supporter')) { ?><a class="supporter_help" href="<?php echo admin_url('supporter.php'); ?>?page=premium-support"><?php echo $supporter_rebrand . ' ' . __('Support',$this->localizationDomain) ?></a> |\<?php } ?>
+                    <?php if (function_exists('is_supporter') && current_user_can('manage_options') && function_exists('supporter_support_plug_page')) { ?><a class="supporter_help" href="<?php echo admin_url('supporter.php'); ?>?page=premium-support"><?php echo $supporter_rebrand . ' ' . __('Support',$this->localizationDomain) ?></a> |\<?php } ?>
                     <a href="<?php echo wp_logout_url() ?>" title="<?php _e('Log Out') ?>"><?php _e('Log Out'); ?></a></div>');
             <?php 
                       if ($pagenow == 'themes.php') { //This is inside [if (!$this->options['disabled'][$user_ID])] because we don't need to add it unless we're in the easy admin area'
@@ -497,6 +511,12 @@ if (!class_exists('easy_admin')) {
             }
             $this->options = $theOptions;
             
+            if (!$theSiteOptions = get_site_option($this->optionsName)) {
+                $theSiteOptions = array( 'remove_from_above_tabs'=>'#message.tip','remove_from_iframed_pages'=>'#update-nag, #message.tip');
+                update_site_option($this->optionsName,$theSiteOptions);
+            }
+            $this->siteOptions = $theSiteOptions;
+            
             //Setting up the $this->installdate value
             if (!$this->installdate = get_site_option($this->optionsName . '_installdate')) {
                 $this->installdate = time();
@@ -512,9 +532,90 @@ if (!class_exists('easy_admin')) {
         * @desc Saves the admin options to the database.
         */
         function saveAdminOptions(){
-            return update_option($this->optionsName, $this->options);
+            $retval = update_option($this->optionsName, $this->options);
+            return update_site_option($this->optionsName, $this->siteOptions) && $retval;
         }
+        
+        /**
+        * @desc Adds the options subpanel
+        */
+        function admin_menu_link() {
+            //If you change this from add_options_page, MAKE SURE you change the filter_plugin_actions function (below) to
+            //reflect the page filename (ie - options-general.php) of the page your plugin is under!
+            
+            if (get_bloginfo('version') >= 3)
+                add_submenu_page( 'ms-admin.php', __('Easy Blogging',$this->localizationDomain), __('Easy Blogging',$this->localizationDomain), 10, basename(__FILE__), array(&$this,'admin_options_page'));
+            else
+                add_submenu_page( 'wpmu-admin.php', __('Easy Blogging',$this->localizationDomain), __('Easy Blogging',$this->localizationDomain), 10, basename(__FILE__), array(&$this,'admin_options_page'));
+            add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'filter_plugin_actions'), 10, 2 );
+        }
+        
+        /**
+        * @desc Adds the Settings link to the plugin activate/deactivate page
+        */
+        function filter_plugin_actions($links, $file) {
+            //If your plugin is under a different top-level menu than Settiongs (IE - you changed the function above to something other than add_options_page)
+            //Then you're going to want to change options-general.php below to the name of your top-level page
+            if (get_bloginfo('version') >= 3)
+                $settings_link = '<a href="ms-admin.php?page=' . basename(__FILE__) . '">' . __('Settings',$this->localizationDomain) . '</a>';
+            else
+                $settings_link = '<a href="wpmu-admin.php?page=' . basename(__FILE__) . '">' . __('Settings',$this->localizationDomain) . '</a>';
+                
+            array_unshift( $links, $settings_link ); // before other links
 
+            return $links;
+        }
+        
+        /**
+        * Adds settings/options page
+        */
+        function admin_options_page() {
+            if (!empty($_POST['easy_blogging_save'])) {
+                //$this->siteOptions['remove_from_above_tabs'] = stripslashes($_POST['remove_from_above_tabs']);
+                //$this->siteOptions['remove_from_iframed_pages'] = stripslashes($_POST['remove_from_iframed_pages']);
+                $this->siteOptions['remove_admin_notices_above_tabs'] = ($_POST['remove_admin_notices_above_tabs']=='on')?true:false;
+                $this->siteOptions['remove_admin_notices_below_tabs'] = ($_POST['remove_admin_notices_below_tabs']=='on')?true:false;
+                $this->saveAdminOptions();
+            }
+?>
+                <div class="wrap">
+                <h2><?php _e('Easy Blogging Options', $this->localizationDomain); ?></h2>
+                <form method="post" id="options">
+                <p><?php _e('Note: the "Hide admin messages" options are not foolproof. They remove standard admin messages, and messages from plugins that use the correct markup.',$this->localizationDomain); ?></p>
+                <table width="100%" cellspacing="2" cellpadding="5" class="widefat fixed" id="add_new_table"> 
+                    <tr valign="top">
+                        <th width="33%" scope="row"><?php _e('Hide admin messages from above the tabs:', $this->localizationDomain); ?></th> 
+                        <td><input type="checkbox" name="remove_admin_notices_above_tabs" <?php echo ($this->siteOptions['remove_admin_notices_above_tabs'])?'checked="CHECKED"':''; ?> /></td>
+                    </tr>
+                    <tr valign="top">
+                        <th width="33%" scope="row"><?php _e('Hide admin messages from below the tabs:', $this->localizationDomain); ?></th> 
+                        <td><input type="checkbox" name="remove_admin_notices_below_tabs" <?php echo ($this->siteOptions['remove_admin_notices_below_tabs'])?'checked="CHECKED"':''; ?> /></td>
+                    </tr>
+                </table>
+                <p><div class="submit"><input type="submit" name="easy_blogging_save" class="button-primary" /></div></p>
+                
+                <?php /* wp_nonce_field('easy_admin-update-options'); ?>
+                <h3><?php _e('Hidden Classes', $this->localizationDomain); ?></h3>
+                <p><?php _e('Because of the way the Easy Admin Area works, you might find that some messages, ads, notices, etc show up above and below the tabs on the page. To
+                help remedy this problem, the boxes below can be used to control what is displayed and what isn\'t, based on CSS. All you have to do is enter the 
+                <a href="http://www.google.com/search?sourceid=navclient&ie=UTF-8&rlz=1T4GGLL_enUS371US371&q=css+selector" title="Click here to find out more about CSS Selectors">CSS selector</a>
+                of the item you want removed, and enter it in one or both of the boxes below. Make sure each selector is separated by a comma.', $this->localizationDomain); ?>
+                </p>
+                    <table width="100%" cellspacing="2" cellpadding="5" class="widefat fixed" id="add_new_table"> 
+                        <tr valign="top">
+                            <th width="33%" scope="row"><?php _e('Hide these from above the tabs:', $this->localizationDomain); ?></th> 
+                            <td><textarea name="remove_from_above_tabs" id="remove_from_above_tabs" cols="80" rows="4"><?php echo $this->siteOptions['remove_from_above_tabs']; ?></textarea></td>
+                        </tr>
+                        <tr valign="top"> 
+                            <th width="33%" scope="row"><?php _e('Hide these from below the tabs:', $this->localizationDomain); ?></th> 
+                            <td><textarea name="remove_from_iframed_pages" id="remove_from_iframed_pages" cols="80" rows="4"><?php echo $this->siteOptions['remove_from_iframed_pages']; ?></textarea></td>
+                        </tr>
+                    </table>
+                    <p><div class="submit"><input type="submit" name="easy_blogging_save" class="button-primary" /></div></p>
+                */ ?>
+                </form>
+                <?php
+        }
     } //End Class
     //instantiate the class
     if (is_admin()) {

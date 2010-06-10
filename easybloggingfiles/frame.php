@@ -7,11 +7,20 @@ switch ($_GET['frame']) {
     break;
     case 'page-new':
         $page = 'page-new';
-        $frame_url = admin_url('page-new.php');
+        if (get_bloginfo('version') >= 3) { //v3 or newer, use the post_type querystring var
+            $frame_url = admin_url('post-new.php?post_type=page');
+        } else { //older than v 3.0 
+            $frame_url = admin_url('page-new.php');
+        }
+        
     break;
     case 'edit-pages':
         $page = 'edit-pages';
-        $frame_url = admin_url('edit-pages.php');
+        if (get_bloginfo('version') >= 3) { //v3 or newer, use the post_type querystring var
+            $frame_url = admin_url('edit.php?post_type=page');
+        } else { //older than v 3.0
+            $frame_url = admin_url('edit-pages.php');
+        }
     break;
     case 'themes':
         $page = 'themes';

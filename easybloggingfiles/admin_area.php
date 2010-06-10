@@ -6,8 +6,8 @@
     wp_enqueue_script('cluetip', $this->thispluginurl.'js/cluetip-1.0.6/jquery.cluetip.js');
     wp_enqueue_style( 'cluetip', $this->thispluginurl.'js/cluetip-1.0.6/jquery.cluetip.css');
     
+    //We need to set the $page_hook because if we don't, then a bug in WP will think this page is the custom-header page, load farbtastic, and break the JS on this page... Awesome.
     global $page_hook;
-    
     $page_hook = 'easy_admin_dashboard';
     
     require_once(ABSPATH . 'wp-admin/admin-header.php');
@@ -34,10 +34,8 @@
                     */
             ?>
                 <ul>
-                <?php if (current_user_can('publish_posts')) { ?>
+                <?php if (current_user_can('edit_posts')) { ?>
                     <li><a id="post-new-php" href="<?php bloginfo('wpurl'); ?>/wp-admin/?frame=post-new" class="tab_tooltip" title="<?php _e( 'New Post|Create a new post', $this->localizationDomain ) ?>"><span><?php _e( 'New Post', $this->localizationDomain ) ?></span></a></li>
-                <?php }
-                if (current_user_can('edit_posts')) { ?>
                     <li><a id="edit-php" href="<?php bloginfo('wpurl'); ?>/wp-admin/?frame=edit" class="tab_tooltip" title="<?php _e( 'My Posts|Edit your posts', $this->localizationDomain ) ?>"><span><?php _e( 'My Posts', $this->localizationDomain ) ?></span></a></li>
                 <?php }
                 if (current_user_can('publish_pages')) { ?>
@@ -46,8 +44,8 @@
                 if (current_user_can('edit_pages')) { ?>
                     <li><a id="edit-pages-php" href="<?php bloginfo('wpurl'); ?>/wp-admin/?frame=edit-pages" class="tab_tooltip" title="<?php _e( 'My Pages|Edit your pages', $this->localizationDomain ) ?>"><span><?php _e( 'My Pages', $this->localizationDomain ) ?></span></a></li>
                 <?php }
-                if (current_user_can('# moderate_comments ')) { ?>
-                    <li><a id="edit-comments-php" href="<?php bloginfo('wpurl'); ?>/wp-admin/?frame=edit-comments" class="tab_tooltip" title="<?php _e( 'Comments|Manage the comments on your blog', $this->localizationDomain ) ?>"><span>Comments</span></a></li>
+                if (current_user_can('moderate_comments') || current_user_can('edit_posts')) { ?>
+                    <li><a id="edit-comments-php" href="<?php bloginfo('wpurl'); ?>/wp-admin/?frame=edit-comments" class="tab_tooltip" title="<?php _e( 'Comments|Manage the comments on your blog', $this->localizationDomain ) ?>"><span><?php _e( 'Comments', $this->localizationDomain ) ?></span></a></li>
                 <?php }
                 if (current_user_can('edit_themes')) { ?>                    
                     <li><a id="themes-php" href="<?php bloginfo('wpurl'); ?>/wp-admin/?frame=themes" class="tab_tooltip" title="<?php _e( 'Themes|Change to a different theme', $this->localizationDomain ) ?>"><span><?php if (function_exists('is_supporter')) { _e( 'Free Themes', $this->localizationDomain ); } else { _e( 'Manage Themes', $this->localizationDomain ); } ?></span></a></li>
