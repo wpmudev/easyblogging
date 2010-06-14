@@ -10,8 +10,10 @@ color: #059AE7;
 .wrap {
 	margin: 0px;
 	float: left;
-	width: 98%;
-	padding: 1%;
+	width: 98% !important;
+	padding: 1% !important;
+	border-width: 0px !important;
+	border-style: none !important;
 }
 #adminmenu {
     display: none;
@@ -62,6 +64,7 @@ color: #059AE7;
 	border-left: 1px solid #EBF7FF;
 }
 
+#wpwrap #wphead .button,
 #wpwrap .button:hover,
 #wpwrap .button-secondary:hover,
 #wpwrap .submit input:hover,

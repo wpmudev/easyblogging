@@ -16,7 +16,7 @@
 <style type="text/css">
     .error { display: none; }
 </style>
-   <div class="wrap">
+   <div id="wizard_complete" class="wrap"> <div id="wizard_step">
         <?php screen_icon(); ?>
         <h2><?php echo esc_html( $title ); ?></h2>
         <div id="welcome-area">
@@ -32,3 +32,4 @@
             <p>&nbsp;</p>
         </div>
     </div>
+      </div>

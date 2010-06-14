@@ -1,9 +1,9 @@
 .admin_area {
-    margin-top: 10px;
-    margin-right: 20px;
-    float: right;
-    width:250px;
-    text-align: center;
+	margin-top: 10px;
+	margin-right: 20px;
+	float: right;
+	width:180px;
+	text-align: center;
 }
 
 .admin_area a {
@@ -29,4 +29,83 @@
 #wphead #admin_area_to_easy, #wphead #admin_area_to_advanced {
 	padding-top: 3px !important;
 	padding-bottom: 3px !important;
+}
+
+#wpwrap #quicktags #ed_link {
+color: #059AE7;
+}
+
+#wpwrap .wrap h2 {
+  padding-right: 3px !important;
+}
+
+#wizard_step {
+	background: #FFFFFF;
+	padding: 2%;
+	float: left;
+	width: 96%;
+	border: 1px solid #CCCCCC;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+#wpcontent #wizard_complete #admin_area_view_blog {
+	padding-left: 0px !important;
+}
+
+.complete_button {
+	margin: 0px;
+	padding: 0px 0px 10px;
+	float: left;
+	width: 100%;
+}
+
+#view_your_blog .complete_button a {
+	background: #eee url(images/visit.png) no-repeat 10px center;
+	border-top: 1px solid #eee;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #999999;
+	border-left: 1px solid #eee;
+	font-size: 13px !important;
+	color: #333333;
+	font-weight: bold;
+	padding: 18px 25px 18px 55px !important;
+	display: block;
+	margin: 0px;
+	float: left;
+	width: auto !important;
+		-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+#wpwrap .easy_info {
+	margin: 0px;
+	float: left;
+	width: 80% !important;
+	padding-left: 15% !important;
+	padding-right: 5% !important;
+	text-align: left;
+	background: #F0FBFF url(images/info_icon.gif) no-repeat 10px center;
+}
+#edit_your_blog .complete_button a {
+	background: #eee url(images/continue.png) no-repeat 10px center;
+	border-top: 1px solid #eee;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #999999;
+	border-left: 1px solid #eee;
+	font-size: 13px !important;
+	color: #333333;
+	font-weight: bold;
+	padding: 18px 25px 18px 55px !important;
+	display: block;
+	margin: 0px;
+	float: left;
+	width: auto !important;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
 }
