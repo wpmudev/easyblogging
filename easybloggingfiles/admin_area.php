@@ -19,7 +19,12 @@
 ?>
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        jQuery(".tab_tooltip").cluetip({splitTitle: "|", cluetipClass: "rounded", dropShadow: false, arrows: true});
+        jQuery(".tab_tooltip").cluetip({splitTitle: "|", cluetipClass: "rounded", dropShadow: false, arrows: true,
+            hoverIntent: {
+                sensitivity:  1,
+                interval:     1000
+            }
+        });
     });
 </script>
    <div class="wrap">

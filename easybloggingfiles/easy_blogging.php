@@ -271,7 +271,14 @@ if (!class_exists('easy_admin')) {
                     }
                     jQuery('#easy_admin_tabs').tabs({
                         <?php
-                        $tab_options = apply_filters('easy_admin_tab_options', array('selected'=>index));
+                        $tab_options = apply_filters('easy_admin_tab_options', array('selected'=>index, 'spinner'=>"''",
+                            'select'=>'function(event, ui) { 
+                                jQuery("#easy_admin_tabs li a .loader").remove();
+                                jQuery("#easy_admin_tabs li a").eq(ui.index).prepend("<span class=\'loader\'><img src=\'images/wpspin_light.gif\'/></span> ");
+                            }',
+                            'load'=>'function(event, ui) {
+                            jQuery(".loader, ui.panel").remove();
+                            }'));
                         $i=0;
                         foreach ($tab_options as $key=>$value) {
                             if ($i>0) {
@@ -284,7 +291,7 @@ if (!class_exists('easy_admin')) {
 
                     
                     jQuery('#easy_admin_tabs').bind('tabsshow', function(event, ui) { // change the url anchor when we click on a tab
-                        var scrollto = window.pageYOffset;
+                        //var scrollto = window.pageYOffset;
                         document.location.hash = jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id');
                         //jQuery( 'html, body' ).animate( { scrollTop: scrollto }, 0 ); //This line causes an undefined error in IE only
                         
@@ -447,13 +454,13 @@ if (!class_exists('easy_admin')) {
                     $('#footer-left').after('<br/>&nbsp;');
                     $('#wphead-info').after('<?php
             if (!$this->options['disabled'][$user_ID])
-                echo '<a id="to_advanced_page" href="' . $this->currenturl_with_querystring . $connector . 'easyadmin=off"><div id="admin_area_to_advanced" class="admin_area button">', __('Go to the Advanced Admin Area',$this->localizationDomain) . '</div></a>';
+                echo '<a id="to_advanced_page" href="' . $this->currenturl_with_querystring . $connector . 'easyadmin=off"><div id="admin_area_to_advanced" class="admin_area button">', __('Activate Advanced Admin',$this->localizationDomain) . '</div></a>';
             else {
                 echo '<a id="to_easy_page" href="' . admin_url('index.php') . '?easyadmin=on#' . str_replace('.','-',$pagenow);
                 if ($_SERVER['QUERY_STRING']) {
                     echo '|' . str_replace('easyadmin=off','',str_replace('easyadmin=on','',$_SERVER['QUERY_STRING'])); //Remove the easyadmin querystring vars
                 }
-                echo '"><div id="admin_area_to_easy" class="admin_area button">', __('Go to the Easy Admin Area',$this->localizationDomain) . '</div></a>';
+                echo '"><div id="admin_area_to_easy" class="admin_area button">', __('Activate Easy Admin',$this->localizationDomain) . '</div></a>';
             }
             ?>');
             <?php if (!$this->options['disabled'][$user_ID]) { ?>
