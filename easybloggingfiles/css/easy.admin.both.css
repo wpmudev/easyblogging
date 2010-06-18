@@ -75,7 +75,7 @@ color: #059AE7;
 	margin: 0px;
 	float: left;
 	width: auto !important;
-		-moz-border-radius: 6px;
+	-moz-border-radius: 6px;
 	-khtml-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
@@ -108,4 +108,64 @@ color: #059AE7;
 	-khtml-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
+}
+
+
+
+.step_wizard_block {
+	margin: 0px 0px 25px;
+	padding: 0px 0px 25px;
+	float: left;
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+}
+.step_wizard_block .step_num {
+	font-size: 15px;
+	font-weight: bold;
+	color: #FFFFFF;
+	margin: 0px 35px 0px 0px;
+	padding: 4px 8px;
+	float: left;
+	width: 90px;
+	background: #059AE7 url(images/shade-hover.png) repeat-x left bottom;
+	border: 1px solid #059AE7;
+	-moz-border-radius: 11px;
+	-khtml-border-radius: 11px;
+	-webkit-border-radius: 11px;
+	border-radius: 11px;
+	display: block;
+	text-align: center;
+	-moz-box-shadow:0 0 1px #333333;
+	text-shadow:0 0 1px #111111;
+}
+.step_wizard_block .step_action {
+	font-size: 18px !important;
+	color: #111;
+	margin: 0px;
+	padding: 5px 0px 0px;
+	float: left;
+	width: 60%;
+}
+.step_wizard_block .complete_wizard {
+	background: #FFFFFF;
+	border-width: 0px;
+	border-style: none;
+	width: 40px;
+	margin: 0px 20px 0px 0px;
+	padding: 0px;
+	float: left;
+	display: block;
+	height: 40px;
+}
+.view-blog {
+	background: url(images/visit.png) no-repeat center center !important;
+}
+.continue-edit {
+	background: url(images/continue.png) no-repeat center center !important;
+}
+.easy-on {
+	background: url(images/icons/easy.png) no-repeat center center !important;
+}
+.advance-on {
+	background: url(images/icons/advance.png) no-repeat center center !important;
 }

@@ -491,7 +491,7 @@ if (!class_exists('easy_admin')) {
         *  Checks if this is the user's first login, and if so, hijacks the admin area and replaces it with the start page
         */
         function first_login() {
-            if (!$this->is_started()) {
+            if (!$this->is_started() && get_option('supporter_signed_up') != 1) {
                 wp_enqueue_style( 'easy-admin-css', $this->thispluginurl.'css/easy.admin.css'); //Enqueue the easy admin area css
                 require_once('start.php');
                 die();

@@ -38,7 +38,26 @@ color: #059AE7;
 #footer p {
     display:none;
 }
+
 /*Theme colors*/
+#wpwrap #ed_toolbar .ed_button {
+	padding: 2px 5px;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	background: #EBF7FF url(images/shade.png) repeat-x left bottom !important;
+	text-shadow: none !important;
+	color: #059AE7 !important;
+	font-weight: normal;
+	font-family: "Lucida Grande", "Lucida Sans", sans-serif;
+	border: 1px solid #78CEF8 !important;
+}
+#wpwrap #ed_toolbar .ed_button:hover {
+	background: #EBF7FF url(images/shade.png) repeat-x left -999px !important;
+}
+
+#wpwrap #wphead .button,
 #wpwrap input[type="button"], 
 #wpwrap .button:active, #wpwrap .submit input:active,
 #wpwrap .button-secondary:active,
@@ -48,34 +67,37 @@ color: #059AE7;
 #wpwrap .button-secondary, #wpwrap input.button-secondary,
 #wpwrap .button-highlighted, #wpwrap input.button-highlighted,
 #wpwrap #postcustomstuff .submit input {
-	padding: 2px 5px;
-	-moz-border-radius: 6px;
-	-khtml-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	background: #EBF7FF;
-	text-shadow: none !important;
-	color: #059AE7;
-	font-weight: normal;
-	font-family: "Lucida Grande", "Lucida Sans", sans-serif;
-	border-right: 1px solid #78CEF8;
-	border-bottom: 1px solid #54C1F5;
-	border-top: 1px solid #EBF7FF;
-	border-left: 1px solid #EBF7FF;
+    padding: 2px 5px;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	color: #ffffff;
+	background: #059AE7 url(images/shade-hover.png) repeat-x left bottom;
+	border-top: 1px solid #059AE7;
+	border-right: 1px solid #0477B5;
+	border-bottom: 1px solid #047BBB;
+	border-left: 1px solid #059AE7;
 }
 
-#wpwrap #wphead .button,
+
 #wpwrap .button:hover,
 #wpwrap .button-secondary:hover,
 #wpwrap .submit input:hover,
 #wpwrap input[type=button]:hover,
 #wpwrap input[type=submit]:hover {
-	color: #ffffff !important;
-	background-color: #059AE7;
+	padding: 2px 5px;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	color: #ffffff;
+	background: #059AE7 url(images/shade-hover.png) repeat-x left -999px;
 	border-top: 1px solid #059AE7;
 	border-right: 1px solid #0477B5;
 	border-bottom: 1px solid #047BBB;
 	border-left: 1px solid #059AE7;
+	text-decoration: none;
 }
 
 #message {

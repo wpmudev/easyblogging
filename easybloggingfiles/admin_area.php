@@ -21,8 +21,8 @@
     jQuery(document).ready(function(){
         jQuery(".tab_tooltip").cluetip({splitTitle: "|", cluetipClass: "rounded", dropShadow: false, arrows: true,
             hoverIntent: {
-                sensitivity:  1,
-                interval:     1000
+                sensitivity: 7,
+                interval:     500
             }
         });
     });

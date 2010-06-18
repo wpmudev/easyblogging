@@ -67,7 +67,7 @@
 /* Interaction states
 ----------------------------------*/
 .ui-state-default, .ui-widget-content .ui-state-default {
-	background: #EBF7FF url(images/ui-bg_glass_50_5ab9e7_1x400.png) repeat-x 50% 50%;
+	background: #EBF7FF url(images/shade.png) repeat-x left bottom;
 	font-weight: normal;
 	color: #059AE7;
 	border-top: 1px solid #4BBEF5;
@@ -79,7 +79,7 @@
 	text-decoration: none;
 }
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus {
-	background: #059AE7 url(images/ui-bg_glass_75_428ea8_1x400.png) repeat-x 50% 50%;
+	background: #059AE7 url(images/shade-hover.png) repeat-x left bottom;
 	font-weight: normal;
 	color: #ffffff;
 	border-top: 1px solid #0484C8;

@@ -12,7 +12,7 @@
 </style>
 
 <div id="wizard_complete" class="wrap"> <div id="wizard_step">
-<?php screen_icon(); ?>
+<?php screen_icon('setting'); ?>
 <h2><?php echo esc_html( $title ); ?></h2>
 
 <div id="welcome-area">
@@ -21,28 +21,34 @@
 <p>&nbsp;</p>
 
 
-<div id="view_your_blog" class="admin_area_step">
-<div class="complete_button">
-<a href="<?php echo admin_url('index.php?easyadmin=on');?>">
+<div class="step_wizard_block">
+            <div class="complete_wizard easy-on"></div>
+            <div class="step_action">
+<a class='wizard_button' href="<?php echo admin_url('index.php?easyadmin=on');?>">
 <?php _e( 'Go to the Easy Admin Area', $this->localizationDomain ) ?>
 </a>
-</div>
 <p><?php _e( 'Very simple and easy', $this->localizationDomain ) ?>
 <?php global $easy_admin_wizard_var; echo ($easy_admin_wizard_var)?', starts with a step-by-step quick start to get you up and running fast!':' for beginners!'; ?></p>
-</div>
+            </div>
+            </div>
 
 
-<div id="view_your_blog" class="admin_area_step">
-<div class="complete_button">
-<a href="<?php echo admin_url('index.php?easyadmin=off');?>" target="_top">
+
+<div class="step_wizard_block">
+            <div class="complete_wizard advance-on"></div>
+            <div class="step_action">
+<a class='wizard_button' href="<?php echo admin_url('index.php?easyadmin=off');?>" target="_top">
 <?php _e( 'Go to the Advanced Admin Area', $this->localizationDomain ) ?>
-</a></div>
+</a>
 <p><?php _e( 'For advanced bloggers, gives you more features and options!', $this->localizationDomain ) ?></p>
-</div>
+            </div>
+            </div>
+
 
 <p>&nbsp;</p>
 
 </div>
 
 <?php require_once(ABSPATH . 'wp-admin/admin-footer.php'); ?>
-</div></div>
+</div>
+</div>
