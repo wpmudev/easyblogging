@@ -408,7 +408,7 @@ if (!class_exists('easy_admin')) {
         function admin_head_css() {
             echo '<style type="text/css">';
             if (!$this->is_dash()) {
-                echo '#wphead, #footer { display: none; }';
+                echo 'div.wpmu-notice, .update-nag, #wphead, #footer { display: none; }';
                 if ($this->siteOptions['remove_admin_notices_below_tabs']) {
                     echo '#message { display: none }';
                 }
