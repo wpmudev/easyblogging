@@ -61,7 +61,7 @@
                     <?php } ?>
                         <li id="hidden_tab"><a id="supporter-help-php" href="<?php bloginfo('wpurl'); ?>/wp-admin/?frame=premium-support" class="tab_tooltip"><span><?php echo $supporter_rebrand  . ' ' . __( 'Help', $this->localizationDomain ); ?></span></a></li>
                 <?php }
-                if (current_user_can('edit_themes')) { ?>
+                if (current_user_can('edit_theme_options')) { ?>
                     <li><a id="widgets-php" href="<?php bloginfo('wpurl'); ?>/wp-admin/?frame=widgets" class="tab_tooltip" title="<?php _e( 'Customize Design|Customize the look and content of your design', $this->localizationDomain ) ?>"><span><?php _e( 'Customize Design', $this->localizationDomain ) ?></span></a></li>
                 <?php }
                 if (function_exists('is_supporter')) { //We're not using the $this->is_supporter wrapper here, because we need to know if the function exists at all, but we don't care if this blog is a supporter blog ?>
