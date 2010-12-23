@@ -311,7 +311,8 @@ if (!class_exists('easy_admin')) {
                     jQuery('#easy_admin_tabs').bind('tabsshow', function(event, ui) { // change the url anchor when we click on a tab
                         //var scrollto = window.pageYOffset;
                         document.location.hash = jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id');
-                        //jQuery( 'html, body' ).animate( { scrollTop: scrollto }, 0 ); //This line causes an undefined error in IE only
+                        window.scroll(0,0);
+			//jQuery( 'html, body' ).animate( { scrollTop: scrollto }, 0 ); //This line causes an undefined error in IE only
 
                         if (jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id') != 'noteasy') {
                             advancedpage = jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id').replace('-php','');

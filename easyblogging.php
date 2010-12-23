@@ -4,7 +4,7 @@ Plugin Name: Easy Blogging
 Plugin URI: 
 Description: Modifies the Wordpress admin area to default it to a "Beginner" area, with the option to switch to the normal, "Advanced" area
 Author: Jason DeVelvis  (Incsub)
-Version: 1.1.2
+Version: 1.1.3a1
 Author URI: http://Pressography.com
 Site Wide Only: true
 WDP ID: 133
@@ -28,4 +28,4 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 require_once('easybloggingfiles/easy_blogging.php');
-?>
+
