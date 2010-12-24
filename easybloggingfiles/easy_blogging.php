@@ -54,9 +54,10 @@ if (!class_exists('easy_admin')) {
         var $trans_customize = '';
 
 	var $blacklist = array("blog-php");
-		var $allowedpages = array(	'index-php', 'post-php', 'post-new-php', 'edit-php', 'page-new-php', 'edit-pages-php', 'edit-comments-php', 'themes-php', 'widgets-php', 'profile-php',
-									'premium-themes-php', 'media-upload-php', 'comment-php', 'admin-ajax-php', 'async-upload-php', 'page-php', 'supporter-help-php', 'supporter-php'
-									);
+	var $allowedpages = array(
+	    'index-php', 'post-php', 'post-new-php', 'edit-php', 'page-new-php', 'edit-pages-php', 'edit-comments-php', 'themes-php', 'widgets-php', 'profile-php', 'admin-php',
+	    'premium-themes-php', 'media-upload-php', 'comment-php', 'admin-ajax-php', 'async-upload-php', 'page-php', 'supporter-help-php', 'supporter-php'
+	);
 
         //Class Functions
         /**
@@ -114,28 +115,43 @@ if (!class_exists('easy_admin')) {
         function init() {
             if (!is_admin()) return; //If we're not in the admin area, this isn't needed
             global $user_ID, $pagenow;
-
+	    
+	    $oldpage = $pagenow;
+	    if (isset($_GET['post_type']) && $_GET['post_type'] == 'page') {
+		switch ($pagenow) {
+		    case 'post-new.php':
+			$pagenow = 'page-new.php';
+			break;
+		    case 'edit.php':
+			$pagenow = 'edit-pages.php';
+			break;
+		}
+		$_SERVER['QUERY_STRING'] = preg_replace('/&{0,1}post_type=page/', '', $_SERVER['QUERY_STRING']);
+	    }
+	    
+	    if ($_SERVER['QUERY_STRING'] == '&' || $_SERVER['QUERY_STRING'] == '?') {
+		$_SERVER['QUERY_STRING'] = '';
+	    }
+	    
             $hash = str_replace('.','-',$pagenow);
             if(!empty($hash) && !in_array($hash, $this->allowedpages) && !in_array($hash, $this->blacklist) && !$this->options['disabled'][$user_ID]) {
-				//echo $hash;
-				//die();
-				wp_safe_redirect('index.php#noteasy');
-				exit;
-			}
-			if ($_SERVER['QUERY_STRING']) {
+		wp_safe_redirect('index.php#noteasy');
+		exit;
+	    }
+	    if ($_SERVER['QUERY_STRING']) {
                 $hash .= '|' . $_SERVER['QUERY_STRING'];
             }
-
+	    
             //Check if the user clicked the on/off link in the footer
             if ($_GET['frame']) {
                 require_once('frame.php');
                 die();
             }
-
+	    
             if ($pagenow == 'media-upload.php' || $pagenow == 'admin-ajax.php') {
                 return; //We don't want to do a thing if this is the media-upload or admin-ajax page
             }
-
+	    
             if (isset($this->installdate) && !isset($this->options['disabled'][$user_ID])) { //Make sure $this->installdate is defined, and there is no value for the disabled setting
                 global $wpdb;
                 $registered = strtotime($wpdb->get_var("SELECT `registered` FROM $wpdb->blogs WHERE blog_id=$wpdb->blogid"));
@@ -158,7 +174,7 @@ if (!class_exists('easy_admin')) {
                 }
                 $this->saveAdminOptions();
             }
-
+	    
             if ($_GET['start']==1) {
                 unset($this->options['disabled'][$user_ID]);
                 $this->saveAdminOptions();
@@ -319,17 +335,32 @@ if (!class_exists('easy_admin')) {
                         }
 
                         var href = '<?php echo admin_url('%%replace%%.php') . '?easyadmin=off'; ?>';
-                        if (querystring != '') {
-                            href += '&' + querystring;
+                        
+			if (querystring != '') {
+			    if (querystring.substring(0,1) == '&') {
+				href += querystring;
+			    } else {
+				href += '&' + querystring;
+			    }
                         }
+			
                         switch (advancedpage) {
                             case 'supporter-help':
                                 jQuery("#to_advanced_page").attr('href','<?php echo admin_url('supporter.php') . '?easyadmin=off&page=premium-support'; ?>');
                             break;
+			    
                             case 'premium-themes':
                                 jQuery("#to_advanced_page").attr('href','<?php echo admin_url('themes.php') . '?easyadmin=off&page=premium-themes'; ?>');
                             break;
-
+			    
+			    case 'page-new':
+                                jQuery("#to_advanced_page").attr('href','<?php echo admin_url('post-new.php') . '?post_type=page&easyadmin=off'; ?>');
+                            break;
+			
+			    case 'edit-pages':
+                                jQuery("#to_advanced_page").attr('href','<?php echo admin_url('edit.php') . '?post_type=page&easyadmin=off'; ?>');
+                            break;
+			    
                             case 'widgets':
                                 if (querystring.indexOf('page=custom-header')) {
                                     jQuery("#to_advanced_page").attr('href','<?php echo admin_url('themes.php') . '?easyadmin=off&page=custom-header'; ?>');
@@ -362,26 +393,59 @@ if (!class_exists('easy_admin')) {
         */
         function admin_head_resize() {
             global $pagenow;
+	    
+	    $oldpage = $pagenow;
+	    if (isset($_GET['post_type']) && $_GET['post_type'] == 'page') {
+		switch ($pagenow) {
+		    case 'post-new.php':
+			$pagenow = 'page-new.php';
+			break;
+		    case 'edit.php':
+			$pagenow = 'edit-pages.php';
+			break;
+		}
+		$_SERVER['QUERY_STRING'] = preg_replace('/&{0,1}post_type=page/', '', $_SERVER['QUERY_STRING']);
+	    }
+	    
+	    if ($_SERVER['QUERY_STRING'] == '&' || $_SERVER['QUERY_STRING'] == '?') {
+		$_SERVER['QUERY_STRING'] = '';
+	    }
+	    
             $hash = str_replace('.','-',$pagenow);
+	    
             if ($_SERVER['QUERY_STRING']) {
                 $hash .= '|' . $_SERVER['QUERY_STRING'];
             }
-
-            if (!in_array($hash, $this->blacklist)) {
-			if(!in_array($hash, $this->allowedpages)) {
-				$jscript = "window.location.replace('" . admin_url("index.php#noteasy") . "');";
-			} else {
-				$jscript = "window.location.replace('" . admin_url("index.php#$hash") . "');";
-			}
+	    
+	    if (!in_array($hash, $this->blacklist)) {
+		if(!in_array($hash, $this->allowedpages)) {
+	    	    $jscript = "window.location.replace('" . admin_url("index.php#noteasy") . "');";
+    		} else {
+		    $jscript = "window.location.replace('" . admin_url("index.php#$hash") . "');";
+		}
             }
-
+	    
+	    if ($pagenow != $oldpage) {
+		$nscript = "MyWindow.location = '" . admin_url("index.php#$hash") . "';";
+	    } else {
+		$nscript = "";
+	    }
+	    
             ?>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     var theDiv = jQuery("iframe", parent.document.body).parent();
-
+		    
+		    if (parent && parent.window) {
+			MyWindow = parent.window;
+		    } else {
+			MyWindow = window;
+		    }
+		    
+		    <?php print $nscript; ?>
+		    
                     if (theDiv.length == 0) { //We're not in an iframe, redirect to the dashboard
-						<?php echo $jscript; ?>
+			<?php echo $jscript; ?>
                     } else { //We are in an iframe, resize & do other actions
                         jQuery("iframe", parent.document.body).css('height','100%');
                         var height = jQuery(document).height();
@@ -393,8 +457,7 @@ if (!class_exists('easy_admin')) {
                         jQuery('.row-actions').find('.inline').remove();
                         <?php } else if ($pagenow == 'themes.php') { ?>
                         jQuery('.tb-theme-preview-link').live('click',function () {
-                            document.location.href = jQuery(this).attr('href');
-                            return false;
+			    return false;
                         });
                         <?php } ?>
                     }
@@ -496,9 +559,10 @@ if (!class_exists('easy_admin')) {
                 jQuery(document).ready(function($) {
                     $('#footer-left').after('<br/>&nbsp;');
                     $('#site-heading').after('<?php
-            if (!$this->options['disabled'][$user_ID])
-                echo '<a id="to_advanced_page" href="' . $this->currenturl_with_querystring . $connector . 'easyadmin=off"><div id="admin_area_to_advanced" class="admin_area button">', __('Activate Advanced Admin',$this->localizationDomain) . '</div></a>';
-            else {
+            if (!$this->options['disabled'][$user_ID]) {
+		// print $this->currenturl_with_querystring . $connector . 'easyadmin=off';
+	        echo '<a id="to_advanced_page" href="' . $this->currenturl_with_querystring . $connector . 'easyadmin=off"><div id="admin_area_to_advanced" class="admin_area button">', __('Activate Advanced Admin',$this->localizationDomain) . '</div></a>';
+	    } else {
                 echo '<a id="to_easy_page" href="' . admin_url('index.php') . '?easyadmin=on#' . str_replace('.','-',$pagenow);
                 if ($_SERVER['QUERY_STRING']) {
                     echo '|' . str_replace('easyadmin=off','',str_replace('easyadmin=on','',$_SERVER['QUERY_STRING'])); //Remove the easyadmin querystring vars

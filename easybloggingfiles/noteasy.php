@@ -11,6 +11,9 @@
     if (querystring != '') {
         href += '&' + querystring;
     }
+    if (advancedpage == 'noteasy') {
+	advancedpage = 'index';
+    }
     jQuery("#to_advanced_page.noteasy").attr('href',href.replace('%%replace%%',advancedpage));
 </script>
 <style type="text/css">
