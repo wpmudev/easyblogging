@@ -194,6 +194,10 @@ if (!class_exists('easy_admin')) {
 				// Add in the removal of the admin bar from the heading
 				// remove the admin bar
 				add_filter( 'show_admin_bar', '__return_false' );
+				if(has_action('admin_notices', 'wdp_un_check')) {
+					remove_all_actions('admin_notices');
+					remove_action( 'admin_notices', 'wdp_un_check' );
+				}
                 //The jQuery UI CSS is required for the tabs & the UI State Highlight, so we need to add it here
                 wp_enqueue_style( 'jquery-custom-ui-tabs', $this->thispluginurl.'css/jquery.ui.tabs.css');
 
