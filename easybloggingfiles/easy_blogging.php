@@ -107,6 +107,7 @@ if (!class_exists('easy_admin')) {
             add_action("in_admin_footer", array(&$this,"admin_footer"));
 
             wp_enqueue_style( 'easy-admin-both-css', $this->thispluginurl.'css/easy.admin.both.css');
+
         }
 
         /**
@@ -115,7 +116,7 @@ if (!class_exists('easy_admin')) {
         function init() {
             if (!is_admin()) return; //If we're not in the admin area, this isn't needed
             global $user_ID, $pagenow;
-	    
+
 	    $oldpage = $pagenow;
 	    if (isset($_GET['post_type']) && $_GET['post_type'] == 'page') {
 		switch ($pagenow) {
@@ -128,11 +129,11 @@ if (!class_exists('easy_admin')) {
 		}
 		$_SERVER['QUERY_STRING'] = preg_replace('/&{0,1}post_type=page/', '', $_SERVER['QUERY_STRING']);
 	    }
-	    
+
 	    if ($_SERVER['QUERY_STRING'] == '&' || $_SERVER['QUERY_STRING'] == '?') {
 		$_SERVER['QUERY_STRING'] = '';
 	    }
-	    
+
             $hash = str_replace('.','-',$pagenow);
             if(!empty($hash) && !in_array($hash, $this->allowedpages) && !in_array($hash, $this->blacklist) && !$this->options['disabled'][$user_ID]) {
 		wp_safe_redirect('index.php#noteasy');
@@ -141,17 +142,17 @@ if (!class_exists('easy_admin')) {
 	    if ($_SERVER['QUERY_STRING']) {
                 $hash .= '|' . $_SERVER['QUERY_STRING'];
             }
-	    
+
             //Check if the user clicked the on/off link in the footer
             if ($_GET['frame']) {
                 require_once('frame.php');
                 die();
             }
-	    
+
             if ($pagenow == 'media-upload.php' || $pagenow == 'admin-ajax.php') {
                 return; //We don't want to do a thing if this is the media-upload or admin-ajax page
             }
-	    
+
             if (isset($this->installdate) && !isset($this->options['disabled'][$user_ID])) { //Make sure $this->installdate is defined, and there is no value for the disabled setting
                 global $wpdb;
                 $registered = strtotime($wpdb->get_var("SELECT `registered` FROM $wpdb->blogs WHERE blog_id=$wpdb->blogid"));
@@ -174,7 +175,7 @@ if (!class_exists('easy_admin')) {
                 }
                 $this->saveAdminOptions();
             }
-	    
+
             if ($_GET['start']==1) {
                 unset($this->options['disabled'][$user_ID]);
                 $this->saveAdminOptions();
@@ -190,6 +191,9 @@ if (!class_exists('easy_admin')) {
             if (!$do_init) return;
 
             if (!$this->options['disabled'][$user_ID]) {
+				// Add in the removal of the admin bar from the heading
+				// remove the admin bar
+				add_filter( 'show_admin_bar', '__return_false' );
                 //The jQuery UI CSS is required for the tabs & the UI State Highlight, so we need to add it here
                 wp_enqueue_style( 'jquery-custom-ui-tabs', $this->thispluginurl.'css/jquery.ui.tabs.css');
 
@@ -335,7 +339,7 @@ if (!class_exists('easy_admin')) {
                         }
 
                         var href = '<?php echo admin_url('%%replace%%.php') . '?easyadmin=off'; ?>';
-                        
+
 			if (querystring != '') {
 			    if (querystring.substring(0,1) == '&') {
 				href += querystring;
@@ -343,24 +347,24 @@ if (!class_exists('easy_admin')) {
 				href += '&' + querystring;
 			    }
                         }
-			
+
                         switch (advancedpage) {
                             case 'supporter-help':
                                 jQuery("#to_advanced_page").attr('href','<?php echo admin_url('supporter.php') . '?easyadmin=off&page=premium-support'; ?>');
                             break;
-			    
+
                             case 'premium-themes':
                                 jQuery("#to_advanced_page").attr('href','<?php echo admin_url('themes.php') . '?easyadmin=off&page=premium-themes'; ?>');
                             break;
-			    
+
 			    case 'page-new':
                                 jQuery("#to_advanced_page").attr('href','<?php echo admin_url('post-new.php') . '?post_type=page&easyadmin=off'; ?>');
                             break;
-			
+
 			    case 'edit-pages':
                                 jQuery("#to_advanced_page").attr('href','<?php echo admin_url('edit.php') . '?post_type=page&easyadmin=off'; ?>');
                             break;
-			    
+
                             case 'widgets':
                                 if (querystring.indexOf('page=custom-header')) {
                                     jQuery("#to_advanced_page").attr('href','<?php echo admin_url('themes.php') . '?easyadmin=off&page=custom-header'; ?>');
@@ -393,7 +397,7 @@ if (!class_exists('easy_admin')) {
         */
         function admin_head_resize() {
             global $pagenow;
-	    
+
 	    $oldpage = $pagenow;
 	    if (isset($_GET['post_type']) && $_GET['post_type'] == 'page') {
 		switch ($pagenow) {
@@ -406,17 +410,17 @@ if (!class_exists('easy_admin')) {
 		}
 		$_SERVER['QUERY_STRING'] = preg_replace('/&{0,1}post_type=page/', '', $_SERVER['QUERY_STRING']);
 	    }
-	    
+
 	    if ($_SERVER['QUERY_STRING'] == '&' || $_SERVER['QUERY_STRING'] == '?') {
 		$_SERVER['QUERY_STRING'] = '';
 	    }
-	    
+
             $hash = str_replace('.','-',$pagenow);
-	    
+
             if ($_SERVER['QUERY_STRING']) {
                 $hash .= '|' . $_SERVER['QUERY_STRING'];
             }
-	    
+
 	    if (!in_array($hash, $this->blacklist)) {
 		if(!in_array($hash, $this->allowedpages)) {
 	    	    $jscript = "window.location.replace('" . admin_url("index.php#noteasy") . "');";
@@ -424,26 +428,26 @@ if (!class_exists('easy_admin')) {
 		    $jscript = "window.location.replace('" . admin_url("index.php#$hash") . "');";
 		}
             }
-	    
+
 	    if ($pagenow != $oldpage) {
 		$nscript = "MyWindow.location = '" . admin_url("index.php#$hash") . "';";
 	    } else {
 		$nscript = "";
 	    }
-	    
+
             ?>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     var theDiv = jQuery("iframe", parent.document.body).parent();
-		    
+
 		    if (parent && parent.window) {
 			MyWindow = parent.window;
 		    } else {
 			MyWindow = window;
 		    }
-		    
+
 		    <?php print $nscript; ?>
-		    
+
                     if (theDiv.length == 0) { //We're not in an iframe, redirect to the dashboard
 			<?php echo $jscript; ?>
                     } else { //We are in an iframe, resize & do other actions
@@ -732,10 +736,15 @@ if (!class_exists('easy_admin')) {
         }
     } //End Class
     //instantiate the class
-    if (is_admin()) {
-        global $easy_admin_var;
-        $easy_admin_var = new easy_admin();
+	if (is_admin() ) {
+		if(function_exists('is_network_admin') && is_network_admin()) {
+		} else {
+			global $easy_admin_var;
+	        $easy_admin_var = new easy_admin();
+		}
+
     }
+
 } //End if easy_admin class exists statement
 
 function do_meta_stuff() {
