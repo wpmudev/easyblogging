@@ -664,11 +664,22 @@ if (!class_exists('easy_admin')) {
         function admin_menu_link() {
             //If you change this from add_options_page, MAKE SURE you change the filter_plugin_actions function (below) to
             //reflect the page filename (ie - options-general.php) of the page your plugin is under!
+			if(is_multisite()) {
+				if(function_exists('is_plugin_active_for_network') && is_plugin_active_for_network('affiliate/affiliate.php')) {
+					// we're activated site wide so put the admin menu in the network area
+					if(function_exists('is_network_admin') && is_network_admin()) {
+						add_submenu_page('settings.php', __('Easy Blogging',$this->localizationDomain), __('Easy Blogging',$this->localizationDomain), 10, basename(__FILE__), array(&$this,'admin_options_page'));
+					}
+				} else {
+					// we're only activated on a blog level so put the admin menu in the main area
+					if(!function_exists('is_network_admin') || !is_network_admin()) {
+						add_submenu_page('settings.php', __('Easy Blogging',$this->localizationDomain), __('Easy Blogging',$this->localizationDomain), 10, basename(__FILE__), array(&$this,'admin_options_page'));
+					}
+				}
+			} else {
+				add_submenu_page('settings.php', __('Easy Blogging',$this->localizationDomain), __('Easy Blogging',$this->localizationDomain), 10, basename(__FILE__), array(&$this,'admin_options_page'));
+			}
 
-            if (get_bloginfo('version') >= 3)
-                add_submenu_page( 'ms-admin.php', __('Easy Blogging',$this->localizationDomain), __('Easy Blogging',$this->localizationDomain), 10, basename(__FILE__), array(&$this,'admin_options_page'));
-            else
-                add_submenu_page( 'wpmu-admin.php', __('Easy Blogging',$this->localizationDomain), __('Easy Blogging',$this->localizationDomain), 10, basename(__FILE__), array(&$this,'admin_options_page'));
             add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'filter_plugin_actions'), 10, 2 );
         }
 
@@ -740,7 +751,7 @@ if (!class_exists('easy_admin')) {
         }
     } //End Class
     //instantiate the class
-	if (is_admin() ) {
+	if (is_admin() && empty($_GET['jax']) ) {
 		if(function_exists('is_network_admin') && is_network_admin()) {
 		} else {
 			global $easy_admin_var;
