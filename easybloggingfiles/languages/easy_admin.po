@@ -1,0 +1,218 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Blogging\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-11 01:16+0100\n"
+"PO-Revision-Date: 2011-01-11 01:16+0100\n"
+"Last-Translator: Barry <barry@mapinated.com>\n"
+"Language-Team: Incsub <barry@incsub.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles\n"
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:2
+msgid "Easy Admin Area"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:17
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:562
+msgid "Supporter"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:43
+msgid "New Post|Create a new post"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:43
+msgid "New Post"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:44
+msgid "My Posts|Edit your posts"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:44
+msgid "My Posts"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:47
+msgid "New Page|Create a new page"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:47
+msgid "New Page"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:50
+msgid "My Pages|Edit your pages"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:50
+msgid "My Pages"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:53
+msgid "Comments|Manage the comments on your blog"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:53
+msgid "Comments"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:56
+msgid "Themes|Change to a different theme"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:56
+msgid "Free Themes"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:56
+msgid "Manage Themes"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:60
+#, php-format
+msgid "%1$s Themes|View the %1$s themes"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:60
+msgid "Themes"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:62
+msgid "Help"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:65
+msgid "Customize Design|Customize the look and content of your design"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:65
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:102
+msgid "Customize Design"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:68
+#, php-format
+msgid "%1$s|%1$s users get access to more features for their blogs"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:70
+msgid "Profile|Edit your profile"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:70
+msgid "Profile"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/admin_area.php:71
+msgid "Not Easy"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:99
+msgid "Widget"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:100
+msgid "Widgets"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:101
+msgid "Item"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:531
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:534
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:536
+msgid "Discussion"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:572
+msgid "Activate Advanced Admin"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:578
+msgid "Activate Easy Admin"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:583
+msgid "Support"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:584
+msgid "Log Out"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:671
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:676
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:680
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:917
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:922
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:926
+msgid "Easy Blogging"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:693
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:695
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:939
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:941
+msgid "Settings"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:715
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:961
+msgid "Easy Blogging Options"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:717
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:963
+msgid "Note: the \"Hide admin messages\" options are not foolproof. They remove standard admin messages, and messages from plugins that use the correct markup."
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:720
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:966
+msgid "Hide admin messages from above the tabs:"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:724
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/easy_blogging.php:970
+msgid "Hide admin messages from below the tabs:"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/noteasy.php:5
+msgid "Whoops!"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/noteasy.php:26
+msgid "Whoops! This function is not available in the Easy Admin area. You'll have to switch over to the Advanced Admin area to access this page."
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/noteasy.php:30
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/start.php:41
+msgid "Go to the Advanced Admin Area"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/start.php:4
+msgid "Welcome!"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/start.php:20
+msgid "Welcome! Please choose the way you would like to use"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/start.php:28
+msgid "Go to the Easy Admin Area"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/start.php:30
+msgid "Very simple and easy"
+msgstr ""
+
+#: /Users/barrygetty/Work/wordpress/plugins/easyblogging/easybloggingfiles/start.php:43
+msgid "For advanced bloggers, gives you more features and options!"
+msgstr ""
+
