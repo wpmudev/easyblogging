@@ -762,6 +762,252 @@ if (!class_exists('easy_admin')) {
 
 } //End if easy_admin class exists statement
 
+if (!class_exists('easy_network_admin')) {
+    class easy_network_admin {
+        //This is where the class variables go, don't forget to use @var to tell what they're for
+        /**
+        * @var string The options string name for this plugin
+        */
+        var $optionsName = 'easy_admin_options';
+
+        /**
+        * @var string $localizationDomain Domain used for localization
+        */
+        var $localizationDomain = "easy_admin";
+
+        /**
+        * @var string $pluginurl The path to this plugin
+        */
+        var $thispluginurl = '';
+        /**
+        * @var string $pluginurlpath The path to this plugin
+        */
+        var $thispluginpath = '';
+
+        /**
+        * @desc string $current_url Stores the current page's url
+        */
+        var $currenturl = '';
+
+        /**
+        * @desc string $currenturl_with_querystring Stores the current page's url including the querystring
+        */
+        var $currenturl_with_querystring = '';
+
+        /**
+        * @desc date $installdate stores the date/time this plugin was installed
+        */
+        var $installdate;
+
+        /**
+        * @var array $options Stores the options for this plugin
+        */
+        var $options = array();
+
+        /**
+        * @var array $siteOptions Stores the options for this plugin
+        */
+        var $siteOptions = array();
+
+        //Translation helper vars
+        var $trans_widget = '';
+        var $trans_widgets = '';
+        var $trans_item = '';
+        var $trans_customize = '';
+
+	var $blacklist = array("blog-php");
+	var $allowedpages = array(
+	    'index-php', 'post-php', 'post-new-php', 'edit-php', 'page-new-php', 'edit-pages-php', 'edit-comments-php', 'themes-php', 'widgets-php', 'profile-php', 'admin-php',
+	    'premium-themes-php', 'media-upload-php', 'comment-php', 'admin-ajax-php', 'async-upload-php', 'page-php', 'supporter-help-php', 'supporter-php'
+	);
+
+        //Class Functions
+        /**
+        * PHP 4 Compatible Constructor
+        */
+        function easy_network_admin() {
+			$this->__construct();
+		}
+
+        /**
+        * PHP 5 Constructor
+        */
+        function __construct(){
+            //Language Setup
+            $locale = get_locale();
+            $mo = dirname(__FILE__) . "/languages/" . $this->localizationDomain . "-".$locale.".mo";
+            load_textdomain($this->localizationDomain, $mo);
+
+            //"Constants" setup
+			if (defined('WPMU_PLUGIN_DIR') && file_exists(WPMU_PLUGIN_DIR . '/easyblogging.php') ) { //We're not in the WPMU Plugin Directory
+                $this->thispluginpath = WPMU_PLUGIN_DIR . '/easybloggingfiles/';
+                $this->thispluginurl = WPMU_PLUGIN_URL . '/easybloggingfiles/';
+            } else { //We are in the WPMU Plugin Directory
+				$this->thispluginpath = WP_PLUGIN_DIR . '/easyblogging/easybloggingfiles/';
+                $this->thispluginurl = WP_PLUGIN_URL . '/easyblogging/easybloggingfiles/';
+            }
+
+            //Initialize the options
+            //This is REQUIRED to initialize the options when the plugin is loaded!
+            $this->getOptions();
+
+            //Actions
+            add_action("init", array(&$this,"init"),4); //Set to 4 to allow other plugins to run before this one, just in case
+
+        }
+
+        /**
+        * Initialization function, enqueues necessary JS and CSS files and sets up the Easy Admin area, if necessary
+        */
+        function init() {
+            if (!is_network_admin()) return; //If we're not in the admin area, this isn't needed
+            global $user_ID, $pagenow;
+
+            //Add the admin menu link
+            add_action('network_admin_menu', array(&$this,'admin_menu_link'));
+        }
+
+        /**
+        * @desc Retrieves the plugin options from the database.
+        * @return array
+        */
+        function getOptions() {
+            //Don't forget to set up the default options
+            if (!$theOptions = get_option($this->optionsName)) {
+                $theOptions = array('disabled'=>array());
+                update_option($this->optionsName, $theOptions);
+            }
+            $this->options = $theOptions;
+
+            if (!$theSiteOptions = get_site_option($this->optionsName)) {
+                $theSiteOptions = array( 'remove_from_above_tabs'=>'#message.tip','remove_from_iframed_pages'=>'#update-nag, #message.tip');
+                update_site_option($this->optionsName,$theSiteOptions);
+            }
+            $this->siteOptions = $theSiteOptions;
+
+            //Setting up the $this->installdate value
+            if (!$this->installdate = get_site_option($this->optionsName . '_installdate')) {
+                $this->installdate = time();
+                update_site_option($this->optionsName . '_installdate', $this->installdate);
+            }
+
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //There is no return here, because you should use the $this->options variable!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        }
+
+        /**
+        * @desc Saves the admin options to the database.
+        */
+        function saveAdminOptions(){
+            $retval = update_option($this->optionsName, $this->options);
+            return update_site_option($this->optionsName, $this->siteOptions) && $retval;
+        }
+
+        /**
+        * @desc Adds the options subpanel
+        */
+        function admin_menu_link() {
+            //If you change this from add_options_page, MAKE SURE you change the filter_plugin_actions function (below) to
+            //reflect the page filename (ie - options-general.php) of the page your plugin is under!
+			if(is_multisite()) {
+				if(function_exists('is_plugin_active_for_network') && is_plugin_active_for_network('affiliate/affiliate.php')) {
+					// we're activated site wide so put the admin menu in the network area
+					if(function_exists('is_network_admin') && is_network_admin()) {
+						add_submenu_page('settings.php', __('Easy Blogging',$this->localizationDomain), __('Easy Blogging',$this->localizationDomain), 10, basename(__FILE__), array(&$this,'admin_options_page'));
+					}
+				} else {
+					// we're only activated on a blog level so put the admin menu in the main area
+					if(!function_exists('is_network_admin') || !is_network_admin()) {
+						add_submenu_page('settings.php', __('Easy Blogging',$this->localizationDomain), __('Easy Blogging',$this->localizationDomain), 10, basename(__FILE__), array(&$this,'admin_options_page'));
+					}
+				}
+			} else {
+				add_submenu_page('settings.php', __('Easy Blogging',$this->localizationDomain), __('Easy Blogging',$this->localizationDomain), 10, basename(__FILE__), array(&$this,'admin_options_page'));
+			}
+
+            add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'filter_plugin_actions'), 10, 2 );
+        }
+
+        /**
+        * @desc Adds the Settings link to the plugin activate/deactivate page
+        */
+        function filter_plugin_actions($links, $file) {
+            //If your plugin is under a different top-level menu than Settiongs (IE - you changed the function above to something other than add_options_page)
+            //Then you're going to want to change options-general.php below to the name of your top-level page
+            if (get_bloginfo('version') >= 3)
+                $settings_link = '<a href="ms-admin.php?page=' . basename(__FILE__) . '">' . __('Settings',$this->localizationDomain) . '</a>';
+            else
+                $settings_link = '<a href="wpmu-admin.php?page=' . basename(__FILE__) . '">' . __('Settings',$this->localizationDomain) . '</a>';
+
+            array_unshift( $links, $settings_link ); // before other links
+
+            return $links;
+        }
+
+        /**
+        * Adds settings/options page
+        */
+        function admin_options_page() {
+            if (!empty($_POST['easy_blogging_save'])) {
+                //$this->siteOptions['remove_from_above_tabs'] = stripslashes($_POST['remove_from_above_tabs']);
+                //$this->siteOptions['remove_from_iframed_pages'] = stripslashes($_POST['remove_from_iframed_pages']);
+                $this->siteOptions['remove_admin_notices_above_tabs'] = ($_POST['remove_admin_notices_above_tabs']=='on')?true:false;
+                $this->siteOptions['remove_admin_notices_below_tabs'] = ($_POST['remove_admin_notices_below_tabs']=='on')?true:false;
+                $this->saveAdminOptions();
+            }
+?>
+                <div class="wrap">
+                <h2><?php _e('Easy Blogging Options', $this->localizationDomain); ?></h2>
+                <form method="post" id="options">
+                <p><?php _e('Note: the "Hide admin messages" options are not foolproof. They remove standard admin messages, and messages from plugins that use the correct markup.',$this->localizationDomain); ?></p>
+                <table width="100%" cellspacing="2" cellpadding="5" class="widefat fixed" id="add_new_table">
+                    <tr valign="top">
+                        <th width="33%" scope="row"><?php _e('Hide admin messages from above the tabs:', $this->localizationDomain); ?></th>
+                        <td><input type="checkbox" name="remove_admin_notices_above_tabs" <?php echo ($this->siteOptions['remove_admin_notices_above_tabs'])?'checked="CHECKED"':''; ?> /></td>
+                    </tr>
+                    <tr valign="top">
+                        <th width="33%" scope="row"><?php _e('Hide admin messages from below the tabs:', $this->localizationDomain); ?></th>
+                        <td><input type="checkbox" name="remove_admin_notices_below_tabs" <?php echo ($this->siteOptions['remove_admin_notices_below_tabs'])?'checked="CHECKED"':''; ?> /></td>
+                    </tr>
+                </table>
+                <p><div class="submit"><input type="submit" name="easy_blogging_save" class="button-primary" /></div></p>
+
+                <?php /* wp_nonce_field('easy_admin-update-options'); ?>
+                <h3><?php _e('Hidden Classes', $this->localizationDomain); ?></h3>
+                <p><?php _e('Because of the way the Easy Admin Area works, you might find that some messages, ads, notices, etc show up above and below the tabs on the page. To
+                help remedy this problem, the boxes below can be used to control what is displayed and what isn\'t, based on CSS. All you have to do is enter the
+                <a href="http://www.google.com/search?sourceid=navclient&ie=UTF-8&rlz=1T4GGLL_enUS371US371&q=css+selector" title="Click here to find out more about CSS Selectors">CSS selector</a>
+                of the item you want removed, and enter it in one or both of the boxes below. Make sure each selector is separated by a comma.', $this->localizationDomain); ?>
+                </p>
+                    <table width="100%" cellspacing="2" cellpadding="5" class="widefat fixed" id="add_new_table">
+                        <tr valign="top">
+                            <th width="33%" scope="row"><?php _e('Hide these from above the tabs:', $this->localizationDomain); ?></th>
+                            <td><textarea name="remove_from_above_tabs" id="remove_from_above_tabs" cols="80" rows="4"><?php echo $this->siteOptions['remove_from_above_tabs']; ?></textarea></td>
+                        </tr>
+                        <tr valign="top">
+                            <th width="33%" scope="row"><?php _e('Hide these from below the tabs:', $this->localizationDomain); ?></th>
+                            <td><textarea name="remove_from_iframed_pages" id="remove_from_iframed_pages" cols="80" rows="4"><?php echo $this->siteOptions['remove_from_iframed_pages']; ?></textarea></td>
+                        </tr>
+                    </table>
+                    <p><div class="submit"><input type="submit" name="easy_blogging_save" class="button-primary" /></div></p>
+                */ ?>
+                </form>
+                <?php
+        }
+    } //End Class
+    //instantiate the class
+	if (is_admin() && empty($_GET['jax']) ) {
+		if(function_exists('is_network_admin') && is_network_admin()) {
+			global $easy_admin_var;
+	        $easy_admin_var = new easy_network_admin();
+		} else {
+		}
+
+    }
+
+} //End if easy_admin class exists statement
+
 function do_meta_stuff() {
     global $wp_meta_boxes;
 
