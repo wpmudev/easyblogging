@@ -665,10 +665,12 @@ if (!class_exists('easy_admin')) {
             //If you change this from add_options_page, MAKE SURE you change the filter_plugin_actions function (below) to
             //reflect the page filename (ie - options-general.php) of the page your plugin is under!
 			if(is_multisite()) {
-				if(function_exists('is_plugin_active_for_network') && is_plugin_active_for_network('affiliate/affiliate.php')) {
+				if(function_exists('is_plugin_active_for_network') && is_plugin_active_for_network('easyblogging/easyblogging.php')) {
 					// we're activated site wide so put the admin menu in the network area
 					if(function_exists('is_network_admin') && is_network_admin()) {
 						add_submenu_page('settings.php', __('Easy Blogging',$this->localizationDomain), __('Easy Blogging',$this->localizationDomain), 10, basename(__FILE__), array(&$this,'admin_options_page'));
+					} else {
+
 					}
 				} else {
 					// we're only activated on a blog level so put the admin menu in the main area
