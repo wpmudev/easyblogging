@@ -121,7 +121,7 @@ if (!class_exists('easy_admin')) {
 	    if (isset($_GET['post_type']) && $_GET['post_type'] == 'page') {
 		switch ($pagenow) {
 		    case 'post-new.php':
-			$pagenow = 'page-new.php';
+			$pagenow = 'post-new.php';
 			break;
 		    case 'edit.php':
 			$pagenow = 'edit-pages.php';
@@ -185,6 +185,7 @@ if (!class_exists('easy_admin')) {
 
             //Add the admin menu link
             add_action('admin_menu', array(&$this,'admin_menu_link'));
+			add_action('network_admin_menu', array(&$this,'admin_menu_link'));
 
             //Allow other scripts to stop Easy Admin from running
             $do_init = apply_filters('run_easy_admin_head',true);
@@ -334,9 +335,9 @@ if (!class_exists('easy_admin')) {
 
                     jQuery('#easy_admin_tabs').bind('tabsshow', function(event, ui) { // change the url anchor when we click on a tab
                         //var scrollto = window.pageYOffset;
-                        document.location.hash = jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id');
-                        window.scroll(0,0);
-			//jQuery( 'html, body' ).animate( { scrollTop: scrollto }, 0 ); //This line causes an undefined error in IE only
+                        //document.location.hash = jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id');
+                        //window.scroll(0,0);
+						//jQuery( 'html, body' ).animate( { scrollTop: scrollto }, 0 ); //This line causes an undefined error in IE only
 
                         if (jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id') != 'noteasy') {
                             advancedpage = jQuery('#easy_admin_tabs li a[href="#' + ui.panel.id + '"]').attr('id').replace('-php','');
@@ -361,11 +362,11 @@ if (!class_exists('easy_admin')) {
                                 jQuery("#to_advanced_page").attr('href','<?php echo admin_url('themes.php') . '?easyadmin=off&page=premium-themes'; ?>');
                             break;
 
-			    case 'page-new':
+			    			case 'page-new':
                                 jQuery("#to_advanced_page").attr('href','<?php echo admin_url('post-new.php') . '?post_type=page&easyadmin=off'; ?>');
                             break;
 
-			    case 'edit-pages':
+			    			case 'edit-pages':
                                 jQuery("#to_advanced_page").attr('href','<?php echo admin_url('edit.php') . '?post_type=page&easyadmin=off'; ?>');
                             break;
 
@@ -913,7 +914,7 @@ if (!class_exists('easy_network_admin')) {
             //If you change this from add_options_page, MAKE SURE you change the filter_plugin_actions function (below) to
             //reflect the page filename (ie - options-general.php) of the page your plugin is under!
 			if(is_multisite()) {
-				if(function_exists('is_plugin_active_for_network') && is_plugin_active_for_network('affiliate/affiliate.php')) {
+				if(function_exists('is_plugin_active_for_network') && is_plugin_active_for_network('easyblogging/easyblogging.php')) {
 					// we're activated site wide so put the admin menu in the network area
 					if(function_exists('is_network_admin') && is_network_admin()) {
 						add_submenu_page('settings.php', __('Easy Blogging',$this->localizationDomain), __('Easy Blogging',$this->localizationDomain), 10, basename(__FILE__), array(&$this,'admin_options_page'));
@@ -999,7 +1000,7 @@ if (!class_exists('easy_network_admin')) {
         }
     } //End Class
     //instantiate the class
-	if (is_admin() && empty($_GET['jax']) ) {
+	if ((is_admin() || is_network_admin()) && empty($_GET['jax']) ) {
 		if(function_exists('is_network_admin') && is_network_admin()) {
 			global $easy_admin_var;
 	        $easy_admin_var = new easy_network_admin();

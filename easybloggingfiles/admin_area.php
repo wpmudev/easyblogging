@@ -1,17 +1,17 @@
 <?php
     $title = __('Easy Admin Area', $this->localizationDomain);
-    
+
     wp_enqueue_script('jquery');
     wp_enqueue_script('hoverintent');
     wp_enqueue_script('cluetip', $this->thispluginurl.'js/cluetip-1.0.6/jquery.cluetip.js');
     wp_enqueue_style( 'cluetip', $this->thispluginurl.'js/cluetip-1.0.6/jquery.cluetip.css');
-    
+
     //We need to set the $page_hook because if we don't, then a bug in WP will think this page is the custom-header page, load farbtastic, and break the JS on this page... Awesome.
     global $page_hook;
     $page_hook = 'easy_admin_dashboard';
-    
+
     require_once(ABSPATH . 'wp-admin/admin-header.php');
-    
+
     $supporter_rebrand = get_site_option( "supporter_rebrand" );
     if ($supporter_rebrand == '') {
         $supporter_rebrand = __('Supporter','supporter');
@@ -31,7 +31,7 @@
         <div id="easy-admin-area">
 
             <div id="easy_admin_tabs" class="ui-tabs-nav">
-            <?php 
+            <?php
                     /**
                     * NOTICE! If you're going to change the text in the title attributes, you can NOT use a period (.) in the middle of the text!
                     * There's a strange bug with the jQuery Tabs component that throws an error when a period shows up in the middle of the title attribute,
@@ -52,7 +52,7 @@
                 if (current_user_can('moderate_comments') || current_user_can('edit_posts')) { ?>
                     <li><a id="edit-comments-php" href="<?php bloginfo('wpurl'); ?>/wp-admin/?frame=edit-comments" class="tab_tooltip" title="<?php _e( 'Comments|Manage the comments on your blog', $this->localizationDomain ) ?>"><span><?php _e( 'Comments', $this->localizationDomain ) ?></span></a></li>
                 <?php }
-                if (current_user_can('edit_themes')) { ?>                    
+                if (current_user_can('edit_themes')) { ?>
                     <li><a id="themes-php" href="<?php bloginfo('wpurl'); ?>/wp-admin/?frame=themes" class="tab_tooltip" title="<?php _e( 'Themes|Change to a different theme', $this->localizationDomain ) ?>"><span><?php if (function_exists('is_supporter')) { _e( 'Free Themes', $this->localizationDomain ); } else { _e( 'Manage Themes', $this->localizationDomain ); } ?></span></a></li>
                 <?php }
                 if (function_exists('is_supporter')) { //We only need to know if the supporter plugin is on, we need to display these tabs regardless of whether or not the user is a supporter, to encourage upgrades
