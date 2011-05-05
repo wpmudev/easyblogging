@@ -73,8 +73,8 @@ if (!class_exists('easy_admin')) {
         function __construct(){
             //Language Setup
             $locale = get_locale();
-            $mo = dirname(__FILE__) . "/languages/" . $this->localizationDomain . "-".$locale.".mo";
-            load_textdomain($this->localizationDomain, $mo);
+            $mo = plugin_basename(dirname(__FILE__) . "/languages/" . $this->localizationDomain . "-".$locale.".mo");
+            load_plugin_textdomain($this->localizationDomain, false, $mo);
 
             //"Constants" setup
 			if (defined('WPMU_PLUGIN_DIR') && file_exists(WPMU_PLUGIN_DIR . '/easyblogging.php') ) { //We're not in the WPMU Plugin Directory
