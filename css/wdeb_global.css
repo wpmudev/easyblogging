@@ -1,0 +1,61 @@
+.wdeb_visit_site {
+  position: fixed;
+  right: 3px;
+  top:1px;
+  z-index: 9999999;
+}
+
+.wdeb_visit_site a {
+   display: block;
+    font-size: 14px;
+    height: 22px;
+    color: #eee;
+    letter-spacing: normal;
+    line-height: 22px;
+    padding: 6px 15px 6px 35px;
+    text-decoration: none;
+    z-index: 1;
+    background: #333 url(../img/home.png) no-repeat 10px 8px;
+    border-bottom: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    float:left;
+    text-shadow: 1px 1px 2px #111;
+	-moz-text-shadow: 1px 1px 2px #111;
+	-webkit-text-shadow: 1px 1px 2px #111;
+
+    box-shadow: 3px 3px 2px #ccc;
+	-moz-box-shadow: 3px 3px 2px #ccc;
+	-webkit-box-shadow: 3px 3px 2px #ccc;
+}
+
+.wdeb_visit_site a:hover {
+    color: #fff;
+    background: #555 url(../img/home.png) no-repeat 10px 8px;
+    border-bottom: 1px solid #666;
+    border-left: 1px solid #666;
+    border-right: 1px solid #666;
+    float:left;
+}
+
+/*styled a disabled input element */
+input[disabled], input[readonly], select[disabled], select[readonly], checkbox[disabled], checkbox[readonly], textarea[disabled], textarea[readonly]
+{
+background-color: #dcdcdc;
+border: #3532ff 1px solid;
+color: #999;
+cursor: default;
+}
+
+td.available-theme p, #current-theme .theme-options, .appearance_page_premium-themes #current-theme p {
+  display: none;
+}
+
+td.available-theme p.description, .appearance_page_premium-themes #current-theme p.theme-description {
+  display: block !important;
+}
+
+
+#wpwrap #primary_left #logo {
+    padding: 0px 0 20px 0px;
+}

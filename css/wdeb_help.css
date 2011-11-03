@@ -1,0 +1,36 @@
+.wdeb_tooltip {
+	height: 16px;
+	width: 16px;
+	float: left;
+	margin: 0;
+	margin-right: 5px;
+	cursor: help;
+}
+
+.wdeb_help_popup .help {
+	display: none;
+}
+
+.wdeb_help_popup a {
+	display: block;
+	padding: 0px 3px 3px 20px;
+	font-size: 12px;
+    font-weight: normal;
+	cursor: help;
+    z-index: 999;
+	text-align: center;
+	text-decoration: none;
+	color: #333;
+	margin: 5px;
+    position: absolute;
+    top: -70px;
+    right: 250px;
+}
+
+.post-new-php .wdeb_help_popup a {
+    width: 40px;
+    position: absolute;
+    top: -100px;
+    right: 250px;
+
+}

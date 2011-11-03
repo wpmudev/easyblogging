@@ -1,0 +1,616 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Blogging 3.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-03 15:33+0100\n"
+"PO-Revision-Date: 2011-11-03 15:33+0100\n"
+"Last-Translator: \n"
+"Language-Team: Incsub\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: D:\\xampp\\htdocs\\easy-dev\\wp-content\\plugins\\easyblogging-3.1\n"
+"X-Poedit-SearchPath-0: lib\n"
+"X-Poedit-SearchPath-1: lib/forms\n"
+"X-Poedit-SearchPath-2: lib/forms/partials\n"
+"X-Poedit-SearchPath-3: lib/help\n"
+
+#: lib/class_wdeb_admin_form_renderer.php:15
+msgid "Yes"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:18
+msgid "No"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:30
+msgid "Excerpt"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:31
+#: lib/class_wdeb_admin_form_renderer.php:58
+msgid "Featured Image"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:32
+msgid "Send Trackbacks"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:33
+#: lib/class_wdeb_admin_form_renderer.php:57
+msgid "Custom Fields"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:34
+#: lib/class_wdeb_admin_form_renderer.php:59
+msgid "Discussion"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:35
+#: lib/class_wdeb_admin_form_renderer.php:60
+msgid "Slug"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:36
+#: lib/class_wdeb_admin_form_renderer.php:61
+#: lib/class_wdeb_admin_form_renderer.php:125
+msgid "Author"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:37
+msgid "Format"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:38
+msgid "Categories"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:39
+msgid "Post Tags"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:40
+msgid "Revisions"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:51
+#: lib/class_wdeb_admin_form_renderer.php:73
+msgid "<p><b>Warning:</b> all other boxes will be shown or hidden according to their screen settings</p>"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:62
+msgid "Page Attributes"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:80
+msgid "<p>Show WordPress Admin bar in Easy mode.</p>"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:87
+msgid "<p>Show contextual help and screen options in Easy mode.</p>"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:94
+msgid "<p>Show persistent top right Easy Bar in Easy mode.</p>"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:123
+msgid "Site Admin"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:124
+msgid "Editor"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:126
+msgid "Contributor"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:127
+msgid "Subscriber"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:140
+msgid "<p>Users with selected roles will be forced to use the easy mode.</p>"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:151
+#, php-format
+msgid "Default %s"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:152
+#, php-format
+msgid "Stripes Red %s"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:153
+#, php-format
+msgid "Stripes Orange %s"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:154
+#, php-format
+msgid "Stripes Green %s"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:175
+msgid "<p>If set, this option will allow new users to choose between Easy and Advanced mode the first time they log in.</p><p>Their choice will be stored and used from that point on, as long as this option is turned on.</p>"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:187
+#, php-format
+msgid "Current logo:<br /> %s"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:189
+msgid "Upload your own logo:<br /><em>*suitable logo dimension: width=150px height=80px or more</em><br />"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:196
+msgid "Show dashboard widget"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:200
+msgid "Widget title"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:205
+msgid "Widget contents"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:240
+msgid "Delete"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:242
+msgid "Edit"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:252
+msgid "<p>Drag and drop steps to sort them in the order you want.</p>"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:254
+msgid "<p>Enable the Wizard, then drag and drop steps to sort them in the order you want.</p>"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:260
+msgid "URL:"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:262
+msgid "Administrative page (e.g. \"post.php\" or \"themes.php\")"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:263
+msgid "Site page (e.g. \"/\" or \"/2007-06-05/an-old-post\")"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:268
+msgid "Title:"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:272
+msgid "Help:"
+msgstr ""
+
+#: lib/class_wdeb_admin_form_renderer.php:275
+msgid "Add"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:42
+msgid "This file type is not supported"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:112
+msgid "Editor Settings"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:113
+msgid "Hide these meta boxes on \"Edit Post\" pages"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:114
+msgid "Hide these meta boxes on \"Edit Page\" pages"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:115
+msgid "Show Admin bar"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:116
+msgid "Show help and screen options"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:117
+msgid "Show Easy Bar"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:118
+msgid "Force \"Easy\" mode for user with this role"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:119
+msgid "Hijack start page for new users"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:120
+msgid "Always show logout link"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:121
+msgid "Use this theme"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:122
+msgid "Use this logo"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:123
+msgid "Dashboard widget"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:124
+msgid "Show &quot;Right Now&quot; in Dashboard"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:128
+msgid "Wizard Settings"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:129
+msgid "Enable Wizard"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:130
+msgid "Configure Wizard Steps"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:131
+msgid "Add new Wizard Step"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:134
+msgid "Tooltips Settings"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:135
+msgid "Show Tooltips"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:152
+msgid "Activate easy mode"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:214
+msgid "Easy Blogging"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:343
+msgid "Supporter"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:351
+msgid "Dashboard"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:352
+msgid "Your start page"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:359
+msgid "New Post"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:360
+msgid "Create a new post"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:367
+msgid "My Posts"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:368
+msgid "Edit your posts"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:375
+msgid "New Page"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:376
+msgid "Create a new page"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:383
+msgid "My Pages"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:384
+msgid "Edit your pages"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:391
+msgid "Comments"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:392
+msgid "Moderate your comments"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:399
+msgid "Free Themes"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:400
+#: lib/class_wdeb_admin_pages.php:408
+#: lib/class_wdeb_admin_pages.php:416
+msgid "Change your site appearance"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:407
+msgid "Premium Themes"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:415
+msgid "Manage Themes"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:423
+msgid "Customize Design"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:424
+msgid "Personalize your site"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:432
+msgid "Support us!"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:439
+msgid "Profile"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:440
+msgid "Edit your profile information"
+msgstr ""
+
+#: lib/class_wdeb_tooltips.php:46
+#: lib/forms/wizard_settings.php:29
+msgid "Help"
+msgstr ""
+
+#: lib/forms/start_page.php:11
+msgid "Start here"
+msgstr ""
+
+#: lib/forms/start_page.php:199
+#: lib/forms/start_page.php:202
+#: lib/forms/start_page.php:260
+msgid "Easy mode"
+msgstr ""
+
+#: lib/forms/start_page.php:199
+msgid "I want to start in Easy mode"
+msgstr ""
+
+#: lib/forms/start_page.php:210
+#: lib/forms/start_page.php:213
+#: lib/forms/start_page.php:265
+#: lib/forms/partials/menu-default.php:45
+#: lib/forms/partials/menu-default.php:48
+msgid "Wizard mode"
+msgstr ""
+
+#: lib/forms/start_page.php:210
+msgid "I want to start in a guided, step-by-step mode"
+msgstr ""
+
+#: lib/forms/start_page.php:218
+#: lib/forms/start_page.php:221
+#: lib/forms/start_page.php:269
+msgid "Standard mode"
+msgstr ""
+
+#: lib/forms/start_page.php:218
+msgid "I want to start in Standard mode"
+msgstr ""
+
+#: lib/forms/start_page.php:242
+#: lib/forms/start_page.php:246
+#, php-format
+msgid "Welcome to %s"
+msgstr ""
+
+#: lib/forms/start_page.php:250
+#, php-format
+msgid "Select how you'd like to use your site - %s (you can change at any time)"
+msgstr ""
+
+#: lib/forms/start_page.php:261
+msgid "Great for beginners, easily and quickly manage your blog"
+msgstr ""
+
+#: lib/forms/start_page.php:266
+msgid "Even greater for beginners, offers a guided step-by-step tour of your blog"
+msgstr ""
+
+#: lib/forms/start_page.php:270
+msgid "Allows for fine-tuning your blog"
+msgstr ""
+
+#: lib/forms/start_page.php:273
+msgid "Remember, no matter which mode you select now, you can switch back at any time"
+msgstr ""
+
+#: lib/forms/tooltips_settings.php:2
+msgid "Easy Blogging settings"
+msgstr ""
+
+#: lib/forms/wizard_settings.php:2
+msgid "Easy Wizard settings"
+msgstr ""
+
+#: lib/forms/wizard_settings.php:21
+msgid "Title"
+msgstr ""
+
+#: lib/forms/wizard_settings.php:25
+msgid "URL"
+msgstr ""
+
+#: lib/forms/partials/header.php:147
+msgid "Exit easy mode"
+msgstr ""
+
+#: lib/forms/partials/header.php:172
+msgid "Visit site"
+msgstr ""
+
+#: lib/forms/partials/menu-default.php:49
+msgid "Enter guided step-by-step mode"
+msgstr ""
+
+#: lib/forms/partials/menu-default.php:59
+#: lib/forms/partials/menu-default.php:62
+#: lib/forms/partials/menu-wizard.php:60
+#: lib/forms/partials/menu-wizard.php:63
+msgid "Exit Easy Mode"
+msgstr ""
+
+#: lib/forms/partials/menu-default.php:63
+msgid "Return to advanced mode"
+msgstr ""
+
+#: lib/forms/partials/menu-default.php:73
+#: lib/forms/partials/menu-default.php:76
+#: lib/forms/partials/menu-wizard.php:73
+#: lib/forms/partials/menu-wizard.php:76
+msgid "Log Out"
+msgstr ""
+
+#: lib/forms/partials/menu-default.php:77
+#: lib/forms/partials/menu-wizard.php:77
+msgid "Log Out of your website"
+msgstr ""
+
+#: lib/forms/partials/menu-wizard.php:32
+msgid "Next step"
+msgstr ""
+
+#: lib/forms/partials/menu-wizard.php:35
+msgid "Proceed to the next step"
+msgstr ""
+
+#: lib/forms/partials/menu-wizard.php:46
+#: lib/forms/partials/menu-wizard.php:49
+msgid "Exit Wizard mode"
+msgstr ""
+
+#: lib/forms/partials/menu-wizard.php:50
+msgid "Exit guided step-by-step mode"
+msgstr ""
+
+#: lib/forms/partials/menu-wizard.php:64
+msgid "Return to standard mode"
+msgstr ""
+
+#: lib/help/edit-comments.php:4
+msgid "Here you can edit, approve, delete or reply to comments on your blog posts. Click on tabs or select \"Filter\" to see only specific comemnts."
+msgstr ""
+
+#: lib/help/edit-comments.php:6
+msgid "Here you can manage the comments that are on your blog"
+msgstr ""
+
+#: lib/help/edit-page.php:4
+msgid "Below is a list your pages. You can quickly see important information about them, as well as edit, delete, or view each one."
+msgstr ""
+
+#: lib/help/edit-page.php:6
+msgid "Here you can manage the pages that are on your blog"
+msgstr ""
+
+#: lib/help/edit-post.php:4
+msgid "Below is a list your posts. You can quickly see important information about them, as well as edit, delete, or view each one."
+msgstr ""
+
+#: lib/help/edit-post.php:6
+msgid "Here you can manage the posts that are on your blog"
+msgstr ""
+
+#: lib/help/page.php:4
+msgid "Create a new \"static\" page below - this won't appear at the top of your latest posts."
+msgstr ""
+
+#: lib/help/page.php:5
+msgid "Give your page a title here."
+msgstr ""
+
+#: lib/help/page.php:6
+msgid "Write the content of your page, upload images or audio and choose if you want to use HTML (code) or Visual (like Word). You can paste in embed code for videos and widgets under the HTML tab."
+msgstr ""
+
+#: lib/help/page.php:7
+msgid "Publish your page or save it as a draft below. You can also make it private or schedule publication for the future by clicking on the \"Edit\" links."
+msgstr ""
+
+#: lib/help/page.php:9
+msgid "A page is a <em>stand-alone</em> item that does not appear at the top of your blog - e.g an <em>about page</em> or a page with contact details, a course outline or even a CV. Turn off comments for a professional look."
+msgstr ""
+
+#: lib/help/post.php:4
+msgid "Write up a new post to appear at the top of your blog."
+msgstr ""
+
+#: lib/help/post.php:5
+msgid "The best post titles are usually really descriptive."
+msgstr ""
+
+#: lib/help/post.php:6
+msgid "Write the content of your post, upload images or audio and choose if you want to use HTML (code) or Visual (like Word). You can paste in embed code for videos and widgets under the HTML tab."
+msgstr ""
+
+#: lib/help/post.php:7
+msgid "You can save your post as a draft or make it private by clicking on \"Edit\" next to \"Visibility\" below. You can also schedule posts to publish in the future by clicking \"Edit\" next to \"Immediately\". "
+msgstr ""
+
+#: lib/help/post.php:8
+msgid "Tags are a great way to help search engines find your posts, or to help you organize your content. Add as many as you can!"
+msgstr ""
+
+#: lib/help/post.php:9
+msgid "Categories are more serious than tags. They are the main themes of your blog."
+msgstr ""
+
+#: lib/help/post.php:11
+msgid "A long string of help here"
+msgstr ""
+
+#: lib/help/themes.php:4
+msgid "Change the design of your blog, preview and activate new themes."
+msgstr ""
+
+#: lib/help/themes.php:5
+msgid "This is the design that you are currently using for your blog. If you would like to change it, you can choose from the Available Themes below"
+msgstr ""
+
+#: lib/help/themes.php:6
+msgid "You can choose any of these designs, and your blog will be automatically updated to look like this. Simply click on any of the images to preview what your blog will look like with that design."
+msgstr ""
+
+#: lib/help/themes.php:8
+msgid "Here you can change your blog's theme"
+msgstr ""
+
+#: lib/help/widgets.php:4
+msgid "To add elements to the sidebar of your blog drag and drop them below."
+msgstr ""
+
+#: lib/help/widgets.php:6
+msgid "Here you can customize what shows up in your sidebar"
+msgstr ""
+

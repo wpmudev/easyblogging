@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+.wdeb_switch {
+	float: right;
+	margin: 0 10px;
+	height: 13px;
+	margin: 4px 10px 0;
+    padding: 4px 10px;
+}
+
+.wdeb_switch a, .wdeb_switch a:visited, .wdeb_switch a:hover, .wdeb_switch a:active {
+	color: #444;
+	text-decoration: none;
+}
