@@ -11,7 +11,7 @@ function wdeb_reset_autostart () {
 function wdeb_current_user_can ($roles) {
 	$roles = $roles ? $roles : array();
 	$cap_enter = false;
-	foreach ($roles as $cap) {
+	if (!current_user_can('manage_network_options')) /* Don't do this for Super Admin */ foreach ($roles as $cap) {
 		if (current_user_can($cap)) {
 			$cap_enter = true;
 			break;

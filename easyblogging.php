@@ -3,7 +3,8 @@
 Plugin Name: Easy Blogging
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Description: Modifies the Wordpress admin area to default it to a "Beginner" area, with the option to switch to the normal, "Advanced" area
-Version: 3.0.4
+Version: 3.1
+Text Domain: wdeb
 Author: Incsub
 Author URI: http://premium.wpmudev.org
 WDP ID: 133
@@ -49,17 +50,17 @@ define ('WDEB_PLUGIN_SELF_DIRNAME', basename(dirname(__FILE__)), true);
 if (is_multisite() && defined('WPMU_PLUGIN_URL') && defined('WPMU_PLUGIN_DIR') && file_exists(WPMU_PLUGIN_DIR . '/' . basename(__FILE__))) {
 	define ('WDEB_PLUGIN_LOCATION', 'mu-plugins', true);
 	define ('WDEB_PLUGIN_BASE_DIR', WPMU_PLUGIN_DIR, true);
-	define ('WDEB_PLUGIN_URL', WPMU_PLUGIN_URL, true);
+	define ('WDEB_PLUGIN_URL', str_replace('http://', ($_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), WPMU_PLUGIN_URL), true);
 	$textdomain_handler = 'load_muplugin_textdomain';
 } else if (defined('WP_PLUGIN_URL') && defined('WP_PLUGIN_DIR') && file_exists(WP_PLUGIN_DIR . '/' . WDEB_PLUGIN_SELF_DIRNAME . '/' . basename(__FILE__))) {
 	define ('WDEB_PLUGIN_LOCATION', 'subfolder-plugins', true);
 	define ('WDEB_PLUGIN_BASE_DIR', WP_PLUGIN_DIR . '/' . WDEB_PLUGIN_SELF_DIRNAME, true);
-	define ('WDEB_PLUGIN_URL', WP_PLUGIN_URL . '/' . WDEB_PLUGIN_SELF_DIRNAME, true);
+	define ('WDEB_PLUGIN_URL', str_replace('http://', ($_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), WP_PLUGIN_URL) . '/' . WDEB_PLUGIN_SELF_DIRNAME, true);
 	$textdomain_handler = 'load_plugin_textdomain';
 } else if (defined('WP_PLUGIN_URL') && defined('WP_PLUGIN_DIR') && file_exists(WP_PLUGIN_DIR . '/' . basename(__FILE__))) {
 	define ('WDEB_PLUGIN_LOCATION', 'plugins', true);
 	define ('WDEB_PLUGIN_BASE_DIR', WP_PLUGIN_DIR, true);
-	define ('WDEB_PLUGIN_URL', WP_PLUGIN_URL, true);
+	define ('WDEB_PLUGIN_URL', str_replace('http://', ($_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), WP_PLUGIN_URL), true);
 	$textdomain_handler = 'load_plugin_textdomain';
 } else {
 	// No textdomain is loaded because we can't determine the plugin location.
@@ -79,6 +80,8 @@ require_once WDEB_PLUGIN_BASE_DIR . '/lib/wdeb_callbacks.php';
 require_once WDEB_PLUGIN_BASE_DIR . '/lib/class_wdeb_options.php';
 Wdeb_Options::populate();
 
+require_once WDEB_PLUGIN_BASE_DIR . '/lib/class_wdeb_plugins_handler.php';
+Wdeb_PluginsHandler::init();
 
 add_action('wp_logout', 'wdeb_reset_autostart');
 

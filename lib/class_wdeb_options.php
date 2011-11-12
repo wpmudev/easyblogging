@@ -6,7 +6,7 @@ class Wdeb_Options {
 	 */
 	function get_option ($key, $pfx='wdeb') {
 		$opts = is_multisite() ? get_site_option($pfx) : get_option($pfx);
-		return @$opts[$key];
+		return apply_filters("wdeb_get_option-{$pfx}-{$key}", @$opts[$key]);
 	}
 
 	/*

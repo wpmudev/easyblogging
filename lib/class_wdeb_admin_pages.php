@@ -91,6 +91,7 @@ class Wdeb_AdminPages {
 				$this->data->set_options($_POST['wdeb_help'], 'wdeb_help');
 				$changed = true;
 			}
+			$changed = apply_filters('wdeb_admin-options_changed', $changed);
 
 			if ($changed) {
 				$goback = add_query_arg('settings-updated', 'true',  wp_get_referer());
@@ -99,10 +100,13 @@ class Wdeb_AdminPages {
 			}
 		}
 		$perms = (defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN) ? 'manage_network_options' : 'manage_options';
-		add_menu_page('Easy Blogging', 'Easy Blogging', $perms, 'wdeb', array($this, 'create_admin_blogging_page'), WDEB_PLUGIN_URL . '/img/eb_plugin.png');
-		add_submenu_page('wdeb', 'Easy Blogging', 'Easy Blogging', $perms, 'wdeb', array($this, 'create_admin_blogging_page'));
-		add_submenu_page('wdeb', 'Easy Blogging Wizard', 'Easy Blogging Wizard', $perms, 'wdeb_wizard', array($this, 'create_admin_wizard_page'));
-		add_submenu_page('wdeb', 'Easy Blogging Tooltips', 'Easy Blogging Tooltips', $perms, 'wdeb_help', array($this, 'create_admin_tooltips_page'));
+		add_menu_page(__('Easy Blogging', 'wdeb'), __('Easy Blogging', 'wdeb'), $perms, 'wdeb', array($this, 'create_admin_blogging_page'), WDEB_PLUGIN_URL . '/img/eb_plugin.png');
+		add_submenu_page('wdeb', __('Easy Blogging', 'wdeb'), __('Easy Blogging', 'wdeb'), $perms, 'wdeb', array($this, 'create_admin_blogging_page'));
+		add_submenu_page('wdeb', __('Easy Blogging Wizard', 'wdeb'), __('Easy Blogging Wizard', 'wdeb'), $perms, 'wdeb_wizard', array($this, 'create_admin_wizard_page'));
+		add_submenu_page('wdeb', __('Easy Blogging Tooltips', 'wdeb'), __('Easy Blogging Tooltips', 'wdeb'), $perms, 'wdeb_help', array($this, 'create_admin_tooltips_page'));
+		add_submenu_page('wdeb', __('Plugins', 'wdeb'), __('Plugins', 'wdeb'), $perms, 'wdeb_plugins', array($this, 'create_admin_plugins_page'));
+
+		do_action('wdeb_admin-add_pages', $perms);
 	}
 
 	function register_settings () {
@@ -123,6 +127,7 @@ class Wdeb_AdminPages {
 		add_settings_field('wdeb_dashboard_widget', __('Dashboard widget', 'wdeb'), array($form, 'create_dashboard_widget_box'), 'wdeb_options_page', 'wdeb_settings');
 		add_settings_field('wdeb_dashboard_right_now', __('Show &quot;Right Now&quot; in Dashboard', 'wdeb'), array($form, 'create_dashboard_right_now_widget_box'), 'wdeb_options_page', 'wdeb_settings');
 
+		do_action('wdeb_admin-register_settings-settings', $form);
 
 		register_setting('wdeb', 'wdeb_wizard');
 		add_settings_section('wdeb_wizard', __('Wizard Settings', 'wdeb'), create_function('', ''), 'wdeb_wizard');
@@ -130,9 +135,13 @@ class Wdeb_AdminPages {
 		add_settings_field('wdeb_wizard_steps', __('Configure Wizard Steps', 'wdeb'), array($form, 'create_wizard_steps_box'), 'wdeb_wizard', 'wdeb_wizard');
 		add_settings_field('wdeb_wizard_add_step', __('Add new Wizard Step', 'wdeb'), array($form, 'create_wizard_add_step_box'), 'wdeb_wizard', 'wdeb_wizard');
 
+		do_action('wdeb_admin-register_settings-wizard', $form);
+
 		register_setting('wdeb', 'wdeb_help');
 		add_settings_section('wdeb_help', __('Tooltips Settings', 'wdeb'), create_function('', ''), 'wdeb_help');
 		add_settings_field('wdeb_show_tooltips', __('Show Tooltips', 'wdeb'), array($form, 'create_show_tooltips_box'), 'wdeb_help', 'wdeb_help');
+
+		do_action('wdeb_admin-register_settings-help', $form);
 	}
 
 	function create_admin_blogging_page () {
@@ -143,6 +152,9 @@ class Wdeb_AdminPages {
 	}
 	function create_admin_wizard_page () {
 		include(WDEB_PLUGIN_BASE_DIR . '/lib/forms/wizard_settings.php');
+	}
+	function create_admin_plugins_page () {
+		include(WDEB_PLUGIN_BASE_DIR . '/lib/forms/plugins_settings.php');
 	}
 
 	function js_print_scripts () {
@@ -248,7 +260,7 @@ class Wdeb_AdminPages {
 			$top_caps = $this->data->get_option('auto_enter_role');
 			$top_caps = is_array($top_caps) ? $top_caps : array();
 			$cap_enter = false;
-			foreach ($top_caps as $cap) {
+			if (!current_user_can('manage_network_options')) /* Don't do this for Super Admin */ foreach ($top_caps as $cap) {
 				if (current_user_can($cap)) {
 					$cap_enter = true;
 					break;
@@ -443,8 +455,6 @@ class Wdeb_AdminPages {
 		);
 	}
 
-
-
 	function set_easy_mode_flag () {
 		if (isset($_GET['wdeb_on'])) {
 			if (!isset($_COOKIE['wdeb_on']) || (int)$_COOKIE['wdeb_on'] <= 0) setcookie("wdeb_on", 1, time() + 31556926, '/', COOKIE_DOMAIN);
@@ -457,6 +467,22 @@ class Wdeb_AdminPages {
 		}
 
 		if (!defined('WDEB_IS_IN_EASY_MODE')) define('WDEB_IS_IN_EASY_MODE', $this->_is_in_easymode);
+	}
+
+	function json_activate_plugin () {
+		$status = Wdeb_PluginsHandler::activate_plugin($_POST['plugin']);
+		echo json_encode(array(
+			'status' => $status ? 1 : 0,
+		));
+		exit();
+	}
+
+	function json_deactivate_plugin () {
+		$status = Wdeb_PluginsHandler::deactivate_plugin($_POST['plugin']);
+		echo json_encode(array(
+			'status' => $status ? 1 : 0,
+		));
+		exit();
 	}
 
 	function add_hooks () {
@@ -477,5 +503,9 @@ class Wdeb_AdminPages {
 		// Set easy mode flag - are we men, or are we mice
 		//$this->set_easy_mode_flag();
 		add_action('after_setup_theme', array($this, 'set_easy_mode_flag'));
+
+		// AJAX plugin handlers
+		add_action('wp_ajax_wdeb_activate_plugin', array($this, 'json_activate_plugin'));
+		add_action('wp_ajax_wdeb_deactivate_plugin', array($this, 'json_deactivate_plugin'));
 	}
 }

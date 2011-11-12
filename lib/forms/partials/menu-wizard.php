@@ -52,7 +52,7 @@ $current_request = admin_url($current_request);
 	</li>
 <?php } ?>
 <?php $auto_enter_roles = $this->data->get_option('auto_enter_role'); ?>
-<?php if (!$auto_enter_roles || wdeb_current_user_can($auto_enter_roles)) { ?>
+<?php if (!$auto_enter_roles || !wdeb_current_user_can($auto_enter_roles)) { ?>
 <!-- Easy mode not forced, so user can toggle between the two -->
 	<li>
 		<a href="<?php echo admin_url('index.php');?>?wdeb_off" id="wdeb_exit_easy_mode" class="dashboard">
@@ -65,7 +65,7 @@ $current_request = admin_url($current_request);
 		</div>
 	</li>
 <?php } ?>
-<?php if ($auto_enter_roles && !wdeb_current_user_can($auto_enter_roles)) { ?>
+<?php if ($this->data->get_option('show_logout') || ($auto_enter_roles && wdeb_current_user_can($auto_enter_roles))) { ?>
 <!-- Easy Mode forced. Add Logout link -->
 	<li>
 		<a href="<?php echo wp_logout_url();?>" class="dashboard">
