@@ -259,8 +259,8 @@ class Wdeb_AdminFormRenderer {
 		// URL
 		echo '<label for="wdeb_last_wizard_step_url">' . __('URL:', 'wdeb') . '</label><br />';
 		echo '<select id="wdeb_last_wizard_step_url_type" name="wdeb_wizard[wizard_steps][_last_][url_type]">';
-		echo '<option value="/wp-admin">' . __('Administrative page (e.g. "post.php" or "themes.php")', 'wdeb') . '</option>';
-		echo '<option value="">' . __('Site page (e.g. "/" or "/2007-06-05/an-old-post")', 'wdeb') . '</option>';
+		echo '<option value="/wp-admin">' . __('Administrative page (e.g. "/post-new.php" or "/themes.php")', 'wdeb') . '&nbsp;</option>';
+		echo '<option value="">' . __('Site page (e.g. "/" or "/2007-06-05/an-old-post")', 'wdeb') . '&nbsp;</option>';
 		echo '</select> <span id="wdeb_url_preview">Preview: <code></code></span><br />';
 		echo "<input type='text' class='widefat' id='wdeb_last_wizard_step_url' name='wdeb_wizard[wizard_steps][_last_][url]' /> <br />";
 

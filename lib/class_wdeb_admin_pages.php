@@ -74,10 +74,11 @@ class Wdeb_AdminPages {
 				if (isset($_POST['wdeb_wizard']['wizard_steps']['_last_'])) {
 					$last = $_POST['wdeb_wizard']['wizard_steps']['_last_'];
 					unset($_POST['wdeb_wizard']['wizard_steps']['_last_']);
-					$last['url'] = rtrim($last['url_type'], '/') . $last['url'];
+					$original_url = @$last['url'];
+					$last['url'] = rtrim($last['url_type'], '/') . trim($last['url']);
 					unset($last['url_type']);
-					if (@$last['url'] && @$last['title']) {
-						$last['title'] = stripslashes(htmlspecialchars($last['title'], ENT_QUOTES));
+					if (trim(@$last['url']) && trim($original_url)) {
+						$last['title'] = trim(stripslashes(htmlspecialchars($last['title'], ENT_QUOTES)));
 						@$last['help'] = stripslashes(htmlspecialchars($last['help'], ENT_QUOTES));
 						$_POST['wdeb_wizard']['wizard_steps'][] = $last;
 					}
@@ -104,7 +105,7 @@ class Wdeb_AdminPages {
 		add_submenu_page('wdeb', __('Easy Blogging', 'wdeb'), __('Easy Blogging', 'wdeb'), $perms, 'wdeb', array($this, 'create_admin_blogging_page'));
 		add_submenu_page('wdeb', __('Easy Blogging Wizard', 'wdeb'), __('Easy Blogging Wizard', 'wdeb'), $perms, 'wdeb_wizard', array($this, 'create_admin_wizard_page'));
 		add_submenu_page('wdeb', __('Easy Blogging Tooltips', 'wdeb'), __('Easy Blogging Tooltips', 'wdeb'), $perms, 'wdeb_help', array($this, 'create_admin_tooltips_page'));
-		add_submenu_page('wdeb', __('Plugins', 'wdeb'), __('Plugins', 'wdeb'), $perms, 'wdeb_plugins', array($this, 'create_admin_plugins_page'));
+		add_submenu_page('wdeb', __('Add-ons', 'wdeb'), __('Add-ons', 'wdeb'), $perms, 'wdeb_plugins', array($this, 'create_admin_plugins_page'));
 
 		do_action('wdeb_admin-add_pages', $perms);
 	}
@@ -397,7 +398,7 @@ class Wdeb_AdminPages {
 			),
 			array (
 				'check_callback' => false,
-				'capability' => 'moderate_comments',
+				'capability' => 'edit_posts', // Was moderate_comments up to v3.1
 				'url' => 'edit-comments.php',
 				'icon' => WDEB_PLUGIN_THEME_URL . '/assets/icons/theme_icons/comments.png',
 				'title' => __('Comments', 'wdeb'),

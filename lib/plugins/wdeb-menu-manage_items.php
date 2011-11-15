@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Manage menu items.
+Plugin Name: Manage menu items
 Description: Easily manage menu items on your Easy Blogging menu.
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Version: 1.0
@@ -198,11 +198,11 @@ class Wdeb_Menu_ManageMenuItems {
 			if (isset($_POST['wdeb_menu_items']['new_items']['new'])) {
 				$last = $_POST['wdeb_menu_items']['new_items']['new'];
 				unset($_POST['wdeb_menu_items']['new_items']['new']);
-				if (@$last['url'] && @$last['title']) {
+				if (trim(@$last['url']) && trim(@$last['title'])) {
 					$last['title'] = stripslashes(htmlspecialchars($last['title'], ENT_QUOTES));
 					@$last['help'] = stripslashes(htmlspecialchars($last['help'], ENT_QUOTES));
 					@$last['icon'] = stripslashes(htmlspecialchars($last['icon'], ENT_QUOTES));
-					@$last['url'] = stripslashes(htmlspecialchars($last['url'], ENT_QUOTES));
+					@$last['url'] = esc_url($last['url']);
 					@$last['capability'] = trim(stripslashes(htmlspecialchars($last['capability'], ENT_QUOTES)));
 					if ($this->_is_unique_item($last, $_POST['wdeb_menu_items']['new_items'])) {
 						// Item is unique. Yay.
@@ -270,7 +270,7 @@ class Wdeb_Menu_ManageMenuItems {
 			echo "<td width='10%'>" . ($item['capability'] ? $item['capability'] : '-') . "</td>";
 			echo "<td width='10%'>";
 			echo (isset($item['_builtin'])
-				? __('Builtin', 'wdeb')
+				? __('Built-in', 'wdeb')
 				: (isset($item['_added']) ? __('My item', 'wdeb') : __('Plugin added', 'wdeb'))
 			);
 			echo "</td>";
@@ -400,7 +400,13 @@ class Wdeb_Menu_ManageMenuItems {
 				}
 			}
 		}
-		return $ordered + $items;
+
+		//return $ordered + $items;
+		$leftover = array();
+		foreach ($items as $item) {
+			if (!in_array($item, $ordered)) $ordered[] = $item;
+		}
+		return $ordered;
 	}
 
 	/**

@@ -24,7 +24,8 @@ class Wdeb_Wizard {
 
 	function css_print_styles () {
 		if (!isset($_GET['page']) || 'wdeb_wizard' != $_GET['page']) return false;
-		wp_enqueue_style('jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css');
+		$protocol = ($_SERVER["HTTPS"] == 'on') ? 'https://' : 'http://';
+		wp_enqueue_style('jquery-ui', $protocol . 'ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css');
 	}
 
 	function js_print_scripts () {

@@ -1,5 +1,5 @@
 <div class="wrap">
-	<h2><?php _e("Easy Blogging Plugins", 'wdeb'); ?></h2>
+	<h2><?php _e("Easy Blogging Add-ons", 'wdeb'); ?></h2>
 
 <?php
 	$all = Wdeb_PluginsHandler::get_all_plugins();
@@ -9,8 +9,8 @@
 	foreach ($sections as $section) {
 		echo "<{$section}>";
 		echo '<tr>';
-		echo '<th width="30%">' . __('Plugin name', 'wdeb') . '</th>';
-		echo '<th>' . __('Plugin description', 'wdeb') . '</th>';
+		echo '<th width="30%">' . __('Add-on name', 'wdeb') . '</th>';
+		echo '<th>' . __('Add-on description', 'wdeb') . '</th>';
 		echo '</tr>';
 		echo "</{$section}>";
 	}

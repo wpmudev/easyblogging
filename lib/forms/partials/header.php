@@ -93,6 +93,7 @@ body {
     right: 140px;
     top: 0;
 }
+<?php do_action('wdeb_style-custom_stylesheet_rules'); ?>
 </style>
 
 <script type="text/javascript">

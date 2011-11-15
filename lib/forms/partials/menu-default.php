@@ -22,6 +22,7 @@ $current_request = admin_url($current_request);
 		if (!call_user_func($item['check_callback'], $item)) continue;
 	}
 	$url = admin_url($item['url']);
+	$item = apply_filters('wdeb_menu-item_before_render', $item);
 	?>
 	<li <?php echo (($url == $current_request) ? 'class="current"' : '');?> >
 		<a href="<?php echo $item['url'];?>" class="wdeb_menu_link dashboard">

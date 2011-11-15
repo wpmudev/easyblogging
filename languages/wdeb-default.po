@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Blogging 3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-12 16:33+0100\n"
-"PO-Revision-Date: 2011-11-12 16:34+0100\n"
+"POT-Creation-Date: 2011-11-15 16:26+0100\n"
+"PO-Revision-Date: 2011-11-15 16:26+0100\n"
 "Last-Translator: \n"
 "Language-Team: Incsub\n"
 "MIME-Version: 1.0\n"
@@ -181,7 +181,7 @@ msgid "URL:"
 msgstr ""
 
 #: lib/class_wdeb_admin_form_renderer.php:262
-msgid "Administrative page (e.g. \"post.php\" or \"themes.php\")"
+msgid "Administrative page (e.g. \"/post-new.php\" or \"/themes.php\")"
 msgstr ""
 
 #: lib/class_wdeb_admin_form_renderer.php:263
@@ -204,191 +204,191 @@ msgstr ""
 msgid "This file type is not supported"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:103
 #: lib/class_wdeb_admin_pages.php:104
-#: lib/class_wdeb_admin_pages.php:226
+#: lib/class_wdeb_admin_pages.php:105
+#: lib/class_wdeb_admin_pages.php:227
 msgid "Easy Blogging"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:105
+#: lib/class_wdeb_admin_pages.php:106
 msgid "Easy Blogging Wizard"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:106
+#: lib/class_wdeb_admin_pages.php:107
 msgid "Easy Blogging Tooltips"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:107
-msgid "Plugins"
-msgstr ""
-
-#: lib/class_wdeb_admin_pages.php:116
-msgid "Editor Settings"
+#: lib/class_wdeb_admin_pages.php:108
+msgid "Add-ons"
 msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:117
-msgid "Hide these meta boxes on \"Edit Post\" pages"
+msgid "Editor Settings"
 msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:118
-msgid "Hide these meta boxes on \"Edit Page\" pages"
+msgid "Hide these meta boxes on \"Edit Post\" pages"
 msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:119
-msgid "Show Admin bar"
+msgid "Hide these meta boxes on \"Edit Page\" pages"
 msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:120
-msgid "Show help and screen options"
+msgid "Show Admin bar"
 msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:121
-msgid "Show Easy Bar"
+msgid "Show help and screen options"
 msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:122
-msgid "Force \"Easy\" mode for user with this role"
+msgid "Show Easy Bar"
 msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:123
-msgid "Hijack start page for new users"
+msgid "Force \"Easy\" mode for user with this role"
 msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:124
-msgid "Always show logout link"
+msgid "Hijack start page for new users"
 msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:125
-msgid "Use this theme"
+msgid "Always show logout link"
 msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:126
-msgid "Use this logo"
+msgid "Use this theme"
 msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:127
-msgid "Dashboard widget"
+msgid "Use this logo"
 msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:128
+msgid "Dashboard widget"
+msgstr ""
+
+#: lib/class_wdeb_admin_pages.php:129
 msgid "Show &quot;Right Now&quot; in Dashboard"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:133
+#: lib/class_wdeb_admin_pages.php:134
 msgid "Wizard Settings"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:134
+#: lib/class_wdeb_admin_pages.php:135
 msgid "Enable Wizard"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:135
+#: lib/class_wdeb_admin_pages.php:136
 msgid "Configure Wizard Steps"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:136
+#: lib/class_wdeb_admin_pages.php:137
 msgid "Add new Wizard Step"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:141
+#: lib/class_wdeb_admin_pages.php:142
 msgid "Tooltips Settings"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:142
+#: lib/class_wdeb_admin_pages.php:143
 msgid "Show Tooltips"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:164
+#: lib/class_wdeb_admin_pages.php:165
 msgid "Activate easy mode"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:355
+#: lib/class_wdeb_admin_pages.php:356
 msgid "Supporter"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:363
+#: lib/class_wdeb_admin_pages.php:364
 msgid "Dashboard"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:364
+#: lib/class_wdeb_admin_pages.php:365
 msgid "Your start page"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:371
+#: lib/class_wdeb_admin_pages.php:372
 msgid "New Post"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:372
+#: lib/class_wdeb_admin_pages.php:373
 msgid "Create a new post"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:379
+#: lib/class_wdeb_admin_pages.php:380
 msgid "My Posts"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:380
+#: lib/class_wdeb_admin_pages.php:381
 msgid "Edit your posts"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:387
+#: lib/class_wdeb_admin_pages.php:388
 msgid "New Page"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:388
+#: lib/class_wdeb_admin_pages.php:389
 msgid "Create a new page"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:395
+#: lib/class_wdeb_admin_pages.php:396
 msgid "My Pages"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:396
+#: lib/class_wdeb_admin_pages.php:397
 msgid "Edit your pages"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:403
+#: lib/class_wdeb_admin_pages.php:404
 msgid "Comments"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:404
+#: lib/class_wdeb_admin_pages.php:405
 msgid "Moderate your comments"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:411
+#: lib/class_wdeb_admin_pages.php:412
 msgid "Free Themes"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:412
-#: lib/class_wdeb_admin_pages.php:420
-#: lib/class_wdeb_admin_pages.php:428
+#: lib/class_wdeb_admin_pages.php:413
+#: lib/class_wdeb_admin_pages.php:421
+#: lib/class_wdeb_admin_pages.php:429
 msgid "Change your site appearance"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:419
+#: lib/class_wdeb_admin_pages.php:420
 msgid "Premium Themes"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:427
+#: lib/class_wdeb_admin_pages.php:428
 msgid "Manage Themes"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:435
+#: lib/class_wdeb_admin_pages.php:436
 msgid "Customize Design"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:436
+#: lib/class_wdeb_admin_pages.php:437
 msgid "Personalize your site"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:444
+#: lib/class_wdeb_admin_pages.php:445
 msgid "Support us!"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:451
+#: lib/class_wdeb_admin_pages.php:452
 msgid "Profile"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:452
+#: lib/class_wdeb_admin_pages.php:453
 msgid "Edit your profile information"
 msgstr ""
 
@@ -398,15 +398,15 @@ msgid "Help"
 msgstr ""
 
 #: lib/forms/plugins_settings.php:2
-msgid "Easy Blogging Plugins"
+msgid "Easy Blogging Add-ons"
 msgstr ""
 
 #: lib/forms/plugins_settings.php:12
-msgid "Plugin name"
+msgid "Add-on name"
 msgstr ""
 
 #: lib/forms/plugins_settings.php:13
-msgid "Plugin description"
+msgid "Add-on description"
 msgstr ""
 
 #: lib/forms/plugins_settings.php:28
@@ -444,8 +444,8 @@ msgstr ""
 #: lib/forms/start_page.php:210
 #: lib/forms/start_page.php:213
 #: lib/forms/start_page.php:265
-#: lib/forms/partials/menu-default.php:45
-#: lib/forms/partials/menu-default.php:48
+#: lib/forms/partials/menu-default.php:46
+#: lib/forms/partials/menu-default.php:49
 msgid "Wizard mode"
 msgstr ""
 
@@ -506,33 +506,33 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
-#: lib/forms/partials/header.php:147
+#: lib/forms/partials/header.php:148
 msgid "Exit easy mode"
 msgstr ""
 
-#: lib/forms/partials/header.php:172
+#: lib/forms/partials/header.php:173
 msgid "Visit site"
 msgstr ""
 
-#: lib/forms/partials/menu-default.php:49
+#: lib/forms/partials/menu-default.php:50
 msgid "Enter guided step-by-step mode"
 msgstr ""
 
-#: lib/forms/partials/menu-default.php:59
-#: lib/forms/partials/menu-default.php:62
+#: lib/forms/partials/menu-default.php:60
+#: lib/forms/partials/menu-default.php:63
 msgid "Exit Easy Mode"
 msgstr ""
 
-#: lib/forms/partials/menu-default.php:63
+#: lib/forms/partials/menu-default.php:64
 msgid "Return to advanced mode"
 msgstr ""
 
-#: lib/forms/partials/menu-default.php:73
-#: lib/forms/partials/menu-default.php:76
+#: lib/forms/partials/menu-default.php:74
+#: lib/forms/partials/menu-default.php:77
 msgid "Log Out"
 msgstr ""
 
-#: lib/forms/partials/menu-default.php:77
+#: lib/forms/partials/menu-default.php:78
 msgid "Log Out of your website"
 msgstr ""
 
@@ -706,7 +706,7 @@ msgid "Remove"
 msgstr ""
 
 #: lib/plugins/wdeb-menu-manage_items.php:273
-msgid "Builtin"
+msgid "Built-in"
 msgstr ""
 
 #: lib/plugins/wdeb-menu-manage_items.php:274
