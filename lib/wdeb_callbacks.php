@@ -32,11 +32,21 @@ function wdeb_current_user_can ($roles) {
  */
 
 function wdeb_supporter_themes_enabled () {
-	return (function_exists('is_supporter') && is_supporter() && function_exists('supporter_themes_page'));
+	if (class_exists('ProSites')) {
+		$ps_modules = ProSites::get_setting('modules_enabled');
+		$ps_modules = $ps_modules ? $ps_modules : array();
+		$has_themes = in_array('ProSites_Module_PremiumThemes', $ps_modules);
+	} else $has_themes = function_exists('supporter_themes_page');
+	return (function_exists('is_supporter') && is_supporter() && $has_themes);
 }
 
 function wdeb_supporter_themes_not_enabled () {
-	return !(function_exists('is_supporter') && is_supporter() && function_exists('supporter_themes_page'));
+	if (class_exists('ProSites')) {
+		$ps_modules = ProSites::get_setting('modules_enabled');
+		$ps_modules = $ps_modules ? $ps_modules : array();
+		$has_themes = in_array('ProSites_Module_PremiumThemes', $ps_modules);
+	} else $has_themes = function_exists('supporter_themes_page');
+	return !(function_exists('is_supporter') && is_supporter() && $has_themes);
 }
 
 function wdeb_not_supporter () {

@@ -193,13 +193,13 @@ class Wdeb_AdminPages {
 		$page_boxes = $this->data->get_option('page_boxes');
 		$page_boxes = is_array($page_boxes) ? $page_boxes : array();
 
-		if (is_array($wp_meta_boxes['post']['side']['core'])) foreach ($wp_meta_boxes['post']['side']['core'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['side']['core'][$name]);
-		if (is_array($wp_meta_boxes['post']['side']['low'])) foreach ($wp_meta_boxes['post']['side']['low'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['side']['low'][$name]);
-		if (is_array($wp_meta_boxes['post']['normal']['core'])) foreach ($wp_meta_boxes['post']['normal']['core'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['normal']['core'][$name]);
+		if (is_array(@$wp_meta_boxes['post']['side']['core'])) foreach ($wp_meta_boxes['post']['side']['core'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['side']['core'][$name]);
+		if (is_array(@$wp_meta_boxes['post']['side']['low'])) foreach ($wp_meta_boxes['post']['side']['low'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['side']['low'][$name]);
+		if (is_array(@$wp_meta_boxes['post']['normal']['core'])) foreach ($wp_meta_boxes['post']['normal']['core'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['normal']['core'][$name]);
 
-		if (is_array($wp_meta_boxes['page']['side']['core'])) foreach ($wp_meta_boxes['page']['side']['core'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['side']['core'][$name]);
-		if (is_array($wp_meta_boxes['page']['side']['low'])) foreach ($wp_meta_boxes['page']['side']['low'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['side']['low'][$name]);
-		if (is_array($wp_meta_boxes['page']['normal']['core'])) foreach ($wp_meta_boxes['page']['normal']['core'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['normal']['core'][$name]);
+		if (is_array(@$wp_meta_boxes['page']['side']['core'])) foreach ($wp_meta_boxes['page']['side']['core'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['side']['core'][$name]);
+		if (is_array(@$wp_meta_boxes['page']['side']['low'])) foreach ($wp_meta_boxes['page']['side']['low'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['side']['low'][$name]);
+		if (is_array(@$wp_meta_boxes['page']['normal']['core'])) foreach ($wp_meta_boxes['page']['normal']['core'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['normal']['core'][$name]);
 	}
 
 	function strip_down_dashboard () {
@@ -240,6 +240,7 @@ class Wdeb_AdminPages {
 	function end_footer_cache () {
 		$footer_html = ob_get_contents();
 		ob_end_clean();
+		echo $footer_html;
 		include(WDEB_PLUGIN_BASE_DIR . '/lib/forms/partials/footer.php');
 	}
 
@@ -346,13 +347,13 @@ class Wdeb_AdminPages {
 	function easy_mode_menu () {
 		$pro_href = $pro_title = false;
 		if (class_exists('ProSites')) { // Official
-			$pro_href = admin_url('admin.php?page=psts-checkout');
+			$pro_href = 'admin.php?page=psts-checkout';
 			$pro_title = ProSites::get_setting('rebrand');
 		} else if (class_exists('ProBlogs')) { // Beta
-			$pro_href = admin_url('admin.php?page=pblgs-checkout');
+			$pro_href = 'admin.php?page=pblgs-checkout';
 			$pro_title = ProBlogs::get_setting('rebrand');
 		} else if (function_exists('is_supporter')) { // Old
-			$pro_href = admin_url('supporter.php');
+			$pro_href = 'supporter.php';
 			$pro_title = __('Supporter', 'wdeb');
 		}
 		return array (
@@ -504,6 +505,10 @@ class Wdeb_AdminPages {
 		// Set easy mode flag - are we men, or are we mice
 		//$this->set_easy_mode_flag();
 		add_action('after_setup_theme', array($this, 'set_easy_mode_flag'));
+
+		if (defined('BP_VERSION') && !(int)$this->data->get_option('admin_bar')) {
+			remove_action('bp_init', 'bp_core_load_buddybar_css');
+		}
 
 		// AJAX plugin handlers
 		add_action('wp_ajax_wdeb_activate_plugin', array($this, 'json_activate_plugin'));

@@ -1,0 +1,61 @@
+Plugin Name: Easy Blogging
+Author: Incsub
+
+Change Log:
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+3.1.2 - 2011-11-24
+----------------------------------------------------------------------
+- Fixed some typos.
+- Fixed duplicated scripts triggering.
+- Fix for Admin bar toggling to be applied to BuddyBar too.
+- Implemented some of the changed ProSites API calls.
+
+3.1.1 - 2011-11-15
+----------------------------------------------------------------------
+- Renamed "Plugins" to "Add-ons".
+- Fixed incorrect spelling.
+- Fix for adding a step instructions in wizard mode.
+- Better URL sanitization for wizard steps on save.
+- Accounting for SSL access for external stylesheet inclusion.
+- Fix for author comments access.
+- Fix for duplicated "My items".
+- Added Pending Comments add-on.
+
+3.1 - 2011-11-12
+----------------------------------------------------------------------
+- Fix for SSL warnings.
+- Fix for Easy Mode forcing: don't force Easy Mode on super admins.
+- Added plugins support for extending.
+- Added Pro Sites integration plugin: force Easy Mode on free sites.
+- Added menu management plugin.
+
+3.0.4 - 2011-11-03
+----------------------------------------------------------------------
+- Fix for easy mode forcing on roles
+- Added granular control for easy mode forcing
+
+3.0.3 - 2011-10-22
+----------------------------------------------------------------------
+- Fix for conflict with Chat plugin.
+- Natively integrated Pro Sites/Blogs menu items.
+- Applied Safari scroll fix (thank you, Mason!)
+- Fix for excessive whitespace in tips.
+- Added Dashboard item to menu.
+
+3.0.2 - 2011-10-08
+----------------------------------------------------------------------
+- Added role dependency for Easy Bar.
+- Added optional Easy Bar and Admin bar visibility.
+- Fixed translation.
+- Fixed tooltips.
+
+3.0.1 - 2011-09-20
+----------------------------------------------------------------------
+- Fixed logo upload checking.
+- Fixed access method storage.
+
+3.0 - 2011-09-15
+----------------------------------------------------------------------
+- Project rewrite, initial release.

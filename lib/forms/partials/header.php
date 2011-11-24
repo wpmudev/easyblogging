@@ -37,7 +37,7 @@ global $pagenow, $admin_body_class, $current_screen;
 body {
 	min-height: 100%;
 	height: auto;
-    <?php if( is_admin_bar_showing() && $this->data->get_option('admin_bar') ) { ?>
+    <?php if ((int)$this->data->get_option('admin_bar')) { ?>
 	padding-top: 28px;
     <?php } ?>
 }
@@ -57,7 +57,7 @@ body {
 }
 
 <?php if (!$this->data->get_option('admin_bar')) { ?>
-#wpadminbar {
+#wpadminbar, #wp-admin-bar {
 	display: none;
 }
 <?php } ?>
@@ -142,7 +142,7 @@ $(".ajax-loading").hide();
 });
 
 <?php $auto_enter_role = $this->data->get_option('auto_enter_role'); ?>
-<?php if ($this->data->get_option('easy_bar') && (!$auto_enter_role || current_user_can($auto_enter_role))) { ?>
+<?php if ($this->data->get_option('easy_bar') && (!$auto_enter_role || !wdeb_current_user_can($auto_enter_role))) { ?>
 // Add exit easy mode link
 $(function () {
 	$(".wdeb_visit_site").first().append("<a href='?wdeb_off'><?php _e('Exit easy mode', 'wdeb');?></a>");
