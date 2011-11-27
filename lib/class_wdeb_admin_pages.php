@@ -469,6 +469,12 @@ class Wdeb_AdminPages {
 		}
 
 		if (!defined('WDEB_IS_IN_EASY_MODE')) define('WDEB_IS_IN_EASY_MODE', $this->_is_in_easymode);
+
+		// Setup BuddyBar removal, if needed
+		if ($this->_is_in_easymode && defined('BP_VERSION') && !(int)$this->data->get_option('admin_bar')) {
+			remove_action('bp_init', 'bp_core_load_buddybar_css');
+			remove_action('bp_loaded',  'bp_core_load_admin_bar');
+		}
 	}
 
 	function json_activate_plugin () {
@@ -505,10 +511,6 @@ class Wdeb_AdminPages {
 		// Set easy mode flag - are we men, or are we mice
 		//$this->set_easy_mode_flag();
 		add_action('after_setup_theme', array($this, 'set_easy_mode_flag'));
-
-		if (defined('BP_VERSION') && !(int)$this->data->get_option('admin_bar')) {
-			remove_action('bp_init', 'bp_core_load_buddybar_css');
-		}
 
 		// AJAX plugin handlers
 		add_action('wp_ajax_wdeb_activate_plugin', array($this, 'json_activate_plugin'));
