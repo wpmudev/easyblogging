@@ -160,10 +160,12 @@ class Wdeb_AdminPages {
 
 	function js_print_scripts () {
 		if (WP_NETWORK_ADMIN) return;
-		wp_enqueue_script('wdeb_switch', WDEB_PLUGIN_URL . '/js/wdeb_switch.js', 'jquery');
-		wp_localize_script('wdeb_switch', 'l10WdebSwitch', array(
-			'activate' => __('Activate easy mode', 'wdeb')
-		));
+		if (!$this->is_in_easymode()) {
+			wp_enqueue_script('wdeb_switch', WDEB_PLUGIN_URL . '/js/wdeb_switch.js', 'jquery');
+			wp_localize_script('wdeb_switch', 'l10WdebSwitch', array(
+				'activate' => __('Activate easy mode', 'wdeb')
+			));
+		}
 		printf(
 			'<script type="text/javascript">_wdebLandingPage = "%s";</script>',
 			WDEB_LANDING_PAGE
