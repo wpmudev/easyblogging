@@ -13,7 +13,8 @@ $current_request = admin_url($current_request);
 	<?php $url = site_url($step['url']); ?>
 <li class="wdeb_wizard_step <?php echo (($url == $current_request) ? 'current' : '');?>" >
 	<a href="<?php echo $url;?>" class="wdeb_menu_link">
-		<b>Step <?php echo $count++;?>:</b> <br />
+		<b>Step <?php echo $count++;?>:</b>
+		<br />
 		<?php echo preg_replace('/\s/', '&nbsp;', $step['title']);?>
 	</a>
 	<div class="wdeb_meta">

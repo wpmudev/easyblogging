@@ -74,6 +74,9 @@ body {
 #menu ul li a span {
     padding: 4px 14px;
 }
+.wdeb_wizard_step b, .wdeb_wizard_step br {
+	display: none;
+}
 #primary_right .inner {
     width: 700px;
 }

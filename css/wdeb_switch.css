@@ -9,6 +9,7 @@
 }
 
 .wdeb_switch a, .wdeb_switch a:visited, .wdeb_switch a:hover, .wdeb_switch a:active {
-	color: #444;
+	color: #444 !important;
 	text-decoration: none;
+	text-shadow: none !important;
 }

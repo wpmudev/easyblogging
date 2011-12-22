@@ -174,8 +174,16 @@ class Wdeb_AdminPages {
 	}
 
 	function css_print_styles () {
+		global $wp_version;
+		$version = preg_replace('/-.*$/', '', $wp_version);
+		
 		if (WP_NETWORK_ADMIN) return;
 		wp_enqueue_style('wdeb_switch', WDEB_PLUGIN_URL . '/css/wdeb_switch.css');
+		if (version_compare($version, '3.3')) {
+			echo '<style type="text/css">.wdeb_switch {height: 13px;}</style>';
+		} else {
+			echo '<style type="text/css">.wdeb_switch {height: 24px !important;}</style>';
+		}
         wp_enqueue_style('wdeb_global', WDEB_PLUGIN_URL . '/css/wdeb_global.css');
 	}
 

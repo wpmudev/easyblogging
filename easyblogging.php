@@ -3,7 +3,7 @@
 Plugin Name: Easy Blogging
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Description: Modifies the Wordpress admin area to default it to a "Beginner" area, with the option to switch to the normal, "Advanced" area
-Version: 3.1.4
+Version: 3.1.5
 Text Domain: wdeb
 Author: Incsub
 Author URI: http://premium.wpmudev.org
