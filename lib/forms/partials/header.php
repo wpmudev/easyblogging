@@ -41,6 +41,9 @@ body {
 	padding-top: 28px;
     <?php } ?>
 }
+#add-custom-links.postbox .howto input {
+	float: none;
+}
 
 
 .post-new-php .wdeb_help_popup a {

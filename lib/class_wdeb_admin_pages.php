@@ -179,7 +179,7 @@ class Wdeb_AdminPages {
 		
 		if (WP_NETWORK_ADMIN) return;
 		wp_enqueue_style('wdeb_switch', WDEB_PLUGIN_URL . '/css/wdeb_switch.css');
-		if (version_compare($version, '3.3')) {
+		if (version_compare($version, '3.3', '<')) {
 			echo '<style type="text/css">.wdeb_switch {height: 13px;}</style>';
 		} else {
 			echo '<style type="text/css">.wdeb_switch {height: 24px !important;}</style>';
