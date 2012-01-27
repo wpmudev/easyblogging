@@ -15,7 +15,7 @@ $current_request = admin_url($current_request);
 	<a href="<?php echo $url;?>" class="wdeb_menu_link">
 		<b>Step <?php echo $count++;?>:</b>
 		<br />
-		<?php echo preg_replace('/\s/', '&nbsp;', $step['title']);?>
+		<?php echo preg_replace('/\s/', apply_filters('wdeb_menu-wizard-non_breaking_space', '&nbsp;'), $step['title']);?>
 	</a>
 	<div class="wdeb_meta">
 		<?php echo $step['help']; ?>

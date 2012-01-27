@@ -165,6 +165,18 @@ class Wdeb_AdminPages {
 			wp_localize_script('wdeb_switch', 'l10WdebSwitch', array(
 				'activate' => __('Activate easy mode', 'wdeb')
 			));
+		} else {
+			wp_enqueue_script(array(
+				'jquery', 
+				'jquery-ui-core', 
+				'jquery-ui-sortable',
+				'jquery-ui-dialog', 
+				'jquery-ui-tabs', 
+				'jquery-ui-datepicker', 
+				'jquery-ui-dialog', 
+				'jquery-ui-slider', 
+				'jquery-ui-progressbar', 
+			));
 		}
 		printf(
 			'<script type="text/javascript">_wdebLandingPage = "%s";</script>',

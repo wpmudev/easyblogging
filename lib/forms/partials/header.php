@@ -1,11 +1,13 @@
 <?php
-global $pagenow, $admin_body_class, $current_screen;
+global $pagenow, $admin_body_class, $current_screen, $wp_version;
+$version = preg_replace('/-.*$/', '', $wp_version);
 ?>
 	<link type="text/css" href="<?php echo WDEB_PLUGIN_THEME_URL ?>/style.css" rel="stylesheet" /> <!-- the layout css file -->
 	<link type="text/css" href="<?php echo WDEB_PLUGIN_THEME_URL ?>/css/jquery.cleditor.css" rel="stylesheet" />
 
-<!-- <script type='text/javascript' src='<?php echo WDEB_PLUGIN_THEME_URL ?>/js/jquery-1.4.2.min.js'></script> -->	<!-- jquery library -->
+<?php if (version_compare($version, '3.3', '<')) { ?>
 	<script type='text/javascript' src='<?php echo WDEB_PLUGIN_THEME_URL ?>/js/jquery-ui-1.8.5.custom.min.js'></script> <!-- jquery UI -->
+<?php } ?>
 	<script type='text/javascript' src='<?php echo WDEB_PLUGIN_THEME_URL ?>/js/cufon-yui.js'></script> <!-- Cufon font replacement -->
 	<script type='text/javascript' src='<?php echo WDEB_PLUGIN_THEME_URL ?>/js/ColaborateLight_400.font.js'></script> <!-- the Colaborate Light font -->
 	<script type='text/javascript' src='<?php echo WDEB_PLUGIN_THEME_URL ?>/js/easyTooltip.js'></script> <!-- element tooltips -->
@@ -44,7 +46,6 @@ body {
 #add-custom-links.postbox .howto input {
 	float: none;
 }
-
 
 .post-new-php .wdeb_help_popup a {
    <?php if( is_admin_bar_showing() ) { ?>
@@ -144,8 +145,9 @@ var width = ($("#container").width() - 320);
 $(".wrap").width(width);
 // AJAX loading circle
 $(".ajax-loading").hide();
-
 });
+
+<?php do_action('wdeb_script-custom_javascript'); ?>
 
 <?php $auto_enter_role = $this->data->get_option('auto_enter_role'); ?>
 <?php if ($this->data->get_option('easy_bar') && (!$auto_enter_role || !wdeb_current_user_can($auto_enter_role))) { ?>
