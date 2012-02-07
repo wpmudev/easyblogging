@@ -94,42 +94,23 @@ class Wdeb_AdminFormRenderer {
 			'<p>Show persistent top right Easy Bar in Easy mode.</p>',
 		'wdeb');
 	}
-/*
+
 	function create_auto_enter_role_box () {
-		// Each role is slightly above its label permissions
-		$roles = array(
-			'' => __('Do not force Easy mode', 'wdeb'),
-			'manage_network_options' => __('Site Admin'),
-			'activate_plugins' => __('Editor'),
-			'moderate_comments' => __('Author'),
-			'edit_published_posts' => __('Contributor'),
-			//'edit_posts' => __('Subscriber'),
-		);
-		$opt = $this->_get_option('auto_enter_role');
-		echo "<select name='wdeb[auto_enter_role]'>";
-		foreach ($roles as $rid => $label) {
-			$selected = ($rid == $opt) ? 'selected="selected"' : '';
-			echo "<option value='{$rid}' {$selected}>{$label}</option>";
-		}
-		echo "</select>\n";
-		_e(
-			'<p>Users with this role and below will be forced to use the easy mode.</p>' .
-			'<p>E.g. if you select "Editor" here, "Author" and "Contributor" roles will automatically start in easy mode too</p>',
-		'wdeb');
-	}
-*/
-	function create_auto_enter_role_box () {
-		$wp_roles = array (
+		global $wp_roles;
+		/*
+		$_roles = array (
 			'administrator' => __('Site Admin'),
 			'editor' => __('Editor'),
 			'author' => __('Author'),
 			'contributor' => __('Contributor'),
 			'subscriber' => __('Subscriber'),
 		);
+		*/
+		$_roles = $wp_roles->get_names();
 		$roles = $this->_get_option('auto_enter_role');
 		$roles = is_array($roles) ? $roles : array();
 
-		foreach ($wp_roles as $role=>$label) {
+		foreach ($_roles as $role=>$label) {
 			$checked = in_array($role, $roles) ? 'checked="checked"' : '';
 			echo '' .
 				"<input type='checkbox' name='wdeb[auto_enter_role][{$role}]' id='wdeb-auto_enter_role-{$role}' value='{$role}' {$checked} />" .

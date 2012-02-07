@@ -321,7 +321,7 @@ class Wdeb_AdminPages {
 			$this->_menu_partial = apply_filters('wdeb_menu_partial', $this->_menu_partial);
 
 			add_action('admin_head', array($this, 'start_cache'), 1);
-			add_action('admin_notices', array($this, 'end_header_cache'), 999);
+			add_action('admin_notices', array($this, 'end_header_cache'), 1);
 
 			add_filter('gettext', array(&$this, 'apply_text_overrides'));
 			add_action('do_meta_boxes', array($this, 'apply_meta_boxes_overrides'));
