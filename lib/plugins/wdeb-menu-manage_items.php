@@ -3,7 +3,7 @@
 Plugin Name: Manage menu items
 Description: Easily manage menu items on your Easy Blogging menu.
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
-Version: 1.0
+Version: 1.0.1
 Author: Ve Bailovity (Incsub)
 */
 
@@ -318,10 +318,35 @@ class Wdeb_Menu_ManageMenuItems {
 			'<label for="wdeb_menu_items-new-help">' . __('Help', 'wdeb') . '</label> ' .
 			"<input type='text' class='widefat' id='wdeb_menu_items-new-help' name='wdeb_menu_items[new_items][new][help]' value='' />" .
 		"<br />";
+		/*
 		echo '' .
 			'<label for="wdeb_menu_items-new-capability">' . __('Capability', 'wdeb') . '</label> ' .
 			"<input type='text' class='widefat' id='wdeb_menu_items-new-capability' name='wdeb_menu_items[new_items][new][capability]' value='' />" .
 		"<br />";
+		*/
+		global $wp_roles;
+		$_roles = array (
+			'administrator' => 'manage_options',
+			'editor' => 'edit_others_posts',
+			'author' => 'upload_files',
+			'contributor' => 'edit_posts',
+			'subscriber' => 'read',
+		);
+		echo '<label for="wdeb_menu_items-new-capability">' . __('Show this menu entry for:', 'wdeb') . '</label> ';
+		echo "<select id='wdeb_menu_items-new-capability' name='wdeb_menu_items[new_items][new][capability]'>";
+		foreach ($wp_roles->roles as $key => $role) {
+			$title = sprintf(__('%s only', 'wdeb'), $role['name']);
+			$capability = $key;
+			if (isset($_roles[$key])) {
+				$title = sprintf(__('%s and above'), $role['name']);
+				$capability = $_roles[$key];
+			}
+			echo "<option value='{$capability}'>{$title}&nbsp;</option>";
+		}
+		echo "</select> ";
+		echo "<a href='#enter_capability' id='wdeb_menu_items-manual_capability'>" . __('... or enter the capability manually', 'wdeb') . '</a>';
+		echo "<br />";
+		
 		echo '<input type="submit" class="button" value="' . esc_attr(__('Add new item', 'wdeb')) . '" />';
 	}
 

@@ -101,9 +101,11 @@ function gotoFirstStep() {
 }
 
 function initialize () {
+	$(document).trigger('wdeb-wizard-menu-initialize');
 	var $current = $("#menu ul li.current");
 	if (!$current.length) {
-		gotoFirstStep();
+		//gotoFirstStep();
+		$(document).trigger('wdeb-wizard-menu-missing_current_step');
 		return false;
 	}
 }
@@ -124,6 +126,34 @@ $("#wdeb_wizard_next_step").click(function () {
 	return false;
 });
 
+<?php if (class_exists('Avatars')) { ?>
+/**
+ * If we have Avatars active, allow its redirects.
+ */
+function allow_avatar_redirects () {
+	var is_avatar_user = window.location.search.match(/page=user-avatar/);
+	var is_avatar_blog = window.location.search.match(/page=blog-avatar/);
+	if (!is_avatar_user && !is_avatar_blog) return gotoFirstStep();
+	
+	var term_rx = new RegExp((is_avatar_user ? 'page=user-avatar' : 'page=blog-avatar'));
+	// Attempt to mark the current step
+	$("#menu li.wdeb_wizard_step").each(function () {
+		var $me = $(this);
+		if ($me.find("a.wdeb_menu_link").attr("href").match(term_rx)) {
+			$me.addClass("current");
+		}
+	});
+}
+// Rebind missing current step action.
+$(document).bind('wdeb-wizard-menu-initialize', function () {
+	$(document)
+		.unbind('wdeb-wizard-menu-missing_current_step')
+		.bind('wdeb-wizard-menu-missing_current_step', allow_avatar_redirects)
+	;	
+});
+<?php } ?>
+
+$(document).bind('wdeb-wizard-menu-missing_current_step', gotoFirstStep);
 initialize();
 
 });

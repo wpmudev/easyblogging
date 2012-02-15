@@ -5,6 +5,12 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+3.1.8.1 - 2012-02-15
+----------------------------------------------------------------------
+- Allowing Avatar redirects in wizard.
+- Improved role/capability assigning in menu editor plugin.
+- Improved scrollable menu mouse and window size detection.
+
 3.1.8 - 2012-02-07
 ----------------------------------------------------------------------
 - Dynamic roles fetching.

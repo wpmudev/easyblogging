@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Blogging 3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-15 16:26+0100\n"
-"PO-Revision-Date: 2011-11-15 16:26+0100\n"
+"POT-Creation-Date: 2012-02-15 15:42+0100\n"
+"PO-Revision-Date: 2012-02-15 15:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: Incsub\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,6 @@ msgstr ""
 
 #: lib/class_wdeb_admin_form_renderer.php:36
 #: lib/class_wdeb_admin_form_renderer.php:61
-#: lib/class_wdeb_admin_form_renderer.php:125
 msgid "Author"
 msgstr ""
 
@@ -95,108 +94,92 @@ msgstr ""
 msgid "<p>Show persistent top right Easy Bar in Easy mode.</p>"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:123
-msgid "Site Admin"
-msgstr ""
-
-#: lib/class_wdeb_admin_form_renderer.php:124
-msgid "Editor"
-msgstr ""
-
-#: lib/class_wdeb_admin_form_renderer.php:126
-msgid "Contributor"
-msgstr ""
-
-#: lib/class_wdeb_admin_form_renderer.php:127
-msgid "Subscriber"
-msgstr ""
-
-#: lib/class_wdeb_admin_form_renderer.php:140
+#: lib/class_wdeb_admin_form_renderer.php:121
 msgid "<p>Users with selected roles will be forced to use the easy mode.</p>"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:151
+#: lib/class_wdeb_admin_form_renderer.php:132
 #, php-format
 msgid "Default %s"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:152
+#: lib/class_wdeb_admin_form_renderer.php:133
 #, php-format
 msgid "Stripes Red %s"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:153
+#: lib/class_wdeb_admin_form_renderer.php:134
 #, php-format
 msgid "Stripes Orange %s"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:154
+#: lib/class_wdeb_admin_form_renderer.php:135
 #, php-format
 msgid "Stripes Green %s"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:175
+#: lib/class_wdeb_admin_form_renderer.php:156
 msgid "<p>If set, this option will allow new users to choose between Easy and Advanced mode the first time they log in.</p><p>Their choice will be stored and used from that point on, as long as this option is turned on.</p>"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:187
+#: lib/class_wdeb_admin_form_renderer.php:168
 #, php-format
 msgid "Current logo:<br /> %s"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:189
+#: lib/class_wdeb_admin_form_renderer.php:170
 msgid "Upload your own logo:<br /><em>*suitable logo dimension: width=150px height=80px or more</em><br />"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:196
+#: lib/class_wdeb_admin_form_renderer.php:177
 msgid "Show dashboard widget"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:200
+#: lib/class_wdeb_admin_form_renderer.php:181
 msgid "Widget title"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:205
+#: lib/class_wdeb_admin_form_renderer.php:186
 msgid "Widget contents"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:240
+#: lib/class_wdeb_admin_form_renderer.php:221
 msgid "Delete"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:242
+#: lib/class_wdeb_admin_form_renderer.php:223
 msgid "Edit"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:252
+#: lib/class_wdeb_admin_form_renderer.php:233
 msgid "<p>Drag and drop steps to sort them in the order you want.</p>"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:254
+#: lib/class_wdeb_admin_form_renderer.php:235
 msgid "<p>Enable the Wizard, then drag and drop steps to sort them in the order you want.</p>"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:260
+#: lib/class_wdeb_admin_form_renderer.php:241
 msgid "URL:"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:262
+#: lib/class_wdeb_admin_form_renderer.php:243
 msgid "Administrative page (e.g. \"/post-new.php\" or \"/themes.php\")"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:263
+#: lib/class_wdeb_admin_form_renderer.php:244
 msgid "Site page (e.g. \"/\" or \"/2007-06-05/an-old-post\")"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:268
+#: lib/class_wdeb_admin_form_renderer.php:249
 msgid "Title:"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:272
+#: lib/class_wdeb_admin_form_renderer.php:253
 msgid "Help:"
 msgstr ""
 
-#: lib/class_wdeb_admin_form_renderer.php:275
+#: lib/class_wdeb_admin_form_renderer.php:256
 msgid "Add"
 msgstr ""
 
@@ -206,7 +189,7 @@ msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:104
 #: lib/class_wdeb_admin_pages.php:105
-#: lib/class_wdeb_admin_pages.php:227
+#: lib/class_wdeb_admin_pages.php:249
 msgid "Easy Blogging"
 msgstr ""
 
@@ -298,97 +281,97 @@ msgstr ""
 msgid "Show Tooltips"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:165
+#: lib/class_wdeb_admin_pages.php:166
 msgid "Activate easy mode"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:356
+#: lib/class_wdeb_admin_pages.php:379
 msgid "Supporter"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:364
+#: lib/class_wdeb_admin_pages.php:387
 msgid "Dashboard"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:365
+#: lib/class_wdeb_admin_pages.php:388
 msgid "Your start page"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:372
+#: lib/class_wdeb_admin_pages.php:395
 msgid "New Post"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:373
+#: lib/class_wdeb_admin_pages.php:396
 msgid "Create a new post"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:380
+#: lib/class_wdeb_admin_pages.php:403
 msgid "My Posts"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:381
+#: lib/class_wdeb_admin_pages.php:404
 msgid "Edit your posts"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:388
+#: lib/class_wdeb_admin_pages.php:411
 msgid "New Page"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:389
+#: lib/class_wdeb_admin_pages.php:412
 msgid "Create a new page"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:396
+#: lib/class_wdeb_admin_pages.php:419
 msgid "My Pages"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:397
+#: lib/class_wdeb_admin_pages.php:420
 msgid "Edit your pages"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:404
+#: lib/class_wdeb_admin_pages.php:427
 msgid "Comments"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:405
+#: lib/class_wdeb_admin_pages.php:428
 msgid "Moderate your comments"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:412
+#: lib/class_wdeb_admin_pages.php:435
 msgid "Free Themes"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:413
-#: lib/class_wdeb_admin_pages.php:421
-#: lib/class_wdeb_admin_pages.php:429
+#: lib/class_wdeb_admin_pages.php:436
+#: lib/class_wdeb_admin_pages.php:444
+#: lib/class_wdeb_admin_pages.php:452
 msgid "Change your site appearance"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:420
+#: lib/class_wdeb_admin_pages.php:443
 msgid "Premium Themes"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:428
+#: lib/class_wdeb_admin_pages.php:451
 msgid "Manage Themes"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:436
+#: lib/class_wdeb_admin_pages.php:459
 msgid "Customize Design"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:437
+#: lib/class_wdeb_admin_pages.php:460
 msgid "Personalize your site"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:445
+#: lib/class_wdeb_admin_pages.php:468
 msgid "Support us!"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:452
+#: lib/class_wdeb_admin_pages.php:475
 msgid "Profile"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:453
+#: lib/class_wdeb_admin_pages.php:476
 msgid "Edit your profile information"
 msgstr ""
 
@@ -506,11 +489,11 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
-#: lib/forms/partials/header.php:148
+#: lib/forms/partials/header.php:156
 msgid "Exit easy mode"
 msgstr ""
 
-#: lib/forms/partials/header.php:173
+#: lib/forms/partials/header.php:181
 msgid "Visit site"
 msgstr ""
 
@@ -536,24 +519,24 @@ msgstr ""
 msgid "Log Out of your website"
 msgstr ""
 
-#: lib/forms/partials/menu-wizard.php:32
+#: lib/forms/partials/menu-wizard.php:33
 msgid "Next step"
 msgstr ""
 
-#: lib/forms/partials/menu-wizard.php:35
+#: lib/forms/partials/menu-wizard.php:36
 msgid "Proceed to the next step"
 msgstr ""
 
-#: lib/forms/partials/menu-wizard.php:46
-#: lib/forms/partials/menu-wizard.php:49
+#: lib/forms/partials/menu-wizard.php:47
+#: lib/forms/partials/menu-wizard.php:50
 msgid "Exit Wizard mode"
 msgstr ""
 
-#: lib/forms/partials/menu-wizard.php:50
+#: lib/forms/partials/menu-wizard.php:51
 msgid "Exit guided step-by-step mode"
 msgstr ""
 
-#: lib/forms/partials/menu-wizard.php:64
+#: lib/forms/partials/menu-wizard.php:65
 msgid "Return to standard mode"
 msgstr ""
 
@@ -692,7 +675,6 @@ msgid "Item"
 msgstr ""
 
 #: lib/plugins/wdeb-menu-manage_items.php:247
-#: lib/plugins/wdeb-menu-manage_items.php:322
 msgid "Capability"
 msgstr ""
 
@@ -725,35 +707,53 @@ msgstr ""
 msgid "Choose icon"
 msgstr ""
 
-#: lib/plugins/wdeb-menu-manage_items.php:325
+#: lib/plugins/wdeb-menu-manage_items.php:335
+msgid "Show this menu entry for:"
+msgstr ""
+
+#: lib/plugins/wdeb-menu-manage_items.php:338
+#, php-format
+msgid "%s only"
+msgstr ""
+
+#: lib/plugins/wdeb-menu-manage_items.php:341
+#, php-format
+msgid "%s and above"
+msgstr ""
+
+#: lib/plugins/wdeb-menu-manage_items.php:347
+msgid "... or enter the capability manually"
+msgstr ""
+
+#: lib/plugins/wdeb-menu-manage_items.php:350
 msgid "Add new item"
 msgstr ""
 
-#: lib/plugins/wdeb-menu-manage_items.php:329
+#: lib/plugins/wdeb-menu-manage_items.php:354
 msgid "Use the buttons bellow to reset some aspects of your customization to their defaults"
 msgstr ""
 
-#: lib/plugins/wdeb-menu-manage_items.php:330
+#: lib/plugins/wdeb-menu-manage_items.php:355
 msgid "Reset menu order"
 msgstr ""
 
-#: lib/plugins/wdeb-menu-manage_items.php:332
+#: lib/plugins/wdeb-menu-manage_items.php:357
 msgid "Reset new menu items"
 msgstr ""
 
-#: lib/plugins/wdeb-menu-manage_items.php:334
+#: lib/plugins/wdeb-menu-manage_items.php:359
 msgid "Reset everything"
 msgstr ""
 
-#: lib/plugins/wdeb-menu-manage_items.php:344
+#: lib/plugins/wdeb-menu-manage_items.php:369
 msgid "Warning: this will remove all your custom ordering and revert to default. Proceed?"
 msgstr ""
 
-#: lib/plugins/wdeb-menu-manage_items.php:345
+#: lib/plugins/wdeb-menu-manage_items.php:370
 msgid "Warning: this will remove all the new menu items you added. Proceed?"
 msgstr ""
 
-#: lib/plugins/wdeb-menu-manage_items.php:346
+#: lib/plugins/wdeb-menu-manage_items.php:371
 msgid "Warning: this will remove all your customizations. Proceed?"
 msgstr ""
 

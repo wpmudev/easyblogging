@@ -74,5 +74,22 @@ $("#wdeb_menu_items-reset_all").click(function () {
 	return false;
 });
 
+$("#wdeb_menu_items-manual_capability").click(function () {
+	var $me = $(this);
+	var $select = $("#wdeb_menu_items-new-capability");
+	if (!$select.length) return false;
+	
+	$select.replaceWith(
+		'<input type="text" class="widefat" id="' + 
+			$select.attr("id") + '" name="' + 
+			$select.attr("name") + '" value="' + 
+			$select.val() + 
+		'" />'
+	);
+	$me.remove();
+	
+	return false;
+});
+
 });
 })(jQuery);
