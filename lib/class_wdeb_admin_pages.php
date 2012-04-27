@@ -180,7 +180,7 @@ class Wdeb_AdminPages {
 		}
 		printf(
 			'<script type="text/javascript">_wdebLandingPage = "%s";</script>',
-			WDEB_LANDING_PAGE
+			apply_filters('wdeb_easy_mode_init', WDEB_LANDING_PAGE . '?wdeb_on')
 		);
 
 	}
@@ -232,7 +232,9 @@ class Wdeb_AdminPages {
 		foreach ($wp_meta_boxes['dashboard'] as $board => $position) {
 			foreach ($position as $pos => $boxes) {
 				foreach ($boxes as $key => $box) {
-					if (!in_array($box['id'], $allowed)) unset($wp_meta_boxes['dashboard'][$board][$pos][$key]);
+					if (in_array($box['id'], $allowed)) continue;
+					do_action('wdeb_dashboard_cleanup_removing_item', $board, $pos, $key, $wp_meta_boxes['dashboard'][$board][$pos][$key]);
+					unset($wp_meta_boxes['dashboard'][$board][$pos][$key]);
 				}
 			}
 		}
@@ -257,13 +259,13 @@ class Wdeb_AdminPages {
 	function end_header_cache () {
 		$header_html = ob_get_contents();
 		ob_end_clean();
-		include(WDEB_PLUGIN_BASE_DIR . '/lib/forms/partials/header.php');
+		include apply_filters('wdeb_theme_header_partial', WDEB_PLUGIN_BASE_DIR . '/lib/forms/partials/header.php');
 	}
 	function end_footer_cache () {
 		$footer_html = ob_get_contents();
 		ob_end_clean();
 		echo $footer_html;
-		include(WDEB_PLUGIN_BASE_DIR . '/lib/forms/partials/footer.php');
+		include apply_filters('wdeb_theme_footer_partial', WDEB_PLUGIN_BASE_DIR . '/lib/forms/partials/footer.php');
 	}
 
 	function initialize_easy_mode () {

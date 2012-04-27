@@ -29,7 +29,7 @@ $version = preg_replace('/-.*$/', '', $wp_version);
 
 	<script type='text/javascript' src='<?php echo WDEB_PLUGIN_THEME_URL ?>/js/custom.js'></script> <!-- the "make them work" script -->
 
-	<?php do_action('admin_head'); ?>
+	<?php //do_action('admin_head'); ?>
 
 <style type="text/css">
 .wdeb_meta, #wdeb_meta_container {
@@ -100,6 +100,15 @@ body {
     right: 140px;
     top: 0;
 }
+
+/* ----- RTL ----- */
+.rtl #primary_right {
+	margin-right: 230px;
+}
+.rtl #wpbody-content {
+	background: url("<?php echo WDEB_PLUGIN_THEME_URL ?>/assets/stripe.png") repeat-y fixed top right transparent;
+}
+
 <?php do_action('wdeb_style-custom_stylesheet_rules'); ?>
 </style>
 

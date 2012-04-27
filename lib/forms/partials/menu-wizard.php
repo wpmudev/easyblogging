@@ -122,9 +122,32 @@ $("#wdeb_wizard_next_step").click(function () {
 
 	var href = $next.find('a').attr('href');
 	$next.find('a').click();
-	window.location = href;
+	if (!$next.is(".do-not-follow")) window.location = href;
 	return false;
 });
+
+
+function allow_post_type_redirects () {
+	if (!window.location.href.match(/post\.php/)) return false; // Nothing to do
+	var post_type = $("#post_type").val();
+	var term_rx = new RegExp('post-new\.php$');
+	if (post_type && 'post' != post_type) {
+		term_rx = new RegExp('post-new\\.php\\?post_type=' + post_type);
+	}
+	// Attempt to mark the current step
+	$("#menu li.wdeb_wizard_step").each(function () {
+		var $me = $(this);
+		if ($me.find("a.wdeb_menu_link").attr("href").match(term_rx)) {
+			$me.addClass("current").addClass("do-not-follow");
+		}
+	});
+	var $current = $("#menu ul li.current");
+	if (!$current.length) {
+		gotoFirstStep();
+		return false;
+	}
+}
+
 
 <?php if (class_exists('Avatars')) { ?>
 /**
@@ -133,7 +156,7 @@ $("#wdeb_wizard_next_step").click(function () {
 function allow_avatar_redirects () {
 	var is_avatar_user = window.location.search.match(/page=user-avatar/);
 	var is_avatar_blog = window.location.search.match(/page=blog-avatar/);
-	if (!is_avatar_user && !is_avatar_blog) return gotoFirstStep();
+	if (!is_avatar_user && !is_avatar_blog) return allow_post_type_redirects();
 	
 	var term_rx = new RegExp((is_avatar_user ? 'page=user-avatar' : 'page=blog-avatar'));
 	// Attempt to mark the current step
@@ -141,8 +164,14 @@ function allow_avatar_redirects () {
 		var $me = $(this);
 		if ($me.find("a.wdeb_menu_link").attr("href").match(term_rx)) {
 			$me.addClass("current");
+			$(document).unbind('wdeb-wizard-menu-missing_current_step', gotoFirstStep);
 		}
 	});
+	var $current = $("#menu ul li.current");
+	if (!$current.length) {
+		allow_post_type_redirects();
+		return false;
+	}
 }
 // Rebind missing current step action.
 $(document).bind('wdeb-wizard-menu-initialize', function () {
@@ -153,7 +182,9 @@ $(document).bind('wdeb-wizard-menu-initialize', function () {
 });
 <?php } ?>
 
-$(document).bind('wdeb-wizard-menu-missing_current_step', gotoFirstStep);
+$(document)
+	.bind('wdeb-wizard-menu-missing_current_step', allow_post_type_redirects)
+;
 initialize();
 
 });

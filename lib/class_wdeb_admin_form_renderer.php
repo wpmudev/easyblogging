@@ -165,8 +165,11 @@ class Wdeb_AdminFormRenderer {
 	function create_logo_box () {
 		$opts = new Wdeb_Options;
 		$logo = $opts->get_logo();
-		printf (__("Current logo:<br /> %s", 'wdeb'), "<img src='{$logo}' /><br />");
-		echo "<input type='hidden' name='wdeb[wdeb_logo]' value='{$logo}' />";
+		if ($logo) {
+			printf (__("Current logo:<br /> %s", 'wdeb'), "<img id='wdeb-logo-logo_output' src='{$logo}' /><br />");
+			echo '<a href="#remove-logo" id="wdeb-logo-remove_logo">' . __('Reset logo', 'wdeb') . '</a><br />';
+		}
+		echo "<input type='hidden' name='wdeb[wdeb_logo]' id='wdeb-logo-custom_logo' value='{$logo}' />";
 		_e('Upload your own logo:<br /><em>*suitable logo dimension: width=150px height=80px or more</em><br />', 'wdeb');
 		echo " <input type='file' name='wdeb_logo' />";
 

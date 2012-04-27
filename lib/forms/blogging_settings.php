@@ -15,3 +15,15 @@
 	</form>
 
 </div>
+<script type="text/javascript">
+(function ($) {
+	
+$(function () {
+	$("#wdeb-logo-remove_logo").on('click', function () {
+		$("#wdeb-logo-custom_logo").val('');
+		$("#wdeb-logo-logo_output").remove();
+		return false;
+	});
+});
+})(jQuery);
+</script>
