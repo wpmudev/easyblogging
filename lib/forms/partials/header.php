@@ -104,9 +104,17 @@ body {
 /* ----- RTL ----- */
 .rtl #primary_right {
 	margin-right: 230px;
+	margin-left: 0;
+}
+.rtl #primary_right .inner {
+	margin-left: 0;
+	float: right;
 }
 .rtl #wpbody-content {
 	background: url("<?php echo WDEB_PLUGIN_THEME_URL ?>/assets/stripe.png") repeat-y fixed top right transparent;
+}
+.rtl .wdeb_visit_site {
+	left: 3px;
 }
 
 <?php do_action('wdeb_style-custom_stylesheet_rules'); ?>
@@ -162,7 +170,7 @@ $(".ajax-loading").hide();
 <?php if ($this->data->get_option('easy_bar') && (!$auto_enter_role || !wdeb_current_user_can($auto_enter_role))) { ?>
 // Add exit easy mode link
 $(function () {
-	$(".wdeb_visit_site").first().append("<a href='?wdeb_off'><?php _e('Exit easy mode', 'wdeb');?></a>");
+	$(".wdeb_visit_site").first().append("<a href='<?php echo WDEB_LANDING_PAGE; ?>?wdeb_off'><?php _e('Exit easy mode', 'wdeb');?></a>");
 });
 <?php } ?>
 })(jQuery);
