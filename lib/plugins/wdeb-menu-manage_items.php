@@ -348,6 +348,16 @@ class Wdeb_Menu_ManageMenuItems {
 		echo "<br />";
 		
 		echo '<input type="submit" class="button" value="' . esc_attr(__('Add new item', 'wdeb')) . '" />';
+		
+		echo '<div>' .
+			'<p>' . __('You can use these macros in your URLs:', 'wdeb') . '</p>' .
+			'<dl>' .
+				'<dt>BLOG_PATH</dt>' .
+				'<dd>' . __('Your current blog path', 'wdeb') . '</dd>' .
+				'<dt>LOGOUT_URL</dt>' .
+				'<dd>' . __('A clean logout URL', 'wdeb') . '</dd>' .
+			'</dl>' .
+		'</div>';
 	}
 
 	function create_resets_box () {

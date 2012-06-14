@@ -39,10 +39,12 @@ $version = preg_replace('/-.*$/', '', $wp_version);
 body {
 	min-height: 100%;
 	height: auto;
-    <?php if ((int)$this->data->get_option('admin_bar')) { ?>
-	padding-top: 28px;
-    <?php } ?>
+	/*padding-top: 28px;*/
 }
+html.wp-toolbar { padding-top: 0;}
+<?php if ((int)$this->data->get_option('admin_bar')) { ?>
+	body { padding-top: 28px; }
+<?php } ?>
 #add-custom-links.postbox .howto input {
 	float: none;
 }
@@ -193,12 +195,12 @@ document.body.className = c;
 
 <div id="wpbody-content">
 
+<?php do_action('eab-admin_toolbar-render'); ?>
 <?php if ($this->data->get_option('easy_bar')) { ?>
 	<div class="wdeb_visit_site">
 	<a href="<?php echo site_url();?>"><?php _e('Visit site', 'wdeb');?></a>
 	</div>
 <?php } ?>
-
 
 <div id="primary_left">
 

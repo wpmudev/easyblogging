@@ -128,19 +128,46 @@ $("#wdeb_wizard_next_step").click(function () {
 
 
 function allow_post_type_redirects () {
-	if (!window.location.href.match(/post\.php/)) return false; // Nothing to do
-	var post_type = $("#post_type").val();
-	var term_rx = new RegExp('post-new\.php$');
-	if (post_type && 'post' != post_type) {
-		term_rx = new RegExp('post-new\\.php\\?post_type=' + post_type);
-	}
-	// Attempt to mark the current step
-	$("#menu li.wdeb_wizard_step").each(function () {
-		var $me = $(this);
-		if ($me.find("a.wdeb_menu_link").attr("href").match(term_rx)) {
-			$me.addClass("current").addClass("do-not-follow");
+	if (window.location.href.match(/post\.php/)) { // Check post types
+		var post_type = $("#post_type").val();
+		var term_rx = new RegExp('post-new\.php$');
+		if (post_type && 'post' != post_type) {
+			term_rx = new RegExp('post-new\\.php\\?post_type=' + post_type);
 		}
-	});
+		// Attempt to mark the current step
+		$("#menu li.wdeb_wizard_step").each(function () {
+			var $me = $(this);
+			if ($me.find("a.wdeb_menu_link").attr("href").match(term_rx)) {
+				$me.addClass("current").addClass("do-not-follow");
+			}
+		});
+	} else if (window.location.href.match(/[?&]page=/)) { // Check generic pages, ?page= syntax
+		var page = window.location.href.match(/[?&]page=([^&]+)/);
+		if (page && page.length >= 2) {
+			// Attempt to mark the current step
+			var term_rx = new RegExp('[?&]page=' + page[1]);
+			$("#menu li.wdeb_wizard_step").each(function () {
+				var $me = $(this);
+				if ($me.find("a.wdeb_menu_link").attr("href").match(term_rx)) {
+					$me.addClass("current").addClass("do-not-follow");
+					return false; // Bail on first match
+				}
+			});
+		}
+	} else if (!$("#menu ul li.current").length) { // We still don't know the current page
+		var page = window.location.href.match(/\/([^\/]+\.php)/);
+		if (page && page.length >= 2) {
+			// Attempt to mark the current step
+			var term_rx = new RegExp(page[1] + '$');
+			$("#menu li.wdeb_wizard_step").each(function () {
+				var $me = $(this);
+				if ($me.find("a.wdeb_menu_link").attr("href").match(term_rx)) {
+					$me.addClass("current").addClass("do-not-follow");
+					return false; // Bail on first match
+				}
+			});
+		}
+	}
 	var $current = $("#menu ul li.current");
 	if (!$current.length) {
 		gotoFirstStep();

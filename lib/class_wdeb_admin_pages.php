@@ -332,6 +332,9 @@ class Wdeb_AdminPages {
 			add_action('in_admin_footer', array($this, 'start_cache'), 1);
 			add_action('admin_footer', array($this, 'end_footer_cache'), 999);
 
+			remove_action('in_admin_header', 'wp_admin_bar_render', 0);
+			add_action('eab-admin_toolbar-render', 'wp_admin_bar_render');
+
 			// Take care of autostart values - turn on
 			if ($user_id && $this->data->get_option('hijack_start_page')) {
 				$start = get_user_meta($user_id, 'wdeb_autostart', true);

@@ -5,6 +5,14 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+3.2 - 2012-06-14
+----------------------------------------------------------------------
+- Fix for wizard page redirects on non-CPT pages..
+- Fix for stylesheet conflicts.
+- Fix for roles instantiation.
+- Added BLOG_PATH and LOGOUT_URL macros.
+- WordPress 3.4 comptibility update.
+
 3.1.9.1 - 2012-04-04
 ----------------------------------------------------------------------
 - Easy bar exit link fix.

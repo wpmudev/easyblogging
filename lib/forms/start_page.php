@@ -52,8 +52,8 @@ dd {
 
 /** Style fixes for WP **/
 body {
-	/* min-height: 100%; */
-	height: 100%;
+	min-height: 100%;
+	height: auto;
 }
 
 

@@ -20,6 +20,25 @@ function wdeb_current_user_can ($roles) {
 	return $cap_enter;
 }
 
+function wdeb_expand_url ($url) {
+	// Passthrough relative URLs
+	$is_absolute = preg_match('/^https?:\/\//', $url);
+	$url = preg_replace('/^https?:\/\//', '', $url);
+	if (is_multisite()) {
+		global $blog_id;
+		$current_site = get_blog_details($blog_id);
+		$root_site = get_blog_details(1);
+	
+		$current_path = trim(preg_replace(preg_quote($root_site->path), '', $current_site->path), '/');
+		$url = preg_replace('/BLOG_PATH/', $current_path, $url);
+	}
+	$url = preg_replace('/LOGOUT_URL/', preg_replace('/^https?:\/\//', '', wp_logout_url()), $url);
+	
+	$url = preg_replace('/\/\/+/', '/', $url);
+	if ($is_absolute) $url = (@$_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://') . $url;
+	return $url;
+}
+
 /**
  * Menu items callbacks section.
  *

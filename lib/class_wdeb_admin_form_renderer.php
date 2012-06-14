@@ -106,6 +106,7 @@ class Wdeb_AdminFormRenderer {
 			'subscriber' => __('Subscriber'),
 		);
 		*/
+		if (!isset($wp_roles)) $wp_roles = new WP_Roles();
 		$_roles = $wp_roles->get_names();
 		$roles = $this->_get_option('auto_enter_role');
 		$roles = is_array($roles) ? $roles : array();

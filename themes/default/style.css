@@ -1,4 +1,4 @@
-@import "css/jQuery_UI_uniq.css";
+/*@import "css/jQuery_UI_uniq.css";*/
 @import "css/iPhoneCheckboxes.css";
 @import "css/visualize.css";
 
@@ -88,7 +88,6 @@ div#wpwrap {
     margin: 0px;
     max-width: 1600px !important;
     min-width: 700px;
-    height:100%;
 
 }
 
@@ -99,7 +98,6 @@ div#wpwrap {
     padding: 0px;
 	width:100%;
 	background:url('assets/stripe.png') fixed 0 0 repeat-y;
-	height:100%;
 }
 
 div#edit-slug-box {
