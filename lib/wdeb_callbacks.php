@@ -29,7 +29,7 @@ function wdeb_expand_url ($url) {
 		$current_site = get_blog_details($blog_id);
 		$root_site = get_blog_details(1);
 	
-		$current_path = trim(preg_replace(preg_quote($root_site->path), '', $current_site->path), '/');
+		$current_path = trim(preg_replace('/' . preg_quote($root_site->path, '/') . '/', '', $current_site->path), '/');
 		$url = preg_replace('/BLOG_PATH/', $current_path, $url);
 	}
 	$url = preg_replace('/LOGOUT_URL/', preg_replace('/^https?:\/\//', '', wp_logout_url()), $url);

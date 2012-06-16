@@ -5,9 +5,13 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+3.2.1 - 2012-06-16
+----------------------------------------------------------------------
+- Fix for quoting issue.
+
 3.2 - 2012-06-14
 ----------------------------------------------------------------------
-- Fix for wizard page redirects on non-CPT pages..
+- Fix for wizard page redirects on non-CPT pages.
 - Fix for stylesheet conflicts.
 - Fix for roles instantiation.
 - Added BLOG_PATH and LOGOUT_URL macros.
