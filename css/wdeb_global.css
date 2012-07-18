@@ -47,7 +47,7 @@ color: #999;
 cursor: default;
 }
 
-td.available-theme p, #current-theme .theme-options, .appearance_page_premium-themes #current-theme p {
+#primary_right td.available-theme p, #primary_right #current-theme .theme-options, #primary_right .appearance_page_premium-themes #current-theme p {
   display: none;
 }
 

@@ -44,6 +44,7 @@ body {
 html.wp-toolbar { padding-top: 0;}
 <?php if ((int)$this->data->get_option('admin_bar')) { ?>
 	body { padding-top: 28px; }
+	#wpwrap #primary_left #logo { padding-top: 30px; }
 <?php } ?>
 #add-custom-links.postbox .howto input {
 	float: none;
@@ -126,44 +127,73 @@ html.wp-toolbar { padding-top: 0;}
 (function ($) {
 $(function () {
 
-/************* Tips **************/
-$("#menu li").each(function () {
-	var str = $(this).find('.wdeb_meta').text();
-	var arr = str.split("\n");
-	var title = '';
-	$.each(arr, function(idx, el) {
-		if (idx > 1) title += " \n";
-		title += $.trim(el);
+	/************* Tips **************/
+	$("#menu li").each(function () {
+		var str = $(this).find('.wdeb_meta').text();
+		var arr = str.split("\n");
+		var title = '';
+		$.each(arr, function(idx, el) {
+			if (idx > 1) title += " \n";
+			title += $.trim(el);
+		});
+		$(this).attr('title', title);
 	});
-	$(this).attr('title', title);
+
+	/************* Notifications **************/
+	if ($('#menu li.current .wdeb_meta').length) {
+		$("#wdeb_meta_container")
+			.show()
+			.find(".text p")
+			.html($('#menu li.current .wdeb_meta').html())
+		;
+		/*
+		setTimeout(function () {
+			$("#wdeb_meta_container .text p").empty();
+			$("#wdeb_meta_container").hide('slow');
+		}, 2000);
+		*/
+	}
+
+	/************* Fix WP **************/
+
+	// Page wrapper width
+	$("#container")
+		.width($(window).width())
+		.css('max-width', 'none')
+	;
+	var width = ($("#container").width() - 320);
+	$(".wrap").width(width);
+	// AJAX loading circle
+	$(".ajax-loading").hide();
+	$("#wpbody-content").css("min-height", $(window).height());
 });
 
-/************* Notifications **************/
-if ($('#menu li.current .wdeb_meta').length) {
-	$("#wdeb_meta_container")
-		.show()
-		.find(".text p")
-		.html($('#menu li.current .wdeb_meta').html())
-	;
-	/*
-	setTimeout(function () {
-		$("#wdeb_meta_container .text p").empty();
-		$("#wdeb_meta_container").hide('slow');
-	}, 2000);
-	*/
-}
+/* ----- Videos bugfix ----- */
+<?php if (class_exists('WPMUDEV_Videos')) { ?>
+$(window).load(function () {
+	$('.contextual-help-tabs-wrap [id*="wpmudev_vids"]').css({
+		"height": $(window).height() + "px",
+		"overflow-y": "scroll"
+	});
+});
+<?php } ?>
 
-/************* Fix WP **************/
-
-// Page wrapper width
-$("#container")
-	.width($(window).width())
-	.css('max-width', 'none')
-;
-var width = ($("#container").width() - 320);
-$(".wrap").width(width);
-// AJAX loading circle
-$(".ajax-loading").hide();
+/* ----- Theme preview fix ----- */
+$(function () {
+	$('body.themes-php .action-links a[href*="TB_iframe"]').each(function () {
+		var $me = $(this);
+		$me
+			.addClass("thickbox")
+			.click(function () {
+				var width = $(window).width() - $("#primary_left").width()*2.1;
+				var height = $(window).height() - 150;
+				var href = $me.attr("href");
+				if (href.match(/&(width|height)=[^&]+/)) href = href.replace(/&(width|height)=[^&]+/g, '');
+				$me.attr("href", href + "&width=" + width + '&height=' + height);
+				return true;
+			});
+		;
+	});
 });
 
 <?php do_action('wdeb_script-custom_javascript'); ?>

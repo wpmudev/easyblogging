@@ -222,6 +222,8 @@ class Wdeb_AdminPages {
 		if (is_array(@$wp_meta_boxes['page']['side']['core'])) foreach ($wp_meta_boxes['page']['side']['core'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['side']['core'][$name]);
 		if (is_array(@$wp_meta_boxes['page']['side']['low'])) foreach ($wp_meta_boxes['page']['side']['low'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['side']['low'][$name]);
 		if (is_array(@$wp_meta_boxes['page']['normal']['core'])) foreach ($wp_meta_boxes['page']['normal']['core'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['normal']['core'][$name]);
+
+		do_action('wdeb_admin-editor_metaboxes_cleanup');
 	}
 
 	function strip_down_dashboard () {

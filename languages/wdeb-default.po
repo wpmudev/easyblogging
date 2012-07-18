@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Blogging 3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-14 15:20+0100\n"
-"PO-Revision-Date: 2012-06-14 15:20+0100\n"
+"POT-Creation-Date: 2012-07-18 14:48+0100\n"
+"PO-Revision-Date: 2012-07-18 14:48+0100\n"
 "Last-Translator: \n"
 "Language-Team: Incsub\n"
 "MIME-Version: 1.0\n"
@@ -193,7 +193,7 @@ msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:104
 #: lib/class_wdeb_admin_pages.php:105
-#: lib/class_wdeb_admin_pages.php:251
+#: lib/class_wdeb_admin_pages.php:253
 msgid "Easy Blogging"
 msgstr ""
 
@@ -289,93 +289,93 @@ msgstr ""
 msgid "Activate easy mode"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:384
+#: lib/class_wdeb_admin_pages.php:386
 msgid "Supporter"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:392
+#: lib/class_wdeb_admin_pages.php:394
 msgid "Dashboard"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:393
+#: lib/class_wdeb_admin_pages.php:395
 msgid "Your start page"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:400
+#: lib/class_wdeb_admin_pages.php:402
 msgid "New Post"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:401
+#: lib/class_wdeb_admin_pages.php:403
 msgid "Create a new post"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:408
+#: lib/class_wdeb_admin_pages.php:410
 msgid "My Posts"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:409
+#: lib/class_wdeb_admin_pages.php:411
 msgid "Edit your posts"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:416
+#: lib/class_wdeb_admin_pages.php:418
 msgid "New Page"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:417
+#: lib/class_wdeb_admin_pages.php:419
 msgid "Create a new page"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:424
+#: lib/class_wdeb_admin_pages.php:426
 msgid "My Pages"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:425
+#: lib/class_wdeb_admin_pages.php:427
 msgid "Edit your pages"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:432
+#: lib/class_wdeb_admin_pages.php:434
 msgid "Comments"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:433
+#: lib/class_wdeb_admin_pages.php:435
 msgid "Moderate your comments"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:440
+#: lib/class_wdeb_admin_pages.php:442
 msgid "Free Themes"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:441
-#: lib/class_wdeb_admin_pages.php:449
-#: lib/class_wdeb_admin_pages.php:457
+#: lib/class_wdeb_admin_pages.php:443
+#: lib/class_wdeb_admin_pages.php:451
+#: lib/class_wdeb_admin_pages.php:459
 msgid "Change your site appearance"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:448
+#: lib/class_wdeb_admin_pages.php:450
 msgid "Premium Themes"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:456
+#: lib/class_wdeb_admin_pages.php:458
 msgid "Manage Themes"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:464
+#: lib/class_wdeb_admin_pages.php:466
 msgid "Customize Design"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:465
+#: lib/class_wdeb_admin_pages.php:467
 msgid "Personalize your site"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:473
+#: lib/class_wdeb_admin_pages.php:475
 msgid "Support us!"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:480
+#: lib/class_wdeb_admin_pages.php:482
 msgid "Profile"
 msgstr ""
 
-#: lib/class_wdeb_admin_pages.php:481
+#: lib/class_wdeb_admin_pages.php:483
 msgid "Edit your profile information"
 msgstr ""
 
@@ -493,11 +493,11 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
-#: lib/forms/partials/header.php:175
+#: lib/forms/partials/header.php:205
 msgid "Exit easy mode"
 msgstr ""
 
-#: lib/forms/partials/header.php:201
+#: lib/forms/partials/header.php:231
 msgid "Visit site"
 msgstr ""
 
@@ -663,6 +663,22 @@ msgstr ""
 
 #: lib/plugins/wdeb-dashboard-widgets_setup.php:108
 msgid "If you do not see your Dashboard widget here, please visit your site's Dashboard in Easy Mode first."
+msgstr ""
+
+#: lib/plugins/wdeb-editor-control_product_metaboxes.php:45
+msgid "Hide these Product metaboxes"
+msgstr ""
+
+#: lib/plugins/wdeb-editor-control_product_metaboxes.php:58
+msgid "Product Categories"
+msgstr ""
+
+#: lib/plugins/wdeb-editor-control_product_metaboxes.php:59
+msgid "Product Tags"
+msgstr ""
+
+#: lib/plugins/wdeb-editor-control_product_metaboxes.php:60
+msgid "Product Download"
 msgstr ""
 
 #: lib/plugins/wdeb-menu-manage_items.php:173

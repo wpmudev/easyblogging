@@ -5,6 +5,15 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+3.2.2 - 2012-07-18
+----------------------------------------------------------------------
+- Fix for videos page scroll issue.
+- Fix for theme preview links.
+- Fix for logo with admin toolbar overlapping issue.
+- Fix for scroll menu background stretching issue.
+- Added Customizer support as an add-on.
+- Added Product metaboxes control add-on.
+
 3.2.1 - 2012-06-16
 ----------------------------------------------------------------------
 - Fix for quoting issue.
