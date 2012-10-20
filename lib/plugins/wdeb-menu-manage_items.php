@@ -175,7 +175,7 @@ class Wdeb_Menu_ManageMenuItems {
 
 	function render_page () {
 		echo '<div class="wrap"><h2>Easy Blogging Menu</h2>';
-		echo (WP_NETWORK_ADMIN
+		echo (defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN
 			? '<form action="settings.php" method="post" enctype="multipart/form-data">'
 			: '<form action="options.php" method="post" enctype="multipart/form-data">'
 		);

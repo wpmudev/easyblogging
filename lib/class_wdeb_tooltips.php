@@ -52,7 +52,7 @@ class Wdeb_Tooltips {
 	}
 
 	function add_hooks () {
-		if (WP_NETWORK_ADMIN) return false;
+		if (defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN) return false;
 		if (!$this->data->get_option('show_tooltips', 'wdeb_help')) return false;
 
 		add_action('admin_print_scripts', array($this, 'js_print_scripts'));

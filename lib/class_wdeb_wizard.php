@@ -66,7 +66,7 @@ class Wdeb_Wizard {
 		add_action('admin_print_scripts', array($this, 'js_print_scripts'));
 		add_action('admin_print_styles', array($this, 'css_print_styles'));
 
-		if (WP_NETWORK_ADMIN) return false;
+		if (defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN) return false;
 		add_filter('wdeb_menu_partial', array($this, 'rebind_menu_partial'));
 		add_filter('wdeb_wizard_steps', array($this, 'rebind_wizard_steps'));
 

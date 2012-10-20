@@ -2,7 +2,7 @@
 class Wdeb_AdminFormRenderer {
 
 	function _get_option ($key=false, $pfx='wdeb') {
-		$opt = WP_NETWORK_ADMIN ? get_site_option($pfx) : get_option($pfx);
+		$opt = defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN ? get_site_option($pfx) : get_option($pfx);
 		if (!$key) return $opt;
 		return @$opt[$key];
 	}

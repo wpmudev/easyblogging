@@ -159,7 +159,7 @@ class Wdeb_AdminPages {
 	}
 
 	function js_print_scripts () {
-		if (WP_NETWORK_ADMIN) return;
+		if (defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN) return;
 		if (!$this->is_in_easymode()) {
 			wp_enqueue_script('wdeb_switch', WDEB_PLUGIN_URL . '/js/wdeb_switch.js', 'jquery');
 			wp_localize_script('wdeb_switch', 'l10WdebSwitch', array(
@@ -189,7 +189,7 @@ class Wdeb_AdminPages {
 		global $wp_version;
 		$version = preg_replace('/-.*$/', '', $wp_version);
 		
-		if (WP_NETWORK_ADMIN) return;
+		if (defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN) return;
 		wp_enqueue_style('wdeb_switch', WDEB_PLUGIN_URL . '/css/wdeb_switch.css');
 		if (version_compare($version, '3.3', '<')) {
 			echo '<style type="text/css">.wdeb_switch {height: 13px;}</style>';
@@ -215,13 +215,13 @@ class Wdeb_AdminPages {
 		$page_boxes = $this->data->get_option('page_boxes');
 		$page_boxes = is_array($page_boxes) ? $page_boxes : array();
 
-		if (is_array(@$wp_meta_boxes['post']['side']['core'])) foreach ($wp_meta_boxes['post']['side']['core'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['side']['core'][$name]);
-		if (is_array(@$wp_meta_boxes['post']['side']['low'])) foreach ($wp_meta_boxes['post']['side']['low'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['side']['low'][$name]);
-		if (is_array(@$wp_meta_boxes['post']['normal']['core'])) foreach ($wp_meta_boxes['post']['normal']['core'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['normal']['core'][$name]);
+		if (isset($wp_meta_boxes['post']['side']['core']) && is_array(@$wp_meta_boxes['post']['side']['core'])) foreach ($wp_meta_boxes['post']['side']['core'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['side']['core'][$name]);
+		if (isset($wp_meta_boxes['post']['side']['low']) && is_array(@$wp_meta_boxes['post']['side']['low'])) foreach ($wp_meta_boxes['post']['side']['low'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['side']['low'][$name]);
+		if (isset($wp_meta_boxes['post']['normal']['core']) && is_array(@$wp_meta_boxes['post']['normal']['core'])) foreach ($wp_meta_boxes['post']['normal']['core'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['normal']['core'][$name]);
 
-		if (is_array(@$wp_meta_boxes['page']['side']['core'])) foreach ($wp_meta_boxes['page']['side']['core'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['side']['core'][$name]);
-		if (is_array(@$wp_meta_boxes['page']['side']['low'])) foreach ($wp_meta_boxes['page']['side']['low'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['side']['low'][$name]);
-		if (is_array(@$wp_meta_boxes['page']['normal']['core'])) foreach ($wp_meta_boxes['page']['normal']['core'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['normal']['core'][$name]);
+		if (isset($wp_meta_boxes['page']['side']['core']) && is_array(@$wp_meta_boxes['page']['side']['core'])) foreach ($wp_meta_boxes['page']['side']['core'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['side']['core'][$name]);
+		if (isset($wp_meta_boxes['page']['side']['low']) && is_array(@$wp_meta_boxes['page']['side']['low'])) foreach ($wp_meta_boxes['page']['side']['low'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['side']['low'][$name]);
+		if (isset($wp_meta_boxes['page']['normal']['core']) && is_array(@$wp_meta_boxes['page']['normal']['core'])) foreach ($wp_meta_boxes['page']['normal']['core'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['normal']['core'][$name]);
 
 		do_action('wdeb_admin-editor_metaboxes_cleanup');
 	}
@@ -530,7 +530,7 @@ class Wdeb_AdminPages {
 			add_action('admin_menu', array($this, 'create_site_admin_menu_entry'));
 		}
 
-		if (!WP_NETWORK_ADMIN) {
+		if (!(defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN)) {
 			add_action('admin_init', array($this, 'initialize_easy_mode'));
 		}
 		add_action('admin_print_scripts', array($this, 'js_print_scripts'));

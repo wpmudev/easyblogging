@@ -1,7 +1,7 @@
 <div class="wrap">
 	<h2>Easy Blogging settings</h2>
 
-<?php if (WP_NETWORK_ADMIN) { ?>
+<?php if (defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN) { ?>
 	<form action="settings.php" method="post" enctype="multipart/form-data">
 <?php } else { ?>
 	<form action="options.php" method="post" enctype="multipart/form-data">

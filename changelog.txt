@@ -5,6 +5,12 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+3.2.3 - 2012-10-20
+----------------------------------------------------------------------
+- Additional define and keys presence checks.
+- Fix for wrap only for positive width values.
+- Animating padding for webkit browser menu movement instead.
+
 3.2.2 - 2012-07-18
 ----------------------------------------------------------------------
 - Fix for videos page scroll issue.

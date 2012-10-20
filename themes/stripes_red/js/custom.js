@@ -81,9 +81,11 @@ jQuery(document).ready(function() {
 	}); // Tooltips! 
 			
 	jQuery('#menu li:not(".current"), #menu ul ul li a').hover(function() {
-		jQuery(this).find('span').animate({ marginLeft: '5px' }, 100);
+		if (!jQuery.browser.webkit) jQuery(this).find('span').animate({ marginLeft: '5px' }, 100);
+		else jQuery(this).find('span').animate({ paddingLeft: '15px' }, 100);
 	}, function() {
-		jQuery(this).find('span').animate({ marginLeft: '0px' }, 100);           
+		if (!jQuery.browser.webkit) jQuery(this).find('span').animate({ marginLeft: '0px' }, 100);           
+		else jQuery(this).find('span').animate({ paddingLeft: '10px' }, 100);
 	}); // Menu simple animation
 			
 	jQuery('.fade_hover').hover(

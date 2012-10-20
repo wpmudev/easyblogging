@@ -162,7 +162,7 @@ $(function () {
 		.css('max-width', 'none')
 	;
 	var width = ($("#container").width() - 320);
-	$(".wrap").width(width);
+	if (width > 0) $(".wrap").width(width);
 	// AJAX loading circle
 	$(".ajax-loading").hide();
 	$("#wpbody-content").css("min-height", $(window).height());
