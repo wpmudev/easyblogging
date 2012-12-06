@@ -25,7 +25,8 @@ class Wdeb_Wizard {
 	function css_print_styles () {
 		if (!isset($_GET['page']) || 'wdeb_wizard' != $_GET['page']) return false;
 		$protocol = ($_SERVER["HTTPS"] == 'on') ? 'https://' : 'http://';
-		wp_enqueue_style('jquery-ui', $protocol . 'ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css');
+		//wp_enqueue_style('jquery-ui', $protocol . 'ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css');
+		wp_enqueue_style('wp-jquery-ui-dialog');
 	}
 
 	function js_print_scripts () {
@@ -37,7 +38,10 @@ class Wdeb_Wizard {
 		$user = wp_get_current_user();
 		$user_id = ($user && $user->ID) ? $user->ID : false;
 		$use_wizard = ($user_id) ? get_user_meta($user_id, 'wdeb_wizard', true) : false;
-		return $use_wizard ? 'menu-wizard' : $menu;
+		return apply_filters('wdeb-wizard-use_wizard', $use_wizard)
+			? 'menu-wizard' 
+			: $menu
+		;
 	}
 
 	function rebind_wizard_steps () {
@@ -49,12 +53,15 @@ class Wdeb_Wizard {
 	function initialize_wizard () {
 		$user = wp_get_current_user();
 		$user_id = ($user && $user->ID) ? $user->ID : false;
+		do_action('wdeb-wizard-initialize_wizard_mode', $user_id);
 		if ($user_id && isset($_GET['wdeb_wizard_on'])) {
 			update_user_meta($user_id, 'wdeb_wizard', 1);
+			do_action('wdeb-wizard-initialize_wizard_mode-on', $user_id);
 			wp_redirect(admin_url(WDEB_LANDING_PAGE));
 			die;
 		} else if ($user_id && isset($_GET['wdeb_wizard_off'])) {
 			update_user_meta($user_id, 'wdeb_wizard', 0);
+			do_action('wdeb-wizard-initialize_wizard_mode-off', $user_id);
 			wp_redirect(admin_url(WDEB_LANDING_PAGE));
 			die;
 		}

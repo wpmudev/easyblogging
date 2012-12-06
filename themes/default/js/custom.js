@@ -82,7 +82,7 @@ jQuery(document).ready(function() {
 			
 	jQuery('#menu li:not(".current"), #menu ul ul li a').hover(function() {
 		if (!jQuery.browser.webkit) jQuery(this).find('span').animate({ marginLeft: '5px' }, 100);
-		else jQuery(this).find('span').animate({ paddingLeft: '15px' }, 100);
+		else jQuery(this).find('span').animate({ paddingLeft: '12px' }, 100);
 	}, function() {
 		if (!jQuery.browser.webkit) jQuery(this).find('span').animate({ marginLeft: '0px' }, 100);           
 		else jQuery(this).find('span').animate({ paddingLeft: '10px' }, 100);

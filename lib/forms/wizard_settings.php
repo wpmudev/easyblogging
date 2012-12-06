@@ -46,6 +46,9 @@
 .wdeb_step .wdeb_step_actions {
 	float: right;
 }
+#wdeb_step_edit_dialog {
+	padding: 10px 20px;
+}
 </style>
 <script type="text/javascript">
 (function ($) {
@@ -95,6 +98,7 @@ $(".wdeb_step_edit").click(function () {
 	$("#wdeb_step_edit_dialog_help").val($help.val());
 
 	$("#wdeb_step_edit_dialog").dialog({
+		"dialogClass": "wp-dialog",
 		"title": $title.val(),
 		"modal": true,
 		"width": 600,

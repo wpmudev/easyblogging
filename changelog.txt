@@ -5,6 +5,14 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+3.2.4 - 2012-12-06
+----------------------------------------------------------------------
+- Added Author Comments scope add-on.
+- Added conditional admin header redo.
+- Fix for admin bar reappearing issue.
+- Fix for wizard redirection after leaving customizer.
+- WordPress 3.5 compatibility update.
+
 3.2.3 - 2012-10-20
 ----------------------------------------------------------------------
 - Additional define and keys presence checks.

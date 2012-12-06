@@ -170,7 +170,8 @@ function allow_post_type_redirects () {
 	}
 	var $current = $("#menu ul li.current");
 	if (!$current.length) {
-		gotoFirstStep();
+		//gotoFirstStep();
+		allow_customizer_redirects();
 		return false;
 	}
 }
@@ -208,6 +209,21 @@ $(document).bind('wdeb-wizard-menu-initialize', function () {
 	;	
 });
 <?php } ?>
+
+function allow_customizer_redirects () {
+	var $customizer = $('#menu a.wdeb_menu_link[href*="/wp-admin/customize.php"]');
+	if (!$customizer.length || !document.referrer || !document.referrer.match(/wp-admin\/customize\.php/)) return gotoFirstStep();
+	
+	var $next = $customizer.parents("li.wdeb_wizard_step").next(),
+		$link = $next.length ? $next.find("a.wdeb_menu_link") : false,
+		href = $link.length ? $link.attr("href") : false
+	;
+	if (!$next.length || !href) return gotoFirstStep();
+
+	$next.addClass("current");
+	window.location = href;
+	return false;
+}
 
 $(document)
 	.bind('wdeb-wizard-menu-missing_current_step', allow_post_type_redirects)

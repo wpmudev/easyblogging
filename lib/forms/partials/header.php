@@ -1,6 +1,12 @@
 <?php
 global $pagenow, $admin_body_class, $current_screen, $wp_version;
 $version = preg_replace('/-.*$/', '', $wp_version);
+
+if (!$this->data->get_option('admin_bar')) {
+	remove_action('wp_footer', 'wp_admin_bar_render', 1000);
+	global $wp_admin_bar;
+	$wp_admin_bar = false;
+}
 ?>
 	<link type="text/css" href="<?php echo WDEB_PLUGIN_THEME_URL ?>/style.css" rel="stylesheet" /> <!-- the layout css file -->
 	<link type="text/css" href="<?php echo WDEB_PLUGIN_THEME_URL ?>/css/jquery.cleditor.css" rel="stylesheet" />
@@ -29,7 +35,10 @@ $version = preg_replace('/-.*$/', '', $wp_version);
 
 	<script type='text/javascript' src='<?php echo WDEB_PLUGIN_THEME_URL ?>/js/custom.js'></script> <!-- the "make them work" script -->
 
-	<?php //do_action('admin_head'); ?>
+<?php 
+	$do_admin_head = defined('WDEB_CORE_ACTIONS_REDO_ADMIN_HEAD') ? WDEB_CORE_ACTIONS_REDO_ADMIN_HEAD : false;
+	if (apply_filters('wdeb-core-actions-redo_admin_head', $do_admin_head)) do_action('admin_head'); 
+?>
 
 <style type="text/css">
 .wdeb_meta, #wdeb_meta_container {
@@ -119,6 +128,24 @@ html.wp-toolbar { padding-top: 0;}
 .rtl .wdeb_visit_site {
 	left: 3px;
 }
+
+<?php if (apply_filters('eab-locale-forced_rtl', is_rtl())) { // Forced RTL check ?>
+/* ----- Forced RTl -----*/
+#primary_right {
+	margin-right: 230px;
+	margin-left: 0;
+}
+#primary_right .inner {
+	margin-left: 0;
+	float: right;
+}
+#wpbody-content {
+	background: url("<?php echo WDEB_PLUGIN_THEME_URL ?>/assets/stripe.png") repeat-y fixed top right transparent;
+}
+.wdeb_visit_site {
+	left: 3px;
+}
+<?php } // End forced RTL check ?>
 
 <?php do_action('wdeb_style-custom_stylesheet_rules'); ?>
 </style>

@@ -154,7 +154,7 @@ class Wdeb_AdminFormRenderer {
 	function create_hijack_start_page_box () {
 		echo $this->_create_checkbox('hijack_start_page');
 		_e(
-			'<p>If set, this option will allow new users to choose between Easy and Advanced mode the first time they log in.</p>' .
+			'<p>If set to "Yes", this option will allow new users to choose between Easy and Advanced mode the first time they log in.</p>' .
 			'<p>Their choice will be stored and used from that point on, as long as this option is turned on.</p>',
 		'wdeb');
 	}
