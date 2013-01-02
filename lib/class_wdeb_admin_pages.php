@@ -522,6 +522,45 @@ class Wdeb_AdminPages {
 		exit();
 	}
 
+	function render_hijacking_profile_option ($user) {
+		$user_id = !empty($user->ID) ? $user->ID : false;
+		if (!$user_id) return false;
+		$meta = get_user_meta($user_id, 'wdeb_autostart', true);
+		$yes_checked = "yes" == $meta ? 'checked="checked"' : '';
+		$no_checked = "no" == $meta ? 'checked="checked"' : '';
+		$maybe_checked = !$meta ? 'checked="checked"' : '';
+		?>
+<h3><?php _e('Easy Blogging starting mode', 'wdeb'); ?></h3>
+<table class="form-table">
+	<tr>
+		<th><?php _e('Start in Easy mode', 'wdeb'); ?></td>
+		<td>
+			<label for="wdeb_autostart-yes">
+				<input type="radio" name="wdeb_autostart" id="wdeb_autostart-yes" value="yes" <?php echo $yes_checked; ?> />
+				<?php _e("Yes", "wdeb"); ?>
+			</label>
+			<br />
+			<label for="wdeb_autostart-no">
+				<input type="radio" name="wdeb_autostart" id="wdeb_autostart-no" value="no" <?php echo $no_checked; ?> />
+				<?php _e("No", "wdeb"); ?>
+			</label>
+			<br />
+			<label for="wdeb_autostart-maybe">
+				<input type="radio" name="wdeb_autostart" id="wdeb_autostart-maybe" value="" <?php echo $maybe_checked; ?> />
+				<?php _e("Ask me the next time I log in", "wdeb"); ?>
+			</label>
+		</td>
+	</tr>
+</table>
+		<?php
+	}
+
+	function save_hijacking_profile_option ($user_id) {
+		if (!current_user_can('edit_user', $user_id)) return false;
+		if (!isset($_POST['wdeb_autostart'])) return false;
+		update_usermeta($user_id, 'wdeb_autostart', $_POST['wdeb_autostart']);
+	}
+
 	function add_hooks () {
 		add_action('admin_init', array($this, 'register_settings'));
 		if (is_multisite()) {
@@ -540,6 +579,15 @@ class Wdeb_AdminPages {
 		// Set easy mode flag - are we men, or are we mice
 		//$this->set_easy_mode_flag();
 		add_action('after_setup_theme', array($this, 'set_easy_mode_flag'));
+
+		// Allow hijacked page overrides later on
+		if ($this->data->get_option('hijack_start_page')) {
+			add_action('show_user_profile', array($this, 'render_hijacking_profile_option'));
+			add_action('edit_user_profile', array($this, 'render_hijacking_profile_option'));
+			
+			add_action('personal_options_update', array($this, 'save_hijacking_profile_option'));
+			add_action('edit_user_profile_update', array($this, 'save_hijacking_profile_option'));
+		}
 
 		// AJAX plugin handlers
 		add_action('wp_ajax_wdeb_activate_plugin', array($this, 'json_activate_plugin'));
