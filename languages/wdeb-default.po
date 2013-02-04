@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Blogging 3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-02 14:33+0100\n"
-"PO-Revision-Date: 2013-01-02 14:33+0100\n"
+"POT-Creation-Date: 2013-02-04 14:47+0100\n"
+"PO-Revision-Date: 2013-02-04 14:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: Incsub\n"
 "MIME-Version: 1.0\n"
@@ -303,6 +303,7 @@ msgid "Show Tooltips"
 msgstr ""
 
 #: lib/class_wdeb_admin_pages.php:166
+#: lib/plugins/wdeb-theme-toolbar_switch_button.php:32
 msgid "Activate easy mode"
 msgstr ""
 
@@ -522,6 +523,7 @@ msgid "URL"
 msgstr ""
 
 #: lib/forms/partials/header.php:232
+#: lib/plugins/wdeb-theme-toolbar_switch_button.php:38
 msgid "Exit easy mode"
 msgstr ""
 
@@ -706,6 +708,7 @@ msgstr ""
 
 #: lib/plugins/wdeb-dashboard-widgets_setup.php:74
 #: lib/plugins/wdeb-menu-manage_items.php:184
+#: lib/plugins/wdeb-theme-admin_footer.php:91
 msgid "Save Changes"
 msgstr ""
 
@@ -876,6 +879,61 @@ msgstr ""
 msgid "Warning: this will remove all your customizations. Proceed?"
 msgstr ""
 
+#: lib/plugins/wdeb-menu-wizard_toolbar_redirection.php:24
+msgid ""
+"Following this link will exit the Wizard mode. Are you sure you want to "
+"proceed?"
+msgstr ""
+
 #: lib/plugins/wdeb-pro-force_free.php:55
 msgid "Force Easy mode on free sites"
+msgstr ""
+
+#: lib/plugins/wdeb-theme-admin_footer.php:80
+msgid "Admin footer"
+msgstr ""
+
+#: lib/plugins/wdeb-theme-admin_footer.php:80
+#: lib/plugins/wdeb-theme-admin_footer.php:99
+msgid "Admin Footer"
+msgstr ""
+
+#: lib/plugins/wdeb-theme-admin_footer.php:84
+msgid "Easy Blogging Admin Footer"
+msgstr ""
+
+#: lib/plugins/wdeb-theme-admin_footer.php:100
+msgid "Use existing admin footer"
+msgstr ""
+
+#: lib/plugins/wdeb-theme-admin_footer.php:103
+msgid "Custom Footer"
+msgstr ""
+
+#: lib/plugins/wdeb-theme-admin_footer.php:104
+msgid "Use custom footer"
+msgstr ""
+
+#: lib/plugins/wdeb-theme-admin_footer.php:105
+msgid "Custom footer content"
+msgstr ""
+
+#: lib/plugins/wdeb-theme-admin_footer.php:107
+msgid "Settings"
+msgstr ""
+
+#: lib/plugins/wdeb-theme-admin_footer.php:108
+msgid "Use the footer on Wizard pages too"
+msgstr ""
+
+#: lib/plugins/wdeb-theme-admin_footer.php:139
+msgid "Use the footer as defined by the Admin Footer plugin"
+msgstr ""
+
+#: lib/plugins/wdeb-theme-admin_footer.php:143
+msgid "Use footer as defined in the box below"
+msgstr ""
+
+#: lib/plugins/wdeb-theme-admin_footer.php:152
+msgid "Apply the footer to Wizard pages too"
 msgstr ""

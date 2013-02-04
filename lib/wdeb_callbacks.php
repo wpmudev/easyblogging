@@ -52,18 +52,28 @@ function wdeb_expand_url ($url) {
 
 function wdeb_supporter_themes_enabled () {
 	if (class_exists('ProSites')) {
-		$ps_modules = ProSites::get_setting('modules_enabled');
-		$ps_modules = $ps_modules ? $ps_modules : array();
-		$has_themes = in_array('ProSites_Module_PremiumThemes', $ps_modules);
+		global $psts;
+		if ($psts && !empty($psts->version) && version_compare($psts->version, '3.3.3', '>=')) {
+			$has_themes = false;
+		} else {
+			$ps_modules = ProSites::get_setting('modules_enabled');
+			$ps_modules = $ps_modules ? $ps_modules : array();
+			$has_themes = in_array('ProSites_Module_PremiumThemes', $ps_modules);
+		}
 	} else $has_themes = function_exists('supporter_themes_page');
 	return (function_exists('is_supporter') && is_supporter() && $has_themes);
 }
 
 function wdeb_supporter_themes_not_enabled () {
 	if (class_exists('ProSites')) {
-		$ps_modules = ProSites::get_setting('modules_enabled');
-		$ps_modules = $ps_modules ? $ps_modules : array();
-		$has_themes = in_array('ProSites_Module_PremiumThemes', $ps_modules);
+		global $psts;
+		if ($psts && !empty($psts->version) && version_compare($psts->version, '3.3.3', '>=')) {
+			$has_themes = false;
+		} else {
+			$ps_modules = ProSites::get_setting('modules_enabled');
+			$ps_modules = $ps_modules ? $ps_modules : array();
+			$has_themes = in_array('ProSites_Module_PremiumThemes', $ps_modules);
+		}
 	} else $has_themes = function_exists('supporter_themes_page');
 	return !(function_exists('is_supporter') && is_supporter() && $has_themes);
 }

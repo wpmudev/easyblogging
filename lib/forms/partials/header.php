@@ -272,6 +272,7 @@ document.body.className = c;
 </div> <!-- navigation menu end -->
 </div> <!-- primary-left end -->
 
+<?php echo apply_filters('wdeb-admin_footer-markup', ''); ?>
 
 <div id="primary_right">
 <div class="inner">

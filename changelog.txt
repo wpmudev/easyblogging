@@ -5,6 +5,14 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+3.3 - 2013-02-04
+----------------------------------------------------------------------
+- Fix for post-3.3.3 Pro Sites integration.
+- Added Admin footer add-on.
+- Added Admin toolbar redirection add-on.
+- Added Small switch button add-on.
+- Added Toolbar switch link add-on.
+
 3.2.5 - 2013-01-02
 ----------------------------------------------------------------------
 - Added easy start profile section.

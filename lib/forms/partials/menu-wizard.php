@@ -80,6 +80,9 @@ $current_request = admin_url($current_request);
 	</li>
 <?php } ?>
 
+<?php do_action('wdeb-menu-after_menu_items'); ?>
+<?php do_action('wdeb-menu-wizard-after_menu_items'); ?>
+
 </ul>
 
 <style type="text/css">
