@@ -5,6 +5,13 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+3.3.1 - 2013-09-19
+----------------------------------------------------------------------
+- Added the Compatibility mode add-on.
+- Added admin rescue define switch.
+- Fix for remove link issue in manage items add-on.
+- Fix for menu links floating coverage.
+
 3.3 - 2013-02-04
 ----------------------------------------------------------------------
 - Fix for post-3.3.3 Pro Sites integration.

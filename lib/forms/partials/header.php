@@ -78,6 +78,10 @@ html.wp-toolbar { padding-top: 0;}
 }
 <?php } ?>
 
+.nav-menus-php .postbox .howto input, .nav-menus-php .accordion-container .howto input {
+	float: left
+}
+
 @media (max-width: 1280px) {
 #menu ul li a, #menu ul li a:hover {
     height: 25px !important;

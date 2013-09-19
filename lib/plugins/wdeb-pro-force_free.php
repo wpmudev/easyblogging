@@ -3,7 +3,7 @@
 Plugin Name: Pro Sites: Force Easy mode on Free sites
 Description: Forces Easy mode on Free sites. <b>Requires Pro Sites plugin.</b>
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
-Version: 1.0
+Version: 1.0.1
 Author: Ve Bailovity (Incsub)
 */
 
@@ -41,6 +41,12 @@ class Wdeb_Pro_ForceOnFreeSites {
 		if (is_pro_site()) return $roles; // Pro site, no forcing;
 
 		// Force on ALL roles
+		global $wp_roles;
+		if (!isset($wp_roles)) $wp_roles = new WP_Roles();
+		$all_roles = array_keys($wp_roles->get_names());
+		return array_combine($all_roles, $all_roles);
+		/*
+		// Just WP default roles...
 		return array (
 			'administrator' => 'administrator',
 			'editor' => 'editor',
@@ -48,6 +54,7 @@ class Wdeb_Pro_ForceOnFreeSites {
 			'contributor' => 'contributor',
 			'subscriber' => 'subscriber',
 		);
+		*/
 	}
 
 	function add_settings () {

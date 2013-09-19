@@ -48,7 +48,6 @@ class Wdeb_Menu_AuthorCommentsScope {
 		if (false !== $count) return $count;
 
 		$post_ids = $wpdb->get_col("SELECT ID FROM {$wpdb->posts} WHERE post_author={$user->ID}");
-		if (!$post_ids) die('wtf');
 		$where = 'WHERE comment_post_ID IN (' . join(',', $post_ids) . ')';
 
 		// Below is taken from wp-includes/comment.php::wp_count_comments

@@ -9,9 +9,11 @@ function wdeb_reset_autostart () {
 }
 
 function wdeb_current_user_can ($roles) {
+	if (current_user_can('manage_network_options')) return false; /* Don't do this for Super Admin */
+	if (defined('WDEB_CORE_RESCUE_ADMINS') && WDEB_CORE_RESCUE_ADMINS && current_user_can('manage_options')) return false;
 	$roles = $roles ? $roles : array();
 	$cap_enter = false;
-	if (!current_user_can('manage_network_options')) /* Don't do this for Super Admin */ foreach ($roles as $cap) {
+	foreach ($roles as $cap) {
 		if (current_user_can($cap)) {
 			$cap_enter = true;
 			break;

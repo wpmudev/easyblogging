@@ -37,7 +37,7 @@ jQuery(document).ready(function() {
 	Cufon.replace('h1, h5, .notification strong', { hover: 'true' }); // Cufon font replacement
 	initMenu(); // Initialize the menu!
 	
-	jQuery(".tablesorter").tablesorter(); // Tablesorter plugin
+	//jQuery(".tablesorter").tablesorter(); // Tablesorter plugin
 			
 	jQuery('#dialog').dialog({
 		autoOpen: false,

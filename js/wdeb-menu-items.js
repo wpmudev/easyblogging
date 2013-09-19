@@ -38,7 +38,7 @@ $("#wdeb_menu_items-new-icon-trigger").click(function () {
 $(".wdeb_remove_menu_item").click(function () {
 	$.post(_wdeb_menu_items.ajax_url, {
 		"action": "wdeb_menu_items_remove_my_item",
-		"url_id": $(this).parents("tr").find("input.wdeb_menu_items-url_id").val()
+		"url_id": $(this).closest("tr").find("input.wdeb_menu_items-url_id").val()
 	}, function (data) {
 		window.location.reload();
 	});
