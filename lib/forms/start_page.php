@@ -257,16 +257,16 @@ $current_network_site = get_current_site_name(get_current_site());
 					</div>-->
 
 					<dl>
-						<dt><?php _e('Easy mode', 'wdeb');?>&nbsp;&nbsp;<small><a href="<?php echo WDEB_LANDING_PAGE;?>?wdeb_on">Activate</a></small></dt>
+						<dt><?php _e('Easy mode', 'wdeb');?>&nbsp;&nbsp;<small><a href="<?php echo WDEB_LANDING_PAGE;?>?wdeb_on"><?php _e('Activate', 'wdeb');?></a></small></dt>
 						<dd><?php _e('Great for beginners, easily and quickly manage your blog', 'wdeb');?></dd>
 
 					<?php if ($this->data->get_option('wizard_enabled', 'wdeb_wizard')) { ?>
 					<!-- Wizard is enabled, add description -->
-						<dt><?php _e('Wizard mode', 'wdeb');?>&nbsp;&nbsp;<small><a href="<?php echo WDEB_LANDING_PAGE;?>?wdeb_on&wdeb_wizard_on">Activate</a></small></dt>
+						<dt><?php _e('Wizard mode', 'wdeb');?>&nbsp;&nbsp;<small><a href="<?php echo WDEB_LANDING_PAGE;?>?wdeb_on&wdeb_wizard_on"><?php _e('Activate', 'wdeb');?></a></small></dt>
 						<dd><?php _e('Even greater for beginners, offers a guided step-by-step tour of your blog', 'wdeb');?></dd>
 					<?php } ?>
 
-						<dt><?php _e('Standard mode', 'wdeb');?>&nbsp;&nbsp;<small><a href="index.php?wdeb_off">Activate</a></small></dt>
+						<dt><?php _e('Standard mode', 'wdeb');?>&nbsp;&nbsp;<small><a href="index.php?wdeb_off"><?php _e('Activate', 'wdeb');?></a></small></dt>
 						<dd><?php _e('Allows for fine-tuning your blog', 'wdeb');?></dd>
 					</dl>
 

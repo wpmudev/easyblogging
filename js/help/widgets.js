@@ -7,7 +7,7 @@ $("#wdeb_show_help").click(function () {
 	tb_show('Help', '#TB_inline?width=640&inlineId=wdeb_help_container');
 });
 */	
-$("h2").prev().after(_wdeb_tooltip_tpl.replace(/%%text%%/, l10WdebHelp.title)).end().prev('.wdeb_tooltip').css('margin-top', '16px');
+$("h2").prev().after(_wdeb_tooltip_tpl.replace(/%%text%%/, l10WdebHelp.title.replace(/"/g, '&quot;'))).end().prev('.wdeb_tooltip').css('margin-top', '16px');
 
 });
 })(jQuery);

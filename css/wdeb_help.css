@@ -5,6 +5,8 @@
 	margin: 0;
 	margin-right: 5px;
 	cursor: help;
+	position: relative;
+	z-index: 999999;
 }
 
 .wdeb_help_popup .help {

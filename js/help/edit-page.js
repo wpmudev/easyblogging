@@ -8,7 +8,7 @@ $("#wdeb_show_help").click(function () {
 });
  */
 	
-$("h2").prev().after(_wdeb_tooltip_tpl.replace(/%%text%%/, l10WdebHelp.edit_page)).end().prev('.wdeb_tooltip').css('margin-top', '16px');
+$("h2").prev().after(_wdeb_tooltip_tpl.replace(/%%text%%/, l10WdebHelp.edit_page.replace(/"/g, '&quot;'))).end().prev('.wdeb_tooltip').css('margin-top', '16px');
 
 });
 })(jQuery);

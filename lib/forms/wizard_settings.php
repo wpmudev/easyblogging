@@ -34,10 +34,24 @@
 <style type="text/css">
 .wdeb_step {
 	width: 400px;
-	height: 50px;
-	background: #eee;
+	background: #fff;
 	margin-bottom: 1em;
 	cursor: move;
+	padding: .5em;
+	padding-left: 2em;
+	border: 2px solid #E1E1E1;
+	position: relative;
+	overflow: hidden;
+}
+.wdeb_step:before {
+	content: "";
+	position: absolute;
+	top: .7em;
+	left: .5em;
+	width: 1em;
+	height: 2px;
+	border-top: 6px double #E1E1E1;
+	border-bottom: 2px solid #E1E1E1;
 }
 .wdeb_step h4 {
 	margin: 0;
