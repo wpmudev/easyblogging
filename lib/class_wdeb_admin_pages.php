@@ -44,6 +44,9 @@ class Wdeb_AdminPages {
 		$wp_upload_dir = wp_upload_dir();
 		$logo_dir = $wp_upload_dir['basedir'] . '/wdeb';
 		$logo_path = $wp_upload_dir['baseurl'] . '/wdeb';
+                
+                // fixes protocol errors, remove whenever wp_upload_dir gets fixed
+                $logo_path = str_replace("http:", "", $logo_path);
 
 		if (!file_exists($logo_dir)) wp_mkdir_p($logo_dir);
 		while (file_exists("{$logo_dir}/{$name}")) $name = rand(0,9) . $name;
