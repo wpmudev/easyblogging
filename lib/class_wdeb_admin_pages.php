@@ -64,6 +64,9 @@ class Wdeb_AdminPages {
 	}
 
 	function create_site_admin_menu_entry () {
+		$perms = (defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN) ? 'manage_network_options' : 'manage_options';
+		if (!current_user_can($perms)) return false;
+
 		if (@$_POST && isset($_POST['option_page'])) {
 			$changed = false;
 			if('wdeb' == @$_POST['option_page']) {
@@ -100,7 +103,7 @@ class Wdeb_AdminPages {
 				die;
 			}
 		}
-		$perms = (defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN) ? 'manage_network_options' : 'manage_options';
+	
 		add_menu_page(__('Easy Blogging', 'wdeb'), __('Easy Blogging', 'wdeb'), $perms, 'wdeb', array($this, 'create_admin_blogging_page'), WDEB_PLUGIN_URL . '/img/eb_plugin.png');
 		add_submenu_page('wdeb', __('Easy Blogging', 'wdeb'), __('Easy Blogging', 'wdeb'), $perms, 'wdeb', array($this, 'create_admin_blogging_page'));
 		add_submenu_page('wdeb', __('Easy Blogging Wizard', 'wdeb'), __('Easy Blogging Wizard', 'wdeb'), $perms, 'wdeb_wizard', array($this, 'create_admin_wizard_page'));
