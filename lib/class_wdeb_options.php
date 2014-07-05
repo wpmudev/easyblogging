@@ -27,7 +27,10 @@ class Wdeb_Options {
 		$logo = get_option('wdeb_logo'); // Try blog option first
 		$logo = $logo ? $logo : $this->get_option('wdeb_logo'); // Fallback to site option
 		$logo = $logo ? $logo : WDEB_LOGO_URL; // Fallback to default.
-		return $logo;
+		return is_ssl()
+			? str_replace('http://', 'https://', $logo)
+			: $logo
+		;
 	}
 
 	/**
