@@ -41,6 +41,16 @@ class Wdeb_Menu_ManageMenuItems {
 		add_action('wp_ajax_wdeb_menu_items_reset_order', array($this, 'json_reset_order'));
 		add_action('wp_ajax_wdeb_menu_items_reset_items', array($this, 'json_reset_items'));
 		add_action('wp_ajax_wdeb_menu_items_reset_all', array($this, 'json_reset_all'));
+
+		add_action('admin_init', array($this, 'dispatch_default_type'));
+	}
+
+	function dispatch_default_type () {
+		if (!is_admin() && !is_network_admin()) return true;
+		if (empty($_GET['wdeb_source'])) return true;
+		if ('easy_blogging-new_menu_item' !== trim($_GET['wdeb_source'])) return false;
+
+		add_filter('pre_option_image_default_link_type', create_function('', 'return "file";'));
 	}
 
 
@@ -361,7 +371,7 @@ class Wdeb_Menu_ManageMenuItems {
 	}
 
 	function create_resets_box () {
-		echo '<p>' . __('Use the buttons bellow to reset some aspects of your customization to their defaults', 'wdeb') . '</p>';
+		echo '<p>' . __('Use the buttons below to reset some aspects of your customization to their defaults', 'wdeb') . '</p>';
 		echo '<input type="button" id="wdeb_menu_items-reset_order" value="' . esc_attr(__('Reset menu order', 'wdeb')) . '" />';
 		echo '&nbsp;';
 		echo '<input type="button" id="wdeb_menu_items-reset_items" value="' . esc_attr(__('Reset new menu items', 'wdeb')) . '" />';

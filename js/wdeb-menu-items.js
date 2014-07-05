@@ -22,7 +22,7 @@ $(".wdeb_uncheck_all_items").click(function () {
 /* --- Choosing icon --- */
 $("#wdeb_menu_items-new-icon-trigger").click(function () {
 	var height = jQuery(window).height*0.35;
-	tb_show("&nbsp;", _wdeb_menu_items.admin_base + "media-upload.php?type=video&TB_iframe=1&width=640&height="+height);
+	tb_show("&nbsp;", _wdeb_menu_items.admin_base + "media-upload.php?wdeb_source=easy_blogging-new_menu_item&type=video&TB_iframe=1&width=640&height="+height);
 	__oldSentToEditor = window.send_to_editor;
 	window.send_to_editor = function (html) {
 		var $el = $(html);
