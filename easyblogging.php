@@ -2,8 +2,8 @@
 /*
 Plugin Name: Easy Blogging
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
-Description: Modifies the Wordpress admin area to default it to a "Beginner" area, with the option to switch to the normal, "Advanced" area
-Version: 3.3.3-BETA-1
+Description: Modifies the Wordpress admin area to default it to a "Beginner" area, with the option to switch to the normal, "Advanced" area.
+Version: 3.3.3
 Text Domain: wdeb
 Author: WPMU DEV
 Author URI: http://premium.wpmudev.org
@@ -54,11 +54,6 @@ $textdomain_handler('wdeb', false, WDEB_PLUGIN_SELF_DIRNAME . '/languages/');
 define('WDEB_LOGO_URL', WDEB_PLUGIN_URL . '/img/logo.png', true);
 define('WDEB_LANDING_PAGE', 'index.php', true);
 
-
-if (file_exists(WDEB_PLUGIN_BASE_DIR . '/lib/wpmudev-dash-notification.php')) {
-	require_once WDEB_PLUGIN_BASE_DIR . '/lib/wpmudev-dash-notification.php';
-}
-
 require_once WDEB_PLUGIN_BASE_DIR . '/lib/class_wdeb_installer.php';
 Wdeb_Installer::check();
 
@@ -79,4 +74,26 @@ if (is_admin()) {
 	Wdeb_AdminPages::serve();
 	Wdeb_Tooltips::serve();
 	Wdeb_Wizard::serve();
+
+	// Setup dashboard notices
+	if (file_exists(WDEB_PLUGIN_BASE_DIR . '/lib/wpmudev-dash-notification.php')) {
+		global $wpmudev_notices;
+		if (!is_array($wpmudev_notices)) $wpmudev_notices = array();
+		$wpmudev_notices[] = array(
+			'id' => 133,
+			'name' => 'Easy Blogging',
+			'screens' => array(
+				'toplevel_page_wdeb-network',
+				'toplevel_page_wdeb',
+				'easy-blogging_page_wdeb_wizard-network',
+				'easy-blogging_page_wdeb_wizard',
+				'easy-blogging_page_wdeb_help-network',
+				'easy-blogging_page_wdeb_help',
+				'easy-blogging_page_wdeb_plugins-network',
+				'easy-blogging_page_wdeb_plugins',
+			),
+		);
+		require_once WDEB_PLUGIN_BASE_DIR . '/lib/wpmudev-dash-notification.php';
+	}
+	// End dash bootstrap
 }
