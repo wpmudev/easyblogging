@@ -8,7 +8,7 @@ class Wdeb_Installer {
 	 * @public
 	 * @static
 	 */
-	function check () {
+	public static function check () {
 		$is_installed = is_multisite() ? get_site_option('wdeb') : get_option('wdeb');
 		if (!$is_installed) Wdeb_Installer::install();
 	}
@@ -17,7 +17,7 @@ class Wdeb_Installer {
 	 * @private
 	 * @static
 	 */
-	function install () {
+	public static function install () {
 		$me = new Wdeb_Installer;
 		$me->create_default_options();
 	}

@@ -15,7 +15,7 @@ class Wdeb_Wizard {
 	 *
 	 * @static
 	 */
-	function serve () {
+	public static function serve () {
 		$me = new Wdeb_Wizard;
 		$me->add_hooks();
 	}

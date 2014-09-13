@@ -15,7 +15,7 @@ class Wdeb_Tooltips {
 	 *
 	 * @static
 	 */
-	function serve () {
+	public static function serve () {
 		$me = new Wdeb_Tooltips;
 		$me->add_hooks();
 	}

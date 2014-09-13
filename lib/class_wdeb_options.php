@@ -38,7 +38,7 @@ class Wdeb_Options {
 	 *
 	 * @static
 	 */
-	function populate () {
+	public static function populate () {
 		/*
 		$site_opts = get_site_option('wdeb');
 		$site_opts = is_array($site_opts) ? $site_opts : array();
