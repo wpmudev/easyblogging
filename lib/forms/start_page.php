@@ -231,21 +231,18 @@ if ($('#menu li.current .wdeb_meta').length) {
 				<div class="inner">
 
 <?php if(is_multisite()) {
-                    global $blog_id, $current_site, $current_blog; ?>
-
-<?php
-$current_site = get_current_site();
-$current_network_site = get_current_site_name(get_current_site());
-
+	global $blog_id, $current_site, $current_blog;
+	$current_site = get_current_site();
+	$current_network_site = !empty($current_site->site_name) ? $current_site->site_name : get_bloginfo("name");
 ?>
 
-<h1><?php printf(__('Welcome to %s', 'wdeb'), $current_network_site->site_name );?></h1>
+	<h1><?php printf(__('Welcome to %s', 'wdeb'), $current_network_site );?></h1>
 
-                    <?php } else { ?>
+<?php } else { ?>
 
-					<h1><?php printf(__('Welcome to %s', 'wdeb'), get_bloginfo('name'));?></h1>
+	<h1><?php printf(__('Welcome to %s', 'wdeb'), get_bloginfo('name'));?></h1>
 
-                    <?php } ?>
+<?php } ?>
 
        <div class="start-headline"><?php printf(__("Select how you'd like to use your site - %s (you can change at any time)", 'wdeb'), get_bloginfo('name'));?></div>
 
