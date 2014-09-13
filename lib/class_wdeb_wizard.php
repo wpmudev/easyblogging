@@ -6,8 +6,6 @@ class Wdeb_Wizard {
 
 	var $data;
 
-	function Wdeb_Wizard () { $this->__construct(); }
-
 	function __construct () {
 		$this->data = new Wdeb_Options;
 	}

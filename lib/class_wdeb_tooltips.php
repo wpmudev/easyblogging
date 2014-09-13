@@ -6,8 +6,6 @@ class Wdeb_Tooltips {
 
 	var $data;
 
-	function Wdeb_Tooltips () { $this->__construct(); }
-
 	function __construct () {
 		$this->data = new Wdeb_Options;
 	}

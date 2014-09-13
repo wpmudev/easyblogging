@@ -9,7 +9,6 @@ class Wdeb_AdminPages {
 	var $_translation_replacements = array();
 	var $_menu_partial;
 
-	function Wdeb_AdminPages () { $this->__construct(); }
 
 	function __construct () {
 		$this->data = new Wdeb_Options;
