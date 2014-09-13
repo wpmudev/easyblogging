@@ -65,6 +65,10 @@ html.wp-toolbar { padding-top: 0;}
    <?php } ?>
 }
 
+#post-body p label {
+	width: auto;
+}
+
 .wdeb_tooltip {
 	background: url(<?php echo WDEB_PLUGIN_THEME_URL ?>/assets/icons/theme_icons/tooltip.png) top left no-repeat;
 }
