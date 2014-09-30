@@ -5,6 +5,13 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+3.3.4 - 2014-09-30
+----------------------------------------------------------------------
+- Fix for deprecated API calls.
+- Fix for CSS conflicts and widths issues.
+- Fix for localization issues.
+- Fix for media display mode.
+
 3.3.3 - 2014-07-09
 ----------------------------------------------------------------------
 - Fix for enabling live preview in non-active themes.
