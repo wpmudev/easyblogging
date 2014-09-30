@@ -339,6 +339,8 @@ class Wdeb_AdminPages {
 			remove_action('in_admin_header', 'wp_admin_bar_render', 0);
 			add_action('eab-admin_toolbar-render', 'wp_admin_bar_render');
 
+			add_filter('get_user_option_media_library_mode', array($this, 'override_media_library_format'));
+
 			// Take care of autostart values - turn on
 			if ($user_id && $this->data->get_option('hijack_start_page')) {
 				$start = get_user_meta($user_id, 'wdeb_autostart', true);
@@ -351,6 +353,10 @@ class Wdeb_AdminPages {
 				if (!$start) update_user_meta($user_id, 'wdeb_autostart', 'no');
 			}
 		}
+	}
+
+	public function override_media_library_format ($mode) {
+		return 'list';
 	}
 
 	function is_in_easymode () {
