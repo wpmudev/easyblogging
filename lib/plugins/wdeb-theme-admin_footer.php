@@ -4,7 +4,7 @@ Plugin Name: Admin Footer
 Description: Show a footer area on all pages in the Easy mode.
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Version: 1.0
-Author: Ve Bailovity (Incsub)
+Author: WPMU DEV
 */
 
 class Wdeb_Theme_AdminFooter {

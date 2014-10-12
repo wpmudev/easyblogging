@@ -4,7 +4,7 @@ Plugin Name: Admin toolbar switch button
 Description: Replace the standard Easy mode toggle button with an Admin toolbar menu entry.
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Version: 1.0
-Author: Ve Bailovity (Incsub)
+Author: WPMU DEV
 */
 
 class Wdeb_Theme_ToolbarSwitchButton {

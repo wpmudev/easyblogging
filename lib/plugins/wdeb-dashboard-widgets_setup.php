@@ -4,7 +4,7 @@ Plugin Name: Dashboard widgets setup
 Description: Easily manage displayed dashboard widgets on your Easy Blogging installs.
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Version: 1.0
-Author: Ve Bailovity (Incsub)
+Author: WPMU DEV
 */
 
 class Wdeb_Dashboard_WidgetsSetup {

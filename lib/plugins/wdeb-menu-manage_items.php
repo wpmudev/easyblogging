@@ -4,7 +4,7 @@ Plugin Name: Manage menu items
 Description: Easily manage menu items on your Easy Blogging menu.
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Version: 1.0.1
-Author: Ve Bailovity (Incsub)
+Author: WPMU DEV
 */
 
 class Wdeb_Menu_ManageMenuItems {

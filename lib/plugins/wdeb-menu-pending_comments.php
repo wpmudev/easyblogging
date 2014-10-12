@@ -4,7 +4,7 @@ Plugin Name: Pending comments notification
 Description: Adds a balloon with pending comments count to Comments menu item.
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Version: 1.0
-Author: Ve Bailovity (Incsub)
+Author: WPMU DEV
 */
 
 class Wdeb_Menu_PendingComments {

@@ -4,7 +4,7 @@ Plugin Name: Control "Product" metaboxes
 Description: Allows control over which metaboxes appear in the "Product" custom post type. <b>Requires MarketPress plugin</b>
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Version: 1.0
-Author: Ve Bailovity (Incsub)
+Author: WPMU DEV
 */
 
 class Wdeb_Editor_ControlProductMetaboxes {

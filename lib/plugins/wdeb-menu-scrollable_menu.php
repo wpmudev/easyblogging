@@ -4,7 +4,7 @@ Plugin Name: Scrollable menu
 Description: Allows menu to scroll on small screens. Also allows for more verbose wizard step titles. 
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Version: 1.0.1
-Author: Ve Bailovity (Incsub)
+Author: WPMU DEV
 */
 
 class Wdeb_Menu_ScrollableMenu {

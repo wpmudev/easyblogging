@@ -4,7 +4,7 @@ Plugin Name: Allow Customizer
 Description: Allows WP3.4+ Theme Customizer access. <b>Requires WordPress v3.4 or better.</b>
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Version: 1.0
-Author: Ve Bailovity (Incsub)
+Author: WPMU DEV
 */
 
 class Wdeb_Themes_AllowCustomizer {

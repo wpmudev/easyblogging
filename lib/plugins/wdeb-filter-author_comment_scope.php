@@ -4,7 +4,7 @@ Plugin Name: Author Comments scope
 Description: Filters out comments in comments list to show only the ones on the user-authord posts for your non-admin users.
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Version: 1.0
-Author: Ve Bailovity (Incsub)
+Author: WPMU DEV
 */
 
 class Wdeb_Menu_AuthorCommentsScope {

@@ -4,7 +4,7 @@ Plugin Name: Pro Sites: Force Easy mode on Free sites
 Description: Forces Easy mode on Free sites. <b>Requires Pro Sites plugin.</b>
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Version: 1.0.1
-Author: Ve Bailovity (Incsub)
+Author: WPMU DEV
 */
 
 class Wdeb_Pro_ForceOnFreeSites {

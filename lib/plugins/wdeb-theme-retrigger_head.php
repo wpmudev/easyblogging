@@ -4,7 +4,7 @@ Plugin Name: Compatibility mode
 Description: If you experience a conflict with your plugin and Easy Blogging, try activating this add-on.
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Version: 1.0
-Author: Ve Bailovity (Incsub)
+Author: WPMU DEV
 */
 
 class Wdeb_AdminHead_Retrigger {

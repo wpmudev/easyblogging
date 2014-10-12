@@ -4,7 +4,7 @@ Plugin Name: Admin toolbar redirection for Wizard mode
 Description: Redirects non-wizard links from Admin toolbar.
 Plugin URI: http://premium.wpmudev.org/project/easy-blogging
 Version: 1.0
-Author: Ve Bailovity (Incsub)
+Author: WPMU DEV
 */
 
 class Wdeb_Menu_WizardToolbarRedirection {
