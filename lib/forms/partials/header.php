@@ -50,6 +50,14 @@ body {
 	height: auto;
 	/*padding-top: 28px;*/
 }
+/* fix wp4.0 long post scroll offsets */
+table#post-status-info {
+	margin: 0;
+}
+/* fix widget labels */
+.widget-content input[type="checkbox"] + label {
+	display: inline-block;
+}
 html.wp-toolbar { padding-top: 0;}
 <?php if ((int)$this->data->get_option('admin_bar')) { ?>
 	body { padding-top: 28px; }
