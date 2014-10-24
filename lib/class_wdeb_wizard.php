@@ -65,6 +65,16 @@ class Wdeb_Wizard {
 		}
 	}
 
+	public static function in_wizard_mode ($user_id=false) {
+		if (empty($user_id) || !(int)$user_id) {
+			$user_id = get_current_user_id();
+		}
+		return $user_id
+			? get_user_meta($user_id, 'wdeb_wizard', true) 
+			: false
+		;
+	}
+
 	function add_hooks () {
 		if (!$this->data->get_option('wizard_enabled', 'wdeb_wizard')) return false;
 
