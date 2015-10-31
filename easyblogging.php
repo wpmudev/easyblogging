@@ -26,23 +26,23 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
 
-define ('WDEB_PLUGIN_SELF_DIRNAME', basename(dirname(__FILE__)), true);
+define ('WDEB_PLUGIN_SELF_DIRNAME', basename(dirname(__FILE__)));
 
 //Setup proper paths/URLs and load text domains
 if (is_multisite() && defined('WPMU_PLUGIN_URL') && defined('WPMU_PLUGIN_DIR') && file_exists(WPMU_PLUGIN_DIR . '/' . basename(__FILE__))) {
-	define ('WDEB_PLUGIN_LOCATION', 'mu-plugins', true);
-	define ('WDEB_PLUGIN_BASE_DIR', WPMU_PLUGIN_DIR, true);
+	define ('WDEB_PLUGIN_LOCATION', 'mu-plugins');
+	define ('WDEB_PLUGIN_BASE_DIR', WPMU_PLUGIN_DIR);
 	define ('WDEB_PLUGIN_URL', str_replace('http://', (@$_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), WPMU_PLUGIN_URL), true);
 	$textdomain_handler = 'load_muplugin_textdomain';
 } else if (defined('WP_PLUGIN_URL') && defined('WP_PLUGIN_DIR') && file_exists(WP_PLUGIN_DIR . '/' . WDEB_PLUGIN_SELF_DIRNAME . '/' . basename(__FILE__))) {
-	define ('WDEB_PLUGIN_LOCATION', 'subfolder-plugins', true);
-	define ('WDEB_PLUGIN_BASE_DIR', WP_PLUGIN_DIR . '/' . WDEB_PLUGIN_SELF_DIRNAME, true);
-	define ('WDEB_PLUGIN_URL', str_replace('http://', (@$_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), WP_PLUGIN_URL) . '/' . WDEB_PLUGIN_SELF_DIRNAME, true);
+	define ('WDEB_PLUGIN_LOCATION', 'subfolder-plugins');
+	define ('WDEB_PLUGIN_BASE_DIR', WP_PLUGIN_DIR . '/' . WDEB_PLUGIN_SELF_DIRNAME);
+	define ('WDEB_PLUGIN_URL', str_replace('http://', (@$_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), WP_PLUGIN_URL) . '/' . WDEB_PLUGIN_SELF_DIRNAME);
 	$textdomain_handler = 'load_plugin_textdomain';
 } else if (defined('WP_PLUGIN_URL') && defined('WP_PLUGIN_DIR') && file_exists(WP_PLUGIN_DIR . '/' . basename(__FILE__))) {
-	define ('WDEB_PLUGIN_LOCATION', 'plugins', true);
-	define ('WDEB_PLUGIN_BASE_DIR', WP_PLUGIN_DIR, true);
-	define ('WDEB_PLUGIN_URL', str_replace('http://', (@$_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), WP_PLUGIN_URL), true);
+	define ('WDEB_PLUGIN_LOCATION', 'plugins');
+	define ('WDEB_PLUGIN_BASE_DIR', WP_PLUGIN_DIR);
+	define ('WDEB_PLUGIN_URL', str_replace('http://', (@$_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), WP_PLUGIN_URL));
 	$textdomain_handler = 'load_plugin_textdomain';
 } else {
 	// No textdomain is loaded because we can't determine the plugin location.
@@ -51,8 +51,8 @@ if (is_multisite() && defined('WPMU_PLUGIN_URL') && defined('WPMU_PLUGIN_DIR') &
 }
 $textdomain_handler('wdeb', false, WDEB_PLUGIN_SELF_DIRNAME . '/languages/');
 
-define('WDEB_LOGO_URL', WDEB_PLUGIN_URL . '/img/logo.png', true);
-define('WDEB_LANDING_PAGE', 'index.php', true);
+define('WDEB_LOGO_URL', WDEB_PLUGIN_URL . '/img/logo.png');
+define('WDEB_LANDING_PAGE', 'index.php');
 
 require_once WDEB_PLUGIN_BASE_DIR . '/lib/class_wdeb_installer.php';
 Wdeb_Installer::check();

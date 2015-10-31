@@ -5,7 +5,7 @@
 class Wdeb_PluginsHandler {
 
 	public static function init () {
-		define('WDEB_PLUGIN_PLUGINS_DIR', WDEB_PLUGIN_BASE_DIR . '/lib/plugins', true);
+		define('WDEB_PLUGIN_PLUGINS_DIR', WDEB_PLUGIN_BASE_DIR . '/lib/plugins');
 		self::load_active_plugins();
 	}
 

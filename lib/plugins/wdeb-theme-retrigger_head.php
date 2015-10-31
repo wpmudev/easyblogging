@@ -22,7 +22,7 @@ class Wdeb_AdminHead_Retrigger {
 
 	public function init () {
 		if (defined('WDEB_CORE_ACTIONS_REDO_ADMIN_HEAD')) return false;
-		define('WDEB_CORE_ACTIONS_REDO_ADMIN_HEAD', true, true);
+		define('WDEB_CORE_ACTIONS_REDO_ADMIN_HEAD', true);
 	}
 
 }

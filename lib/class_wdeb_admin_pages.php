@@ -279,7 +279,7 @@ class Wdeb_AdminPages {
 
 		$theme = $this->data->get_option('plugin_theme');
 		$theme = $theme ? $theme : 'default';
-		define('WDEB_PLUGIN_THEME_URL', WDEB_PLUGIN_URL . '/themes/' . $theme, true);
+		define('WDEB_PLUGIN_THEME_URL', WDEB_PLUGIN_URL . '/themes/' . $theme);
 
 		$user = wp_get_current_user();
 		$user_id = ($user && $user->ID) ? $user->ID : false;
