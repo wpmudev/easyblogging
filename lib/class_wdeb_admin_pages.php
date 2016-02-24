@@ -382,10 +382,11 @@ class Wdeb_AdminPages {
 	 * "wdeb_menu_items" filter.
 	 */
 	function easy_mode_menu () {
+		global $psts;
 		$pro_href = $pro_title = false;
 		if (class_exists('ProSites')) { // Official
 			$pro_href = 'admin.php?page=psts-checkout';
-			$pro_title = ProSites::get_setting('rebrand');
+			$pro_title = $psts->get_setting('rebrand');
 		} else if (class_exists('ProBlogs')) { // Beta
 			$pro_href = 'admin.php?page=pblgs-checkout';
 			$pro_title = ProBlogs::get_setting('rebrand');
