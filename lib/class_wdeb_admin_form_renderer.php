@@ -123,18 +123,19 @@ class Wdeb_AdminFormRenderer {
 	}
 
 	function create_plugin_theme_box () {
-    $themes_dir =  WDEB_PLUGIN_BASE_DIR . '/themes/';
+    $themes_dir = apply_filters('wdeb_plugin_themes_dir', WDEB_PLUGIN_BASE_DIR . '/themes/');
+    $themes_url = apply_filters('wdeb_plugin_themes_url', WDEB_PLUGIN_URL . '/themes/');
 
     if(function_exists( 'scandir' )) {
     $themes = scandir($themes_dir);
            } else {
 
-        $themes = array(
+        $themes = apply_filters('wdeb_plugin_themes_list', array(
 			"default" => __("Default %s", 'wdeb'),
 			"stripes_red" => __("Stripes Red %s", 'wdeb'),
             "stripes_orange" => __("Stripes Orange %s", 'wdeb'),
             "stripes_green" => __("Stripes Green %s", 'wdeb')
-		);
+		));
             }
 
 		foreach ($themes as $theme) {
@@ -142,7 +143,7 @@ class Wdeb_AdminFormRenderer {
 
             } else {
 
-			$img = WDEB_PLUGIN_URL . '/themes/' . $theme . '/screenshot.png';
+			$img = $themes_url . $theme . '/screenshot.png';
             echo "<label style='overflow: hidden; margin-bottom: 20px; float:left; width: 233px; height: 550px;' for='plugin_theme-{$theme}'>";
 			echo $this->_create_radiobox('plugin_theme', $theme) . $theme . '<br />';
             echo "<img src='" . $img . "' />";
