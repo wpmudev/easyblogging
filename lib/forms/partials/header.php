@@ -73,6 +73,10 @@ html.wp-toolbar { padding-top: 0;}
    <?php } ?>
 }
 
+/* --- Reader compat --- */
+#wdeb-mode #msreader-dashboard .msreader-manage-follow-button .current-text,
+#wdeb-mode #msreader-dashboard .msreader-follow-button .current-text {display: inline;}
+
 #post-body p label {
 	width: auto;
 }
