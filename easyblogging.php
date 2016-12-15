@@ -76,7 +76,7 @@ if (is_admin()) {
 	Wdeb_Wizard::serve();
 
 	// Setup dashboard notices
-	if (file_exists(WDEB_PLUGIN_BASE_DIR . '/lib/wpmudev-dash-notification.php')) {
+	if (file_exists(WDEB_PLUGIN_BASE_DIR . '/lib/dash/wpmudev-dash-notification.php')) {
 		global $wpmudev_notices;
 		if (!is_array($wpmudev_notices)) $wpmudev_notices = array();
 		$wpmudev_notices[] = array(
@@ -93,7 +93,7 @@ if (is_admin()) {
 				'easy-blogging_page_wdeb_plugins',
 			),
 		);
-		require_once WDEB_PLUGIN_BASE_DIR . '/lib/wpmudev-dash-notification.php';
+		require_once WDEB_PLUGIN_BASE_DIR . '/lib/dash/wpmudev-dash-notification.php';
 	}
 	// End dash bootstrap
 }
