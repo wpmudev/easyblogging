@@ -5,6 +5,15 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+3.3.5 - 2016-12-15
+----------------------------------------------------------------------
+- Add: support filters for custom easyblogging themes
+- Add: wizard mode active query static method.
+- Fix: appearance conflict with Reader
+- Fix: strict standards notice issue with Pro Sites
+- Fix: improve HHVM compatibility.
+- Fix: long post scroll offsets and widget checkbox labels.
+
 3.3.4 - 2014-09-30
 ----------------------------------------------------------------------
 - Fix for deprecated API calls.
