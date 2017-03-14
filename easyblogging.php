@@ -74,26 +74,4 @@ if (is_admin()) {
 	Wdeb_AdminPages::serve();
 	Wdeb_Tooltips::serve();
 	Wdeb_Wizard::serve();
-
-	// Setup dashboard notices
-	if (file_exists(WDEB_PLUGIN_BASE_DIR . '/lib/dash/wpmudev-dash-notification.php')) {
-		global $wpmudev_notices;
-		if (!is_array($wpmudev_notices)) $wpmudev_notices = array();
-		$wpmudev_notices[] = array(
-			'id' => 133,
-			'name' => 'Easy Blogging',
-			'screens' => array(
-				'toplevel_page_wdeb-network',
-				'toplevel_page_wdeb',
-				'easy-blogging_page_wdeb_wizard-network',
-				'easy-blogging_page_wdeb_wizard',
-				'easy-blogging_page_wdeb_help-network',
-				'easy-blogging_page_wdeb_help',
-				'easy-blogging_page_wdeb_plugins-network',
-				'easy-blogging_page_wdeb_plugins',
-			),
-		);
-		require_once WDEB_PLUGIN_BASE_DIR . '/lib/dash/wpmudev-dash-notification.php';
-	}
-	// End dash bootstrap
 }
