@@ -32,20 +32,22 @@ class Wdeb_AdminPages {
 	}
 
 	function _handle_logo_upload () {
-		if (!isset($_FILES['wdeb_logo'])) return false;
+		if (!isset($_FILES['wdeb_logo'])) { 
+			return false; 
+		}
 		$name = $_FILES['wdeb_logo']['name'];
-		if (!$name) return false;
+		if (!$name)  { return false; }
 
 		$allowed = array('jpg', 'jpeg', 'png', 'gif');
 		$ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
-		if (!in_array($ext, $allowed)) wp_die(__('This file type is not supported', 'wdeb'));
+		if (!in_array($ext, $allowed)) { wp_die(__('This file type is not supported', 'wdeb')); }
 
 		$wp_upload_dir = wp_upload_dir();
 		$logo_dir = $wp_upload_dir['basedir'] . '/wdeb';
 		$logo_path = $wp_upload_dir['baseurl'] . '/wdeb';
 
-		if (!file_exists($logo_dir)) wp_mkdir_p($logo_dir);
-		while (file_exists("{$logo_dir}/{$name}")) $name = rand(0,9) . $name;
+		if (!file_exists($logo_dir)) { wp_mkdir_p($logo_dir); }
+		while (file_exists("{$logo_dir}/{$name}")) { $name = rand(0,9) . $name; }
 
 		if (move_uploaded_file($_FILES['wdeb_logo']['tmp_name'], "{$logo_dir}/{$name}")) {
 			if (defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN) {
@@ -64,7 +66,7 @@ class Wdeb_AdminPages {
 
 	function create_site_admin_menu_entry () {
 		$perms = (defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN) ? 'manage_network_options' : 'manage_options';
-		if (!current_user_can($perms)) return false;
+		if (!current_user_can($perms)) { return false; }
 
 		if (@$_POST && isset($_POST['option_page'])) {
 			$changed = false;
@@ -161,7 +163,7 @@ class Wdeb_AdminPages {
 	}
 
 	function js_print_scripts () {
-		if (defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN) return;
+		if (defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN) { return; }
 		if (!$this->is_in_easymode()) {
 			wp_enqueue_script('wdeb_switch', WDEB_PLUGIN_URL . '/js/wdeb_switch.js', 'jquery');
 			wp_localize_script('wdeb_switch', 'l10WdebSwitch', array(
@@ -217,13 +219,13 @@ class Wdeb_AdminPages {
 		$page_boxes = $this->data->get_option('page_boxes');
 		$page_boxes = is_array($page_boxes) ? $page_boxes : array();
 
-		if (isset($wp_meta_boxes['post']['side']['core']) && is_array(@$wp_meta_boxes['post']['side']['core'])) foreach ($wp_meta_boxes['post']['side']['core'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['side']['core'][$name]);
-		if (isset($wp_meta_boxes['post']['side']['low']) && is_array(@$wp_meta_boxes['post']['side']['low'])) foreach ($wp_meta_boxes['post']['side']['low'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['side']['low'][$name]);
-		if (isset($wp_meta_boxes['post']['normal']['core']) && is_array(@$wp_meta_boxes['post']['normal']['core'])) foreach ($wp_meta_boxes['post']['normal']['core'] as $name => $box) if (in_array($name, $post_boxes)) unset($wp_meta_boxes['post']['normal']['core'][$name]);
+		if (isset($wp_meta_boxes['post']['side']['core']) && is_array(@$wp_meta_boxes['post']['side']['core'])) foreach ($wp_meta_boxes['post']['side']['core'] as $name => $box) if (in_array($name, $post_boxes)) { unset($wp_meta_boxes['post']['side']['core'][$name]); }
+		if (isset($wp_meta_boxes['post']['side']['low']) && is_array(@$wp_meta_boxes['post']['side']['low'])) foreach ($wp_meta_boxes['post']['side']['low'] as $name => $box) if (in_array($name, $post_boxes)) { unset($wp_meta_boxes['post']['side']['low'][$name]); }
+		if (isset($wp_meta_boxes['post']['normal']['core']) && is_array(@$wp_meta_boxes['post']['normal']['core'])) foreach ($wp_meta_boxes['post']['normal']['core'] as $name => $box) if (in_array($name, $post_boxes)) { unset($wp_meta_boxes['post']['normal']['core'][$name]);}
 
-		if (isset($wp_meta_boxes['page']['side']['core']) && is_array(@$wp_meta_boxes['page']['side']['core'])) foreach ($wp_meta_boxes['page']['side']['core'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['side']['core'][$name]);
-		if (isset($wp_meta_boxes['page']['side']['low']) && is_array(@$wp_meta_boxes['page']['side']['low'])) foreach ($wp_meta_boxes['page']['side']['low'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['side']['low'][$name]);
-		if (isset($wp_meta_boxes['page']['normal']['core']) && is_array(@$wp_meta_boxes['page']['normal']['core'])) foreach ($wp_meta_boxes['page']['normal']['core'] as $name => $box) if (in_array($name, $page_boxes)) unset($wp_meta_boxes['page']['normal']['core'][$name]);
+		if (isset($wp_meta_boxes['page']['side']['core']) && is_array(@$wp_meta_boxes['page']['side']['core'])) foreach ($wp_meta_boxes['page']['side']['core'] as $name => $box) if (in_array($name, $page_boxes)) { unset($wp_meta_boxes['page']['side']['core'][$name]); }
+		if (isset($wp_meta_boxes['page']['side']['low']) && is_array(@$wp_meta_boxes['page']['side']['low'])) foreach ($wp_meta_boxes['page']['side']['low'] as $name => $box) if (in_array($name, $page_boxes)) { unset($wp_meta_boxes['page']['side']['low'][$name]); }
+		if (isset($wp_meta_boxes['page']['normal']['core']) && is_array(@$wp_meta_boxes['page']['normal']['core'])) foreach ($wp_meta_boxes['page']['normal']['core'] as $name => $box) if (in_array($name, $page_boxes)) { unset($wp_meta_boxes['page']['normal']['core'][$name]); }
 
 		do_action('wdeb_admin-editor_metaboxes_cleanup');
 	}
@@ -236,7 +238,7 @@ class Wdeb_AdminPages {
 		foreach ($wp_meta_boxes['dashboard'] as $board => $position) {
 			foreach ($position as $pos => $boxes) {
 				foreach ($boxes as $key => $box) {
-					if (in_array($box['id'], $allowed)) continue;
+					if (in_array($box['id'], $allowed)) { continue; }
 					do_action('wdeb_dashboard_cleanup_removing_item', $board, $pos, $key, $wp_meta_boxes['dashboard'][$board][$pos][$key]);
 					unset($wp_meta_boxes['dashboard'][$board][$pos][$key]);
 				}
@@ -245,7 +247,15 @@ class Wdeb_AdminPages {
 	}
 
 	function easy_dashboard_widget () {
-		echo stripslashes($this->data->get_option('widget_contents'));
+		$widget_contents= stripslashes($this->data->get_option('widget_contents'));
+		
+		/**
+		 * Filters the easy_dashboard_widget content.
+		 *
+		 * @param string $widget_contents The widget_contents from the database.
+		 */
+		$content= apply_filters('easy_dashboard_widget_contents',$widget_contents);
+		echo $content;
 	}
 
 	function process_dashboard () {
@@ -275,7 +285,7 @@ class Wdeb_AdminPages {
 	function initialize_easy_mode () {
 		global $pagenow;
 
-		if (defined('DOING_AJAX')) return;
+		if (defined('DOING_AJAX')) { return; }
 
 		$theme = $this->data->get_option('plugin_theme');
 		$theme = $theme ? $theme : 'default';
@@ -345,13 +355,13 @@ class Wdeb_AdminPages {
 			// Take care of autostart values - turn on
 			if ($user_id && $this->data->get_option('hijack_start_page')) {
 				$start = get_user_meta($user_id, 'wdeb_autostart', true);
-				if (!$start) update_user_meta($user_id, 'wdeb_autostart', 'yes');
+				if (!$start) { update_user_meta($user_id, 'wdeb_autostart', 'yes'); }
 			}
 		} else {
 			// Take care of autostart values - turn off
 			if ($user_id && $this->data->get_option('hijack_start_page')) {
 				$start = get_user_meta($user_id, 'wdeb_autostart', true);
-				if (!$start) update_user_meta($user_id, 'wdeb_autostart', 'no');
+				if (!$start) { update_user_meta($user_id, 'wdeb_autostart', 'no'); }
 			}
 		}
 	}
@@ -534,7 +544,7 @@ class Wdeb_AdminPages {
 
 	function render_hijacking_profile_option ($user) {
 		$user_id = !empty($user->ID) ? $user->ID : false;
-		if (!$user_id) return false;
+		if (!$user_id) { return false; }
 		$meta = get_user_meta($user_id, 'wdeb_autostart', true);
 		$yes_checked = "yes" == $meta ? 'checked="checked"' : '';
 		$no_checked = "no" == $meta ? 'checked="checked"' : '';
@@ -566,8 +576,8 @@ class Wdeb_AdminPages {
 	}
 
 	function save_hijacking_profile_option ($user_id) {
-		if (!current_user_can('edit_user', $user_id)) return false;
-		if (!isset($_POST['wdeb_autostart'])) return false;
+		if (!current_user_can('edit_user', $user_id)) { return false; }
+		if (!isset($_POST['wdeb_autostart'])) { return false; }
 		update_usermeta($user_id, 'wdeb_autostart', $_POST['wdeb_autostart']);
 	}
 
