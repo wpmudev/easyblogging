@@ -32,7 +32,7 @@ define ('WDEB_PLUGIN_SELF_DIRNAME', basename(dirname(__FILE__)));
 if (is_multisite() && defined('WPMU_PLUGIN_URL') && defined('WPMU_PLUGIN_DIR') && file_exists(WPMU_PLUGIN_DIR . '/' . basename(__FILE__))) {
 	define ('WDEB_PLUGIN_LOCATION', 'mu-plugins');
 	define ('WDEB_PLUGIN_BASE_DIR', WPMU_PLUGIN_DIR);
-	define ('WDEB_PLUGIN_URL', str_replace('http://', (@$_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), WPMU_PLUGIN_URL), true);
+	define ('WDEB_PLUGIN_URL', str_replace('http://', (@$_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), WPMU_PLUGIN_URL));
 	$textdomain_handler = 'load_muplugin_textdomain';
 } else if (defined('WP_PLUGIN_URL') && defined('WP_PLUGIN_DIR') && file_exists(WP_PLUGIN_DIR . '/' . WDEB_PLUGIN_SELF_DIRNAME . '/' . basename(__FILE__))) {
 	define ('WDEB_PLUGIN_LOCATION', 'subfolder-plugins');
