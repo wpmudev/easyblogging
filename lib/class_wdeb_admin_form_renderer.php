@@ -1,22 +1,22 @@
 <?php
 class Wdeb_AdminFormRenderer {
 
-	function _get_option ($key=false, $pfx='wdeb') {
+	function _get_option ($key = false, $pfx = 'wdeb') {
 		$opt = defined('WP_NETWORK_ADMIN') && WP_NETWORK_ADMIN ? get_site_option($pfx) : get_option($pfx);
 		if (!$key) return $opt;
-		return @$opt[$key];
+		return is_array($opt) ? $opt[$key] : null;
 	}
 
-	function _create_checkbox ($name, $pfx='wdeb') {
+	function _create_checkbox ($name, $pfx = 'wdeb') {
 		$opt = $this->_get_option($name, $pfx);
-		$value = @$opt[$name];
+		$value = $opt[$name] ?? null; // Use the null coalescing operator for PHP 7+
 		return
 			"<input type='radio' name='{$pfx}[{$name}]' id='{$name}-yes' value='1' " . ((int)$value ? 'checked="checked" ' : '') . " /> " .
-				"<label for='{$name}-yes'>" . __('Yes', 'wdeb') . "</label>" .
+			"<label for='{$name}-yes'>" . __('Yes', 'wdeb') . "</label>" .
 			'&nbsp;' .
 			"<input type='radio' name='{$pfx}[{$name}]' id='{$name}-no' value='0' " . (!(int)$value ? 'checked="checked" ' : '') . " /> " .
-				"<label for='{$name}-no'>" . __('No', 'wdeb') . "</label>" .
-		"";
+			"<label for='{$name}-no'>" . __('No', 'wdeb') . "</label>" .
+			"";
 	}
 
 	function _create_radiobox ($name, $value) {
