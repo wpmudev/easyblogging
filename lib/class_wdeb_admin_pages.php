@@ -118,7 +118,7 @@ class Wdeb_AdminPages {
 		$form = new Wdeb_AdminFormRenderer;
 
 		register_setting('wdeb', 'wdeb');
-		add_settings_section('wdeb_settings', __('Editor Settings', 'wdeb'), create_function('', ''), 'wdeb_options_page');
+		add_settings_section('wdeb_settings', __('Editor Settings', 'wdeb'),  function() {}, 'wdeb_options_page');
 		add_settings_field('wdeb_metaboxes_posts', __('Hide these meta boxes on "Edit Post" pages', 'wdeb'), array($form, 'create_metaboxes_posts_box'), 'wdeb_options_page', 'wdeb_settings');
 		add_settings_field('wdeb_metaboxes_pages', __('Hide these meta boxes on "Edit Page" pages', 'wdeb'), array($form, 'create_metaboxes_pages_box'), 'wdeb_options_page', 'wdeb_settings');
 		add_settings_field('wdeb_admin_bar', __('Show Admin bar', 'wdeb'), array($form, 'create_admin_bar_box'), 'wdeb_options_page', 'wdeb_settings');
@@ -135,7 +135,7 @@ class Wdeb_AdminPages {
 		do_action('wdeb_admin-register_settings-settings', $form);
 
 		register_setting('wdeb', 'wdeb_wizard');
-		add_settings_section('wdeb_wizard', __('Wizard Settings', 'wdeb'), create_function('', ''), 'wdeb_wizard');
+		add_settings_section('wdeb_wizard', __('Wizard Settings', 'wdeb'),  function() {}, 'wdeb_wizard');
 		add_settings_field('wdeb_wizard_enable', __('Enable Wizard', 'wdeb'), array($form, 'create_wizard_enabled_box'), 'wdeb_wizard', 'wdeb_wizard');
 		add_settings_field('wdeb_wizard_steps', __('Configure Wizard Steps', 'wdeb'), array($form, 'create_wizard_steps_box'), 'wdeb_wizard', 'wdeb_wizard');
 		add_settings_field('wdeb_wizard_add_step', __('Add new Wizard Step', 'wdeb'), array($form, 'create_wizard_add_step_box'), 'wdeb_wizard', 'wdeb_wizard');
@@ -143,7 +143,7 @@ class Wdeb_AdminPages {
 		do_action('wdeb_admin-register_settings-wizard', $form);
 
 		register_setting('wdeb', 'wdeb_help');
-		add_settings_section('wdeb_help', __('Tooltips Settings', 'wdeb'), create_function('', ''), 'wdeb_help');
+		add_settings_section('wdeb_help', __('Tooltips Settings', 'wdeb'),  function() {}, 'wdeb_help');
 		add_settings_field('wdeb_show_tooltips', __('Show Tooltips', 'wdeb'), array($form, 'create_show_tooltips_box'), 'wdeb_help', 'wdeb_help');
 
 		do_action('wdeb_admin-register_settings-help', $form);
