@@ -9,7 +9,7 @@ class Wdeb_AdminFormRenderer {
 
 	function _create_checkbox ($name, $pfx = 'wdeb') {
 		$opt = $this->_get_option($name, $pfx);
-		$value = $opt[$name] ?? null; // Use the null coalescing operator for PHP 7+
+		$value = $opt ?? null; // Use the null coalescing operator for PHP 7+
 		return
 			"<input type='radio' name='{$pfx}[{$name}]' id='{$name}-yes' value='1' " . ((int)$value ? 'checked="checked" ' : '') . " /> " .
 			"<label for='{$name}-yes'>" . __('Yes', 'wdeb') . "</label>" .
