@@ -96,15 +96,15 @@ EOFooterCss;
 		register_setting('wdeb', 'wdeb_admin_footer');
 		
 		if ($this->_have_existing_footer()) {
-			add_settings_section('wdeb_existing_footer', __('Admin Footer', 'wdeb'), create_function('', ''), 'wdeb_admin_footer');
+			add_settings_section('wdeb_existing_footer', __('Admin Footer', 'wdeb'), function() {}, 'wdeb_admin_footer');
 			add_settings_field('wdeb_use_existing_footer', __('Use existing admin footer', 'wdeb'), array($this, 'create_use_existing_box'), 'wdeb_admin_footer', 'wdeb_existing_footer');
 		}
 
-		add_settings_section('wdeb_custom_footer', __('Custom Footer', 'wdeb'), create_function('', ''), 'wdeb_admin_footer');
+		add_settings_section('wdeb_custom_footer', __('Custom Footer', 'wdeb'), function() {}, 'wdeb_admin_footer');
 		add_settings_field('wdeb_use_custom_footer', __('Use custom footer', 'wdeb'), array($this, 'create_use_custom_box'), 'wdeb_admin_footer', 'wdeb_custom_footer');
 		add_settings_field('wdeb_custom_footer', __('Custom footer content', 'wdeb'), array($this, 'create_custom_footer_box'), 'wdeb_admin_footer', 'wdeb_custom_footer');
 
-		add_settings_section('wdeb_footer_settings', __('Settings', 'wdeb'), create_function('', ''), 'wdeb_admin_footer');
+		add_settings_section('wdeb_footer_settings', __('Settings', 'wdeb'), function() {}, 'wdeb_admin_footer');
 		add_settings_field('wdeb_wizard_footer', __('Use the footer on Wizard pages too', 'wdeb'), array($this, 'create_wizard_footer_box'), 'wdeb_admin_footer', 'wdeb_footer_settings');
 	}
 
