@@ -197,7 +197,7 @@ class Wdeb_Menu_ManageMenuItems {
 
 	function add_settings () {
 		register_setting('wdeb', 'wdeb_menu_items');
-		add_settings_section('wdeb_menu_items', __('Wizard Settings', 'wdeb'), create_function('', ''), 'wdeb_menu_items');
+		add_settings_section('wdeb_menu_items', __('Wizard Settings', 'wdeb'), function() {}, 'wdeb_menu_items');
 		add_settings_field('wdeb_show_items', __('Show or hide menu items<br/><small>(Drag and drop to reorder)</small>', 'wdeb'), array($this, 'create_show_hide_box'), 'wdeb_menu_items', 'wdeb_menu_items');
 		add_settings_field('wdeb_add_item', __('Add menu item', 'wdeb'), array($this, 'create_add_item_box'), 'wdeb_menu_items', 'wdeb_menu_items');
 		add_settings_field('wdeb_resets', __('Resets', 'wdeb'), array($this, 'create_resets_box'), 'wdeb_menu_items', 'wdeb_menu_items');
