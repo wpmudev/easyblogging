@@ -14,7 +14,6 @@ if (!$this->data->get_option('admin_bar')) {
 <?php if (version_compare($version, '3.3', '<')) { ?>
 	<script type='text/javascript' src='<?php echo WDEB_PLUGIN_THEME_URL ?>/js/jquery-ui-1.8.5.custom.min.js'></script> <!-- jquery UI -->
 <?php } ?>
-	<script type='text/javascript' src='<?php echo WDEB_PLUGIN_THEME_URL ?>/js/cufon-yui.js'></script> <!-- Cufon font replacement -->
 	<script type='text/javascript' src='<?php echo WDEB_PLUGIN_THEME_URL ?>/js/ColaborateLight_400.font.js'></script> <!-- the Colaborate Light font -->
 	<script type='text/javascript' src='<?php echo WDEB_PLUGIN_THEME_URL ?>/js/easyTooltip.js'></script> <!-- element tooltips -->
 	<script type='text/javascript' src='<?php echo WDEB_PLUGIN_THEME_URL ?>/js/jquery.tablesorter.min.js'></script> <!-- tablesorter -->
