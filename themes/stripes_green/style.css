@@ -7,14 +7,14 @@
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,
 blockquote,pre,address,code,del,dfn,em,img,q,
 dl,dt,dd,ol,ul,li,
-table,caption,tbody,tfoot,thead,tr,th,td,br,fieldset,textarea{font-family:"arial","Lucida Grande","Trebuchet MS", Helvetica, Arial, sans-serif;line-height:20px;letter-spacing:.1px;word-spacing:1px;margin:0;padding:0;border:0;}
+table,caption,tbody,tfoot,thead,tr,th,td,br,fieldset,textarea{
+	line-height:20px;letter-spacing:.1px;word-spacing:1px;margin:0;padding:0;border:0;}
 h1,h2,h3,h4,h5,h6,hr,p,ul,ol,dl,pre,address,table,form{margin:0 0 20px}
 p,h1, h2, h3, h4, h5, h6, ul.check_list, ul.arrowlist{padding-left:2px;}
-strong, b{font-weight:bold;}
+
 em, dfn, i{font-style:italic;}
 
 #primary_right #your-profile h3 {
-font-size: 1.4em;
   margin: 45px 0px 0px 8px;
 }
 
@@ -40,7 +40,6 @@ a, input { outline:none; }
 
 body {
 	color:#555;
-	font-size:12px;
 	background:#f0f0f0;
 }
 
@@ -61,19 +60,16 @@ fieldset hr {
 }
 
 h1 {
-	color::#333;
-	font-size:28px;
+	color:#333;
 	clear:both;
 }
 
 h2 {
 	color:#333;
-	font-size:18px;
 }
 
 h5 {
-	text-transform:uppercase;
-	font-size:16px;
+	/*text-transform:uppercase;*/
 	margin-bottom:15px;
 }
 
@@ -83,13 +79,13 @@ h1 span {
 
 
 /* --- 3. LAYOUT --- */
-
+/*
 div#wpwrap {
     margin: 0px;
     max-width: 1600px !important;
     min-width: 700px;
-
 }
+	*/
 
 #wpbody-content {
 	float:left;
@@ -103,9 +99,6 @@ div#edit-slug-box {
     display: block !important;
     margin-bottom: 50px;
     width: 100%;
-}
-div#edit-slug-box a {
-    font-size:11px !important;
 }
 /* --- 3.1 SIDEBAR --- */
 
@@ -180,7 +173,7 @@ div#edit-slug-box a {
 	clear:both;
 	float:left;
 	text-decoration:none;
-	color:#bbb;
+	color:#ffffff;
 	padding-left:16px;
 	height:40px;
 }
@@ -194,13 +187,12 @@ div#edit-slug-box a {
 }
 
 #menu ul li a span {
-	text-transform:uppercase;
-	font-size:13x;
+	/*text-transform:uppercase;*/
 	text-shadow:1px 1px #000;
 	float:left;
-	width:137px;
+	width:142px;
 	padding:10px 10px 7px 10px;
-	font-family:Arial, Helvetica, sans-serif;
+	/*font-family:Arial, Helvetica, sans-serif;*/
 }
 
 #menu ul li.current a span {
@@ -219,7 +211,7 @@ div#edit-slug-box a {
 }
 
 #menu ul li.current a {
-	/*padding-left:43px;*/
+	padding-left:10px;
 }
 
 #menu ul li.current {
@@ -246,7 +238,6 @@ div#edit-slug-box a {
 #menu ul ul li, #menu ul ul li a {
 	background:none;
 	height:auto!important;
-	font-size:11px;
 }
 
 #menu ul ul li a {
@@ -296,7 +287,6 @@ div#edit-slug-box a {
 .notification p {
 	width: auto;
 	color: #555;
-	font-size: 11px;
 	line-height: 10px;
 	text-align: justify;
 	float: left;
@@ -304,10 +294,6 @@ div#edit-slug-box a {
 	*margin-top: 15px; /*IE8 fix*/
 	margin-bottom:0!important;
 	padding-top:12px;
-}
-
-.notification strong {
-	font-size:22px;
 }
 
 .autoWidth{
@@ -606,7 +592,6 @@ ul.dash li a span {
 	width:100%;
 	text-align:center;
 	color:#666;
-	font-size:11px;
 }
 
 ul.dash li .bubble {
@@ -642,12 +627,12 @@ table.fancy {
 
 table.fancy th {
 	color:#666;
-	text-transform:uppercase;
+	/*text-transform:uppercase;*/
 	font-size:13px;
 	padding:10px 20px;
 	vertical-align:middle;
 	background:#f5f5f5;
-	font-family:Arial, Helvetica, sans-serif;
+	/*font-family:Arial, Helvetica, sans-serif;*/
 	border-top:1px solid #f4f4f4;
 }
 
@@ -683,7 +668,7 @@ table.normal td {
 table.normal thead th {
 	background: -moz-linear-gradient(top,#fbfbfb,#f5f5f5);
 	background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#f5f5f5));
-	text-transform:uppercase;
+	/*text-transform:uppercase;*/
 	font-size:10px;
 	font-weight:normal;
 	border-bottom:1px solid #ccc;
@@ -707,7 +692,6 @@ table.normal tbody tr.odd td {
 }
 
 table.normal tbody td {
-	font-size:11px;
 	vertical-align:middle;
 }
 
@@ -742,8 +726,6 @@ fieldset legend {
 	background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#f5f5f5));
 	
 	padding:5px 20px;
-	text-transform:uppercase;
-	font-size:11px;
 }
 
 input, select {
@@ -759,7 +741,6 @@ input, select {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 
-	font-size:11px;
 	margin-right:15px;
 }
 
@@ -789,7 +770,6 @@ input[type="text"], input[type="password"], input.regular-text, select, textarea
 
 input[type="radio"], input[type="checkbox"] {
 	margin-right:5px;
-	font-size:10px;
 }
 
 .validate_success { color:#739F1D; }
@@ -804,12 +784,6 @@ input[type="checkbox"] + label {
 	height: 16px;
 }
 
-p label {
-	display:inline-block;
-	width:150px;
-	font-size:11px;
-	vertical-align:middle;
-}
 
 label.fix {
 	position:relative;
@@ -843,12 +817,9 @@ a.table_icon {
 #primary_right a.add-new-h2, #primary_right .button, #primary_right .button-primary, #primary_right .button-secodary, a.button_link, input[type="submit"], input[type="reset"], .ui-dialog .ui-dialog-buttonpane button {
 	color:#fff;
 	text-decoration:none;
-	font-size: 12px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight:bold;
 	text-shadow:0 1px 1px #1c6d06;
 	letter-spacing:0px;
-	text-transform:uppercase;
+	/*text-transform:uppercase;*/
 	padding: 3px 10px;
 	margin: 2px 10px 5px 0;
 
@@ -890,12 +861,12 @@ background: linear-gradient(top, #2a840e 24%,#194f0a 100%);
 #start-page .inner small a {
 	color:#fff;
 	text-decoration:none;
-	font-size: 12px;
-	font-family: Arial, Helvetica, sans-serif;
+	/*font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;*/
 	font-weight:bold;
 	text-shadow:0 1px 1px #1c6d06;
 	letter-spacing:0px;
-	text-transform:uppercase;
+	/*text-transform:uppercase;*/
 	padding: 3px 10px;
 	margin: 2px 10px 5px 0;
 
@@ -925,8 +896,6 @@ background: linear-gradient(top, #2a840e 24%,#194f0a 100%);
 	-webkit-box-shadow: none!important;
 	box-shadow: none!important;
 
-	font-size:12px;
-	font-family:Arial, Helvetica, sans-serif!important;
 	letter-spacing:0;
 	font-weight:bold;
 
@@ -949,7 +918,6 @@ ul.paginator li a {
 	padding:4px 6px;
 	margin:0 5px 0 0;
 	text-decoration:none;
-	font-size:11px;
 	color:#666;
 	
 	border:1px solid #fff;
@@ -1006,10 +974,10 @@ ul.paginator li a.current {
 	padding:10px 15px 10px 15px;
 	
 	color:#FFF;
-	
+	/*
 	font-size:12px;
 	font-family:Arial, Helvetica, sans-serif;
-	font-weight:bold;
+	font-weight:bold;*/
 	min-width:60px;
     max-width: 400px;
 	text-shadow: 0 1px 1px #6f3a02;
@@ -1060,9 +1028,9 @@ ul.paginator li a.current {
 	
 	color:#FFF;
 	
-	font-size:12px;
+	/*font-size:12px;
 	font-family:Arial, Helvetica, sans-serif;
-	font-weight:bold;
+	font-weight:bold;*/
 	min-width:60px;
     max-width: 400px;
 	text-shadow: 0 1px 1px #6f3a02;
